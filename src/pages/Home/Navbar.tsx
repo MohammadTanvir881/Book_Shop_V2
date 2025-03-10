@@ -1,5 +1,6 @@
 import { ModeToggle } from '@/components/mode-toggle';
 import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -75,48 +76,75 @@ const Navbar = () => {
               </div>
               <div className="hidden sm:ml-6 sm:block">
                 <div className="flex pl-32 space-x-4">
-                  <a
-                    href="#"
-                    className="rounded-md px-3  pt-3 text-sm font-medium text-gray-300
-  hover:bg-gray-700 hover:text-white"
-                    aria-current="page"
+                  <NavLink
+                    to="/"
+                    className={({ isActive }) =>
+                      `rounded-md px-3 pt-3 text-sm font-medium ${
+                        isActive ? 'text-white' : 'text-gray-300'
+                      } hover:bg-gray-700 hover:text-white`
+                    }
                   >
                     Home
-                  </a>
-                  <a
-                    href="#"
-                    className="rounded-md px-3 pt-3  text-sm font-medium text-gray-300
-                     hover:bg-gray-700 hover:text-white"
+                  </NavLink>
+
+                  <NavLink
+                    to="allbooks"
+                    className={({ isActive }) =>
+                      `rounded-md px-3 pt-3 text-sm font-medium ${
+                        isActive ? 'text-blue-500' : 'text-gray-300'
+                      } hover:bg-gray-700 hover:text-white`
+                    }
                   >
                     All Books
-                  </a>
-                  <a
-                    href="#"
-                    className="rounded-md px-3 pt-3  text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+                  </NavLink>
+
+                  <NavLink
+                    to="about"
+                    className={({ isActive }) =>
+                      `rounded-md px-3 pt-3 text-sm font-medium ${
+                        isActive ? 'text-blue-500' : 'text-gray-300'
+                      } hover:bg-gray-700 hover:text-white`
+                    }
                   >
                     About
-                  </a>
-                  <a
-                    href="#"
-                    className="rounded-md px-3 pt-3  text-sm font-medium text-gray-300
-                     hover:bg-gray-700 hover:text-white"
-                  >
-                    Recomended
-                  </a>
+                  </NavLink>
 
-                  <a
-                    href="#"
-                    className="rounded-md px-3 pt-3  text-sm font-medium text-gray-300
-     hover:bg-gray-700 hover:text-white"
+                  <NavLink
+                    to="recomendeds"
+                    className={({ isActive }) =>
+                      `rounded-md px-3 pt-3 text-sm font-medium ${
+                        isActive ? 'text-blue-500' : 'text-gray-300'
+                      } hover:bg-gray-700 hover:text-white`
+                    }
+                  >
+                    Recomendeds
+                  </NavLink>
+
+                  <NavLink
+                    to="blogs"
+                    className={({ isActive }) =>
+                      `rounded-md px-3 pt-3 text-sm font-medium ${
+                        isActive ? 'text-blue-500' : 'text-gray-300'
+                      } hover:bg-gray-700 hover:text-white`
+                    }
                   >
                     Blogs
-                  </a>
+                  </NavLink>
                 </div>
               </div>
             </div>
             <div className="absolute inset-y-0 right-0 flex items-center  sm:static sm:inset-auto sm:ml-6 sm:pr-0">
               <div className="rounded-md  pr-6 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">
-                Login
+                <NavLink
+                  to="/login"
+                  className={({ isActive }) =>
+                    `rounded-md  ${
+                      isActive ? 'text-blue-500' : 'text-gray-300'
+                    } hover:bg-gray-700 hover:text-white`
+                  }
+                >
+                  Login
+                </NavLink>
               </div>
               <p className="pr-12 ">
                 {' '}
@@ -130,39 +158,65 @@ const Navbar = () => {
         {isMobileMenuOpen && (
           <div className="sm:hidden" id="mobile-menu">
             <div className="space-y-1 px-2 pt-2 pb-3">
-              <a
-                href="#"
-                className="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white"
+              <NavLink
+                to="/"
+                className={({ isActive }) =>
+                  `block rounded-md px-3 py-2 text-base font-medium ${
+                    isActive ? 'text-blue-500' : 'text-white'
+                  } bg-gray-900`
+                }
                 aria-current="page"
               >
                 Home
-              </a>
-              <a
-                href="#"
-                className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+              </NavLink>
+
+              <NavLink
+                to="allbooks"
+                className={({ isActive }) =>
+                  `block rounded-md px-3 py-2 text-base font-medium ${
+                    isActive ? 'text-blue-500' : 'text-white'
+                  } bg-gray-900`
+                }
+                aria-current="page"
               >
                 All Books
-              </a>
-              <a
-                href="#"
-                className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+              </NavLink>
+
+              <NavLink
+                to="about"
+                className={({ isActive }) =>
+                  `block rounded-md px-3 py-2 text-base font-medium ${
+                    isActive ? 'text-blue-500' : 'text-white'
+                  } bg-gray-900`
+                }
+                aria-current="page"
               >
                 About
-              </a>
-              <a
-                href="#"
-                className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+              </NavLink>
+
+              <NavLink
+                to="recomendeds"
+                className={({ isActive }) =>
+                  `block rounded-md px-3 py-2 text-base font-medium ${
+                    isActive ? 'text-blue-500' : 'text-white'
+                  } bg-gray-900`
+                }
+                aria-current="page"
               >
                 Recomended
-              </a>
+              </NavLink>
 
-              <a
-                href="#"
-                className="rounded-md px-3 py-2 text-sm font-medium text-gray-300
-     hover:bg-gray-700 hover:text-white"
+              <NavLink
+                to="blogs"
+                className={({ isActive }) =>
+                  `block rounded-md px-3 py-2 text-base font-medium ${
+                    isActive ? 'text-blue-500' : 'text-white'
+                  } bg-gray-900`
+                }
+                aria-current="page"
               >
                 Blogs
-              </a>
+              </NavLink>
             </div>
           </div>
         )}

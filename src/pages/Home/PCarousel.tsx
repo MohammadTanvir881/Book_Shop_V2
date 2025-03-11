@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import 'aos/dist/aos.css';
+import AOS from 'aos';
 
 const images = [
   '/src/assets/images/bs-2.jpg',
@@ -10,6 +12,10 @@ const images = [
 
 const PCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    AOS.init({ duration: 4000 });
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -60,12 +66,18 @@ const PCarousel = () => {
       <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
         <div className="absolute inset-0    bg-opacity-40 flex items-center justify-center ">
           <h1
+            data-aos-duration="2000"
+            data-aos-easing="ease-out-cubic"
+            data-aos="zoom-out-left"
             className="text-blue-300 -mt-40  lg:-mt-120 sm:mr-40 md:mr-80 lg:mr-140 text-lg
          text-5xl md:text-6xl lg:text-8xl font-bold font-serif "
           >
             Grab Your Favorite Book
             <div className="lg:-mt-28 lg:ml-80 ml-30 ">
               <button
+                data-aos-duration="2000"
+                data-aos-easing="ease-out-cubic"
+                data-aos="flip-right"
                 className="bg-transparent lg:text-2xl  hover:bg-blue-500
              text-white font-semibold hover:text-white w-40 lg:h-12 border
               border-blue-500 hover:border-transparent rounded"

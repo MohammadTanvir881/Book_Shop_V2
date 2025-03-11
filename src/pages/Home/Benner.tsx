@@ -27,10 +27,11 @@ const Benner = () => {
 
     '/src/assets/images/bk6.jpg',
   ];
+
   const renderCarousel = () => (
     <Carousel
       plugins={[plugin.current]}
-      className="w-full max-w-lg  md:max-w-xl mt-10 mb-10 lg:max-w-6xl"
+      className="w-full max-w-lg  md:max-w-xl  mb-10 lg:max-w-6xl"
       onMouseEnter={plugin.current.stop}
       onMouseLeave={plugin.current.reset}
     >

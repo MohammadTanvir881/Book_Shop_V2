@@ -70,7 +70,10 @@ const Navbar = () => {
                   src="/src/assets/images/Bk-logo-removebg-preview.png"
                   alt="Your Company"
                 />
-                <h4 className="rounded-md  py-2 text-xl font-medium text-blue-500 hover:bg-gray-700 hover:text-white">
+                <h4
+                  className="rounded-md  py-2 text-xl font-medium
+                 text-blue-500 hover:bg-gray-700 hover:text-white"
+                >
                   BookShop
                 </h4>
               </div>

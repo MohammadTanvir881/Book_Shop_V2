@@ -9,6 +9,7 @@ import Home from '@/pages/Home/Home';
 import Login from '@/pages/Login';
 import Recomended from '@/pages/Recomended';
 import Register from '@/pages/Register';
+import UserProfile from '@/pages/UserProfile';
 
 import { createBrowserRouter } from 'react-router-dom';
 
@@ -83,6 +84,10 @@ const router = createBrowserRouter([
     path: '/register',
     element: <Register></Register>,
   },
+  {
+    path: 'profile',
+    element: <UserProfile></UserProfile>
+  }
 ]);
 
 export default router;

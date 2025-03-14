@@ -1,8 +1,12 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ModeToggle } from '@/components/mode-toggle';
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import Logout from '../Logout';
+import { useSelector } from 'react-redux';
 
 const Navbar = () => {
+   const isAuthenticated = useSelector((state: any) => state.auth.isAuthenticated); 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const toggleMobileMenu = () => {
@@ -136,20 +140,31 @@ const Navbar = () => {
                 </div>
               </div>
             </div>
-            <div className="absolute inset-y-0 right-0 flex items-center  sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-              <div className="rounded-md  pr-6 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">
-                <NavLink
-                  to="/login"
-                  className={({ isActive }) =>
-                    `rounded-md  ${
-                      isActive ? 'text-blue-500' : 'text-gray-300'
-                    } hover:bg-gray-700 hover:text-white`
-                  }
-                >
-                  Login
-                </NavLink>
-              </div>
-              <p className="pr-12 ">
+            <div className="absolute inset-y-0 right-0 flex items-center 
+             sm:static sm:inset-auto sm:ml-10 sm:pr-0">
+             
+             
+             
+              <div className="rounded-md  pr-2 text-sm font-medium
+               text-gray-300 hover:bg-gray-700 hover:text-white">
+      {!isAuthenticated ? (
+        <NavLink
+          to="/login"
+          className={({ isActive }) =>
+            `rounded-md ${isActive ? "text-blue-500" : "text-gray-300"}
+           hover:bg-gray-700
+           hover:text-white`
+          }
+        >
+          Login
+        </NavLink>
+      ) : (
+       <div className=''>
+         <Logout /> 
+       </div>
+      )}
+    </div>   
+              <p className="pr-8 ">
                 {' '}
                 <ModeToggle></ModeToggle>{' '}
               </p>

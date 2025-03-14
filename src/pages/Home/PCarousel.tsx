@@ -84,7 +84,7 @@ const PCarousel = () => {
               >
                 Order Now
               </button>
-            </div>
+               </div>
           </h1>
         </div>
 

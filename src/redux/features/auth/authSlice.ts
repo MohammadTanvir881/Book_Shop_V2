@@ -3,11 +3,15 @@ import { createSlice } from '@reduxjs/toolkit';
 type TAuthState = {
   user: null | object;
   token: null | string;
+      isAuthenticated: boolean,
+  
 };
 
 const initialState: TAuthState = {
   user: null,
-  token: null,
+   token: localStorage.getItem("token") || null, 
+     isAuthenticated: !!localStorage.getItem("token"),
+ 
 };
 
 const authSlice = createSlice({
@@ -18,10 +22,16 @@ const authSlice = createSlice({
       const { user, token } = action.payload;
       state.user = user;
       state.token = token;
+      state.isAuthenticated = true;
+            localStorage.setItem("token", action.payload.token); 
     },
     logout: (state) => {
       state.user = null;
       state.token = null;
+       state.isAuthenticated = false;
+      localStorage.removeItem("token"); 
+        
+     
     },
   },
 });

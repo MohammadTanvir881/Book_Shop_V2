@@ -6,12 +6,12 @@ import { setUser } from '@/redux/features/auth/authSlice';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
-import { Link } from 'react-router-dom'; // Import Link
-import Swal from 'sweetalert2'; // Import sweetalert2
+import { useNavigate } from 'react-router-dom'; 
+import { Link } from 'react-router-dom'; 
+import Swal from 'sweetalert2'; 
 import AOS from 'aos';
 import { useEffect } from 'react';
-// Import AxiosError for better typing
+
 
 export interface ErrorResponse {
   message: string;
@@ -27,7 +27,7 @@ const Login = () => {
   const { register, handleSubmit, reset } = useForm();
   const [loginUser, { isLoading, error }] = useLoginMutation();
   const dispatch = useDispatch();
-  const navigate = useNavigate(); // Initialize navigate function
+  const navigate = useNavigate(); 
 
   const onSubmit = async (data: any) => {
     try {
@@ -37,26 +37,26 @@ const Login = () => {
       console.log(response);
       reset();
 
-      // Show success alert using SweetAlert2
+     
       Swal.fire({
         title: 'Login Successful!',
         text: 'Welcome back!',
         icon: 'success',
         confirmButtonText: 'OK',
       }).then(() => {
-        navigate('/'); // Redirect to the home page after the user clicks 'OK'
+        navigate('/'); 
       });
     } catch (err: any) {
-      // Use `any` type for broader compatibility
+    
       console.error('Login failed:', err);
 
-      // Check if error response exists and extract message safely
+     
       const errorMessage =
         err?.data?.message ||
         err?.error ||
         'Please check your credentials and try again.';
 
-      // Show error alert using SweetAlert2 with the specific error message
+     
       Swal.fire({
         title: 'Login Failed',
         text: errorMessage,
@@ -104,7 +104,7 @@ const Login = () => {
             <p className="text-red-500 text-center mt-2">Login failed</p>
           )}
 
-          {/* Link to the Register page */}
+        
           <p className="text-center  mt-4 text-sm text-black">
             Don't have an account?{' '}
             <Link

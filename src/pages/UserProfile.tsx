@@ -25,3 +25,38 @@ const UserProfile = () => {
 };
 
 export default UserProfile;
+
+
+
+/**
+ * import React from "react";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import AdminDashboard from "./pages/AdminDashboard";
+import UserDashboard from "./pages/UserDashboard";
+import Login from "./pages/Login";
+
+const App = () => {
+  const { user } = useSelector((state) => state.auth);
+
+  return (
+    <Router>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route
+          path="/admin"
+          element={user?.role === "admin" ? <AdminDashboard /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/user"
+          element={user?.role === "user" ? <UserDashboard /> : <Navigate to="/login" />}
+        />
+        <Route path="*" element={<Navigate to="/login" />} />
+      </Routes>
+    </Router>
+  );
+};
+
+export default App;
+
+ */

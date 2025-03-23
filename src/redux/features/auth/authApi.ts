@@ -8,6 +8,7 @@ export interface User {
   id: string;
   name: string;
   email: string;
+  status:boolean
 }
 
 export interface ApiResponse {
@@ -20,6 +21,13 @@ export interface ApiResponse {
 export interface User {
   name: string;
   email: string;
+   _id: string;
+   phone:string;
+   address:string;
+   city:string;
+   isBlocked:boolean;
+   createdAt:string;
+   updatedAt:string
   // Add other user fields as needed
 }
 
@@ -64,6 +72,17 @@ const authApi = baseApi.injectEndpoints({
         method: 'GET',
       }),
     }),
+     deactivateUser: builder.mutation({
+      query: (userId) => ({
+        url: `/user/${userId}/deactivate`, // Endpoint to deactivate user
+        method: 'PATCH',
+      }),
+    }),
+    
+    
+    
+    
+    
     logout: builder.mutation<void, void>({
       query: () => ({
         url: '/auth/logout',
@@ -80,4 +99,5 @@ export const {
   useLogoutMutation,
   useGetUserInfoQuery,
   useGetallUserInfoQuery,
+  useDeactivateUserMutation,
 } = authApi;

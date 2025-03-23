@@ -1,62 +1,47 @@
-import { useGetUserInfoQuery } from '@/redux/features/auth/authApi'; // Assuming this is the correct import path
+import { useGetUserInfoQuery } from '@/redux/features/auth/authApi';
+import { Skeleton } from '@/components/ui/skeleton'; // ShadCN Skeleton
+import { Alert, AlertTitle } from '@/components/ui/alert'; // ShadCN Alert
+import { Card, CardContent } from '@/components/ui/card'; // ShadCN Card
 
 const UserProfile = () => {
-  // Get user info with the token handled by the baseApi
   const { data, error, isLoading } = useGetUserInfoQuery({});
-  console.log(data);
-  // Show loading state
-  if (isLoading) return <div>Loading...</div>;
 
-  // Handle error in fetching user info
-  if (error) {
-    console.error('Error fetching user info:', error);
-    return <div>Error: {JSON.stringify(error, null, 2)}</div>;
+  if (isLoading) {
+    return (
+      <div className="flex flex-col items-center justify-center h-screen">
+        <Skeleton className="w-64 h-8 mb-4" />
+        <Skeleton className="w-40 h-6" />
+      </div>
+    );
   }
 
-  // Display the user's profile
+  if (error) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <Alert variant="destructive">
+          <AlertTitle>Error</AlertTitle>
+          <p>Failed to fetch user data. Please try again later.</p>
+        </Alert>
+      </div>
+    );
+  }
+
   return (
-    <div>
-      <h1>User Profile</h1>
-      <p>Name: {data?.name}</p>
-      <p>Email: {data?.email}</p>
-      {/* Add other user info here */}
+    <div className="flex justify-center items-center mt-12">
+      <Card className="p-6 shadow-lg w-96 dark:bg-gray-800">
+        <CardContent className="text-center ">
+          <h2 className="text-xl font-bold mb-2">My Profile</h2>
+          <p className="text-gray-700 dark:text-blue-200">Name: {data?.name}</p>
+          <p className="text-gray-700  dark:text-blue-200">Email: {data?.email}</p>
+          <p className="text-gray-700  dark:text-blue-200">Phone: {data?.phone}</p>
+          <p className="text-gray-700  dark:text-blue-200">Address: {data?.address}</p>
+          <p className="text-gray-700  dark:text-blue-200">City: {data?.city}</p>
+          <p className="text-gray-700  dark:text-blue-200">CreatedAt: {data?.createdAt}</p>
+          <p className="text-gray-700  dark:text-blue-200">UpdatedAt: {data?.updatedAt}</p>
+        </CardContent>
+      </Card>
     </div>
-  );
+  ); 
 };
 
 export default UserProfile;
-
-
-
-/**
- * import React from "react";
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-import AdminDashboard from "./pages/AdminDashboard";
-import UserDashboard from "./pages/UserDashboard";
-import Login from "./pages/Login";
-
-const App = () => {
-  const { user } = useSelector((state) => state.auth);
-
-  return (
-    <Router>
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route
-          path="/admin"
-          element={user?.role === "admin" ? <AdminDashboard /> : <Navigate to="/login" />}
-        />
-        <Route
-          path="/user"
-          element={user?.role === "user" ? <UserDashboard /> : <Navigate to="/login" />}
-        />
-        <Route path="*" element={<Navigate to="/login" />} />
-      </Routes>
-    </Router>
-  );
-};
-
-export default App;
-
- */

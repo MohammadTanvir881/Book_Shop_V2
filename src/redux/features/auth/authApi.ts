@@ -1,5 +1,27 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { baseApi } from '@/redux/api/baseApi';
+import { UserD } from '@/pages/UserManagment/types';
+import { ReactNode } from 'react';
+
+export interface User {
+  role: ReactNode;
+  id: string;
+  name: string;
+  email: string;
+}
+
+export interface ApiResponse {
+  status: boolean;
+  message: string;
+
+  result: UserD; // Assuming 'result' is the actual user object
+}
+
+export interface User {
+  name: string;
+  email: string;
+  // Add other user fields as needed
+}
 
 export interface RegisterResponse {
   success: boolean;
@@ -32,19 +54,30 @@ const authApi = baseApi.injectEndpoints({
     }),
     getUserInfo: builder.query({
       query: () => ({
-        url: '/auth/profile', 
+        url: '/auth/profile',
         method: 'GET',
       }),
     }),
-     logout: builder.mutation<void, void>({
+    getallUserInfo: builder.query<ApiResponse, void>({
       query: () => ({
-        url:'/auth/logout',
-        method: "POST",
-        credentials: "include",
+        url: '/user/all',
+        method: 'GET',
+      }),
+    }),
+    logout: builder.mutation<void, void>({
+      query: () => ({
+        url: '/auth/logout',
+        method: 'POST',
+        credentials: 'include',
       }),
     }),
   }),
 });
 
-export const { useLoginMutation, useRegisterMutation, useLogoutMutation , useGetUserInfoQuery } =
-  authApi;
+export const {
+  useLoginMutation,
+  useRegisterMutation,
+  useLogoutMutation,
+  useGetUserInfoQuery,
+  useGetallUserInfoQuery,
+} = authApi;

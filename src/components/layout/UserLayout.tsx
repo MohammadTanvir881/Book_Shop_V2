@@ -1,7 +1,7 @@
 import Dashboard from '@/routs/Dashboard';
 import { Outlet } from 'react-router-dom';
 
-const AdminLayout = () => {
+const UserLayout = () => {
   return (
     <div>
       <Dashboard></Dashboard>
@@ -10,4 +10,4 @@ const AdminLayout = () => {
   );
 };
 
-export default AdminLayout;
+export default UserLayout;

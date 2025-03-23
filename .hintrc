@@ -5,6 +5,8 @@
   "hints": {
     "typescript-config/strict": "off",
     "axe/structure": "off",
-    "axe/aria": "off"
+    "axe/aria": "off",
+    "button-type": "off",
+    "axe/name-role-value": "off"
   }
 }

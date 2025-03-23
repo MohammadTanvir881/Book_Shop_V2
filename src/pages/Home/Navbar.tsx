@@ -6,16 +6,22 @@ import Logout from '../Logout';
 import { useSelector } from 'react-redux';
 
 const Navbar = () => {
-   const isAuthenticated = useSelector((state: any) => state.auth.isAuthenticated); 
+  const isAuthenticated = useSelector(
+    (state: any) => state.auth.isAuthenticated,
+  );
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+  };
+
   return (
     <div>
-      <nav className="bg-gray-800">
+      <nav className="bg-gray-800 fixed top-0 left-0 w-full z-50">
         <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
           <div className="relative flex h-16 items-center justify-between">
             <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -57,6 +63,7 @@ const Navbar = () => {
                     stroke="currentColor"
                     aria-hidden="true"
                     data-slot="icon"
+                    onClick={closeMobileMenu}
                   >
                     <path
                       strokeLinecap="round"
@@ -75,7 +82,7 @@ const Navbar = () => {
                   alt="Your Company"
                 />
                 <h4
-                  className="rounded-md  py-2 text-xl font-medium
+                  className="rounded-md py-2 text-xl font-medium
                  text-blue-500 hover:bg-gray-700 hover:text-white"
                 >
                   BookShop
@@ -93,7 +100,6 @@ const Navbar = () => {
                   >
                     Home
                   </NavLink>
-
                   <NavLink
                     to="allbooks"
                     className={({ isActive }) =>
@@ -104,7 +110,6 @@ const Navbar = () => {
                   >
                     All Books
                   </NavLink>
-
                   <NavLink
                     to="about"
                     className={({ isActive }) =>
@@ -115,7 +120,6 @@ const Navbar = () => {
                   >
                     About
                   </NavLink>
-
                   <NavLink
                     to="recomendeds"
                     className={({ isActive }) =>
@@ -126,7 +130,6 @@ const Navbar = () => {
                   >
                     Recomendeds
                   </NavLink>
-
                   <NavLink
                     to="blogs"
                     className={({ isActive }) =>
@@ -137,42 +140,44 @@ const Navbar = () => {
                   >
                     Blogs
                   </NavLink>
+                  <NavLink
+                    to="dashboard"
+                    className={({ isActive }) =>
+                      `rounded-md px-3 pt-3 text-sm font-medium ${
+                        isActive ? 'text-blue-500' : 'text-gray-300'
+                      } hover:bg-gray-700 hover:text-white`
+                    }
+                  >
+                    Dashboard
+                  </NavLink>
                 </div>
               </div>
             </div>
-            <div className="absolute inset-y-0 right-0 flex items-center 
-             sm:static sm:inset-auto sm:ml-10 sm:pr-0">
-             
-             
-             
-              <div className="rounded-md  pr-2 text-sm font-medium
-               text-gray-300 hover:bg-gray-700 hover:text-white">
-      {!isAuthenticated ? (
-        <NavLink
-          to="/login"
-          className={({ isActive }) =>
-            `rounded-md ${isActive ? "text-blue-500" : "text-gray-300"}
-           hover:bg-gray-700
-           hover:text-white`
-          }
-        >
-          Login
-        </NavLink>
-      ) : (
-       <div className=''>
-         <Logout /> 
-       </div>
-      )}
-    </div>   
+            <div className="absolute inset-y-0 right-0 flex items-center sm:static sm:inset-auto sm:ml-10 sm:pr-0">
+              <div className="rounded-md pr-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">
+                {!isAuthenticated ? (
+                  <NavLink
+                    to="/login"
+                    className={({ isActive }) =>
+                      `rounded-md ${isActive ? 'text-blue-500' : 'text-gray-300'} hover:bg-gray-700 hover:text-white`
+                    }
+                  >
+                    Login
+                  </NavLink>
+                ) : (
+                  <div>
+                    <Logout />
+                  </div>
+                )}
+              </div>
               <p className="pr-8 ">
-                {' '}
-                <ModeToggle></ModeToggle>{' '}
+                <ModeToggle />
               </p>
             </div>
           </div>
         </div>
 
-        {/* Mobile menu, show/hide based on menu state */}
+        {/* Mobile menu */}
         {isMobileMenuOpen && (
           <div className="sm:hidden" id="mobile-menu">
             <div className="space-y-1 px-2 pt-2 pb-3">
@@ -183,11 +188,10 @@ const Navbar = () => {
                     isActive ? 'text-blue-500' : 'text-white'
                   } bg-gray-900`
                 }
-                aria-current="page"
+                onClick={closeMobileMenu}
               >
                 Home
               </NavLink>
-
               <NavLink
                 to="allbooks"
                 className={({ isActive }) =>
@@ -195,11 +199,10 @@ const Navbar = () => {
                     isActive ? 'text-blue-500' : 'text-white'
                   } bg-gray-900`
                 }
-                aria-current="page"
+                onClick={closeMobileMenu}
               >
                 All Books
               </NavLink>
-
               <NavLink
                 to="about"
                 className={({ isActive }) =>
@@ -207,11 +210,10 @@ const Navbar = () => {
                     isActive ? 'text-blue-500' : 'text-white'
                   } bg-gray-900`
                 }
-                aria-current="page"
+                onClick={closeMobileMenu}
               >
                 About
               </NavLink>
-
               <NavLink
                 to="recomendeds"
                 className={({ isActive }) =>
@@ -219,11 +221,10 @@ const Navbar = () => {
                     isActive ? 'text-blue-500' : 'text-white'
                   } bg-gray-900`
                 }
-                aria-current="page"
+                onClick={closeMobileMenu}
               >
-                Recomended
+                Recomendeds
               </NavLink>
-
               <NavLink
                 to="blogs"
                 className={({ isActive }) =>
@@ -231,9 +232,20 @@ const Navbar = () => {
                     isActive ? 'text-blue-500' : 'text-white'
                   } bg-gray-900`
                 }
-                aria-current="page"
+                onClick={closeMobileMenu}
               >
                 Blogs
+              </NavLink>
+              <NavLink
+                to="dashboard"
+                className={({ isActive }) =>
+                  `block rounded-md px-3 py-2 text-base font-medium ${
+                    isActive ? 'text-blue-500' : 'text-white'
+                  } bg-gray-900`
+                }
+                onClick={closeMobileMenu}
+              >
+                Dashboard
               </NavLink>
             </div>
           </div>
@@ -244,3 +256,18 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -6,12 +6,12 @@ import { setUser } from '@/redux/features/auth/authSlice';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { useNavigate } from 'react-router-dom'; 
-import { Link } from 'react-router-dom'; 
-import Swal from 'sweetalert2'; 
+import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 import AOS from 'aos';
 import { useEffect } from 'react';
-
+// import { verifyToken } from '@/utils/verifytoken';
 
 export interface ErrorResponse {
   message: string;
@@ -24,47 +24,79 @@ const Login = () => {
     AOS.init({ duration: 1000 });
   }, []);
 
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit } = useForm();
   const [loginUser, { isLoading, error }] = useLoginMutation();
   const dispatch = useDispatch();
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const onSubmit = async (data: any) => {
     try {
       const response = await loginUser(data).unwrap();
-      localStorage.setItem('token', response.token);
-      dispatch(setUser({ user: response.data, token: response.token }));
-      console.log(response);
-      reset();
 
-     
+      localStorage.setItem('token', response.token);
+      localStorage.setItem('user', JSON.stringify(response.data));
+
+      dispatch(setUser({ user: response.data, token: response.token }));
+
       Swal.fire({
         title: 'Login Successful!',
         text: 'Welcome back!',
         icon: 'success',
         confirmButtonText: 'OK',
       }).then(() => {
-        navigate('/'); 
+        navigate('/');
       });
     } catch (err: any) {
-    
       console.error('Login failed:', err);
-
-     
-      const errorMessage =
-        err?.data?.message ||
-        err?.error ||
-        'Please check your credentials and try again.';
-
-     
       Swal.fire({
         title: 'Login Failed',
-        text: errorMessage,
+        text: err?.data?.message || 'Invalid credentials',
         icon: 'error',
         confirmButtonText: 'Try Again',
       });
     }
   };
+
+  // const onSubmit = async (data: any) => {
+  // try {
+  // const response = await loginUser(data).unwrap();
+
+  // const user = verifyToken(response.data.token);
+  // console.log(user);
+
+  // localStorage.setItem('token', response.token);
+  // dispatch(setUser({ user: response.data, token: response.token }));
+  // console.log(response);
+  // reset();
+
+  //
+  // Swal.fire({
+  // title: 'Login Successful!',
+  // text: 'Welcome back!',
+  // icon: 'success',
+  // confirmButtonText: 'OK',
+  // }).then(() => {
+  // navigate('/');
+  // });
+  // } catch (err: any) {
+  //
+  // console.error('Login failed:', err);
+
+  //
+  // const errorMessage =
+  // err?.data?.message ||
+  // err?.error ||
+  // 'Please check your credentials and try again.';
+
+  //
+  // Swal.fire({
+  // title: 'Login Failed',
+  // text: errorMessage,
+  // icon: 'error',
+  // confirmButtonText: 'Try Again',
+  // });
+  // }
+  // };
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-800 p-4">
@@ -104,7 +136,6 @@ const Login = () => {
             <p className="text-red-500 text-center mt-2">Login failed</p>
           )}
 
-        
           <p className="text-center  mt-4 text-sm text-black">
             Don't have an account?{' '}
             <Link

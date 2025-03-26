@@ -13,9 +13,13 @@ interface SidebarProps {
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
+  const { user } = useSelector((state: any) => state.auth);
+
   return (
     <div
-      className={`bg-gray-900 text-white w-64 min-h-screen p-5 fixed md:static top-0 left-0 transform ${isOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform md:translate-x-0 z-50`}
+      className={`bg-gray-900 text-white w-64 min-h-screen p-5 fixed md:static top-0 left-0 transform ${
+        isOpen ? 'translate-x-0' : '-translate-x-full'
+      } transition-transform md:translate-x-0 z-50`}
     >
       <button
         className="md:hidden text-white text-2xl absolute top-4 right-4"
@@ -30,7 +34,9 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
             to="/dashboard"
             onClick={toggleSidebar}
             className={({ isActive }) =>
-              `block rounded-md px-4 py-2 text-sm font-medium ${isActive ? 'text-blue-500' : 'text-gray-300'} hover:bg-gray-700 hover:text-white`
+              `block rounded-md px-4 py-2 text-sm font-medium ${
+                isActive ? 'text-blue-500' : 'text-gray-300'
+              } hover:bg-gray-700 hover:text-white`
             }
           >
             Overview
@@ -41,29 +47,72 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
             to="/dashboard/profile"
             onClick={toggleSidebar}
             className={({ isActive }) =>
-              `block rounded-md px-4 py-2 text-sm font-medium ${isActive ? 'text-blue-500' : 'text-gray-300'} hover:bg-gray-700 hover:text-white`
+              `block rounded-md px-4 py-2 text-sm font-medium ${
+                isActive ? 'text-blue-500' : 'text-gray-300'
+              } hover:bg-gray-700 hover:text-white`
             }
           >
             My Profile
           </NavLink>
         </li>
-        <li>
-          <NavLink
-            to="/dashboard/user"
-            onClick={toggleSidebar}
-            className={({ isActive }) =>
-              `block rounded-md px-4 py-2 text-sm font-medium ${isActive ? 'text-blue-500' : 'text-gray-300'} hover:bg-gray-700 hover:text-white`
-            }
-          >
-            User Management
-          </NavLink>
-        </li>
+
+        {/*  RBAC Routs */}
+        {user?.role === 'admin' && (
+          <li>
+            <NavLink
+              to="/dashboard/user"
+              onClick={toggleSidebar}
+              className={({ isActive }) =>
+                `block rounded-md px-4 py-2 text-sm font-medium ${
+                  isActive ? 'text-blue-500' : 'text-gray-300'
+                } hover:bg-gray-700 hover:text-white`
+              }
+            >
+              User Management
+            </NavLink>
+          </li>
+        )}
+
+        {user?.role === 'admin' && (
+          <li>
+            <NavLink
+              to="/dashboard/productManage"
+              onClick={toggleSidebar}
+              className={({ isActive }) =>
+                `block rounded-md px-4 py-2 text-sm font-medium ${
+                  isActive ? 'text-blue-500' : 'text-gray-300'
+                } hover:bg-gray-700 hover:text-white`
+              }
+            >
+              Products Management
+            </NavLink>
+          </li>
+        )}
+
+        {user?.role === 'admin' && (
+          <li>
+            <NavLink
+              to="/dashboard/orderManage"
+              onClick={toggleSidebar}
+              className={({ isActive }) =>
+                `block rounded-md px-4 py-2 text-sm font-medium ${
+                  isActive ? 'text-blue-500' : 'text-gray-300'
+                } hover:bg-gray-700 hover:text-white`
+              }
+            >
+              Order Management
+            </NavLink>
+          </li>
+        )}
+
         <li>
           <NavLink
             to="/"
             onClick={toggleSidebar}
             className={({ isActive }) =>
-              `block rounded-md px-4 py-2 text-sm font-medium ${isActive ? 'text-blue-500' : 'text-gray-300'} hover:bg-gray-700 hover:text-white`
+              `block rounded-md px-4 py-2 text-sm font-medium ${
+                isActive ? 'text-blue-500' : 'text-gray-300'
+              } hover:bg-gray-700 hover:text-white`
             }
           >
             Back To Home

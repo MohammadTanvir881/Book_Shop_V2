@@ -32,16 +32,28 @@ const UserProfile = () => {
         <CardContent className="text-center ">
           <h2 className="text-xl font-bold mb-2">My Profile</h2>
           <p className="text-gray-700 dark:text-blue-200">Name: {data?.name}</p>
-          <p className="text-gray-700  dark:text-blue-200">Email: {data?.email}</p>
-          <p className="text-gray-700  dark:text-blue-200">Phone: {data?.phone}</p>
-          <p className="text-gray-700  dark:text-blue-200">Address: {data?.address}</p>
-          <p className="text-gray-700  dark:text-blue-200">City: {data?.city}</p>
-          <p className="text-gray-700  dark:text-blue-200">CreatedAt: {data?.createdAt}</p>
-          <p className="text-gray-700  dark:text-blue-200">UpdatedAt: {data?.updatedAt}</p>
+          <p className="text-gray-700  dark:text-blue-200">
+            Email: {data?.email}
+          </p>
+          <p className="text-gray-700  dark:text-blue-200">
+            Phone: {data?.phone}
+          </p>
+          <p className="text-gray-700  dark:text-blue-200">
+            Address: {data?.address}
+          </p>
+          <p className="text-gray-700  dark:text-blue-200">
+            City: {data?.city}
+          </p>
+          <p className="text-gray-700  dark:text-blue-200">
+            CreatedAt: {data?.createdAt}
+          </p>
+          <p className="text-gray-700  dark:text-blue-200">
+            UpdatedAt: {data?.updatedAt}
+          </p>
         </CardContent>
       </Card>
     </div>
-  ); 
+  );
 };
 
 export default UserProfile;

@@ -21,6 +21,10 @@ import { createBrowserRouter } from 'react-router-dom';
 import Dashboard from './Dashboard';
 import OverviewDashboard from './OverviewDashboard';
 import AllUser from '@/pages/UserManagment/AllUser';
+import ProductMange from '@/pages/ProductManagment/ProductMange';
+import OrderManagment from '@/pages/OrderManagment/OrderManagment';
+import CreateProduct from '@/pages/ProductManagment/CreateProduct';
+import EditProductPage from '@/pages/ProductManagment/EditProductPage';
 
 const router = createBrowserRouter([
   {
@@ -52,21 +56,50 @@ const router = createBrowserRouter([
     ),
     children: [
       { path: '/dashboard', element: <OverviewDashboard /> },
-      { path: 'profile', element: <UserProfile></UserProfile> },
-      { path: 'user', element: <AllUser></AllUser> },
-    ],
-  },
+      { path: 'profile', element: <UserProfile /> },
+      {
+        path: 'user',
+        element: (
+          <ProtectedRoute allowedRoles={['admin']}>
+            <AllUser />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: 'productManage',
+        element: (
+          <ProtectedRoute allowedRoles={['admin']}>
+            <ProductMange />
+          </ProtectedRoute>
+        ),
+      },
 
-  {
-    path: '/user/dashboard',
-    element: (
-      <ProtectedRoute allowedRoles={['user']}>
-        <Dashboard />
-      </ProtectedRoute>
-    ),
-    children: [
-      { path: 'overview', element: <OverviewDashboard /> },
-      { path: 'profile', element: <UserProfile></UserProfile> },
+      {
+        path: 'orderManage',
+        element: (
+          <ProtectedRoute allowedRoles={['admin']}>
+            <OrderManagment />
+          </ProtectedRoute>
+        ),
+      },
+
+      {
+        path: 'products/create',
+        element: (
+          <ProtectedRoute allowedRoles={['admin']}>
+            <CreateProduct />
+          </ProtectedRoute>
+        ),
+      },
+
+      {
+        path: 'products/edit/:id',
+        element: (
+          <ProtectedRoute allowedRoles={['admin']}>
+            <EditProductPage />
+          </ProtectedRoute>
+        ),
+      },
     ],
   },
 ]);

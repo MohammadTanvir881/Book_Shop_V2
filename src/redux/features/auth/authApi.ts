@@ -12,6 +12,11 @@ export interface User {
   status: boolean;
 }
 
+export type GetProductsResponse = {
+  total: number;
+  result: Product[];
+};
+
 export interface ApiResponse {
   status: boolean;
   message: string;
@@ -80,7 +85,10 @@ const authApi = baseApi.injectEndpoints({
       }),
     }),
 
-    getProducts: builder.query<Product[], { page: number; limit: number }>({
+    getProducts: builder.query<
+      GetProductsResponse,
+      { page: number; limit: number }
+    >({
       query: ({ page = 1, limit = 10 }) => {
         return {
           url: '/products',

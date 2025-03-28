@@ -89,6 +89,19 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
           </li>
         )}
 
+        <li>
+          <NavLink
+            to="/dashboard/allbooks"
+            onClick={toggleSidebar}
+            className={({ isActive }) =>
+              `block rounded-md px-4 py-2 text-sm font-medium ${
+                isActive ? 'text-blue-500' : 'text-gray-300'
+              } hover:bg-gray-700 hover:text-white`
+            }
+          >
+            All Products
+          </NavLink>
+        </li>
         {user?.role === 'admin' && (
           <li>
             <NavLink

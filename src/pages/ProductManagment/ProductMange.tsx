@@ -6,16 +6,15 @@ import {
 } from '@/redux/features/auth/authApi';
 import { Link } from 'react-router-dom';
 import { Product } from './productTypes';
-import { FaEdit, FaTrash } from 'react-icons/fa';
+import { FaEdit, FaTrash, FaStar } from 'react-icons/fa';
 import React from 'react';
-import Swal from 'sweetalert2'; // Import SweetAlert
+import Swal from 'sweetalert2';
 
 const ProductManage = () => {
   const [page, setPage] = React.useState(1);
-  const limit = 10; // Limit to 10 products per page
-  const [products, setProducts] = React.useState<Product[]>([]); // State to hold products
+  const limit = 10;
+  const [products, setProducts] = React.useState<Product[]>([]);
 
-  // Fetch data based on the page and limit
   const { data, isLoading, error, refetch } = useGetProductsQuery({
     page,
     limit,
@@ -34,7 +33,7 @@ const ProductManage = () => {
   };
 
   const handlePrev = () => {
-    setPage((prevPage) => Math.max(prevPage - 1, 1)); // Prevent page going below 1
+    setPage((prevPage) => Math.max(prevPage - 1, 1));
   };
 
   if (isLoading) return <p className="text-center text-lg">Loading...</p>;
@@ -45,9 +44,8 @@ const ProductManage = () => {
       </p>
     );
 
-  const totalProducts = (data as any)?.total ?? 0; // Total number of products from the server
+  const totalProducts = (data as any)?.total ?? 0;
 
-  // Handle deletion with SweetAlert
   const handleDelete = (productId: string) => {
     Swal.fire({
       title: 'Are you sure?',
@@ -63,17 +61,11 @@ const ProductManage = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          // Optimistically update the UI by removing the product from the list
           setProducts((prevProducts) =>
             prevProducts.filter((product) => product._id !== productId),
           );
-
-          // Perform the actual deletion
           await deleteProduct(productId).unwrap();
-
-          // Refetch the products list to ensure UI is updated
           refetch();
-
           Swal.fire({
             title: 'Deleted!',
             text: 'The product has been deleted.',
@@ -106,29 +98,24 @@ const ProductManage = () => {
         </Link>
       </div>
 
-      {/* Responsive Table Container */}
       <div className="overflow-x-auto shadow-lg rounded-lg">
         <table className="min-w-full table-auto text-left">
           <thead className="bg-gray-100">
             <tr className="font-bold text-xs md:text-sm">
-              <th className="px-3 py-2 md:px-6 md:py-3 text-gray-700">
-                Product Name
-              </th>
+              <th className="px-3 py-2 md:px-6 md:py-3 text-gray-700">Image</th>
+              <th className="px-3 py-2 md:px-6 md:py-3 text-gray-700">Name</th>
               <th className="px-3 py-2 md:px-6 md:py-3 text-gray-700">Price</th>
+              <th className="px-3 py-2 md:px-6 md:py-3 text-gray-700">
+                Rating
+              </th>
               <th className="px-3 py-2 md:px-6 md:py-3 text-gray-700">
                 Category
               </th>
               <th className="px-3 py-2 md:px-6 md:py-3 text-gray-700 hidden md:table-cell">
-                Author
+                Description
               </th>
               <th className="px-3 py-2 md:px-6 md:py-3 text-gray-700">Brand</th>
-              <th className="px-3 py-2 md:px-6 md:py-3 text-gray-700 hidden md:table-cell">
-                Model
-              </th>
               <th className="px-3 py-2 md:px-6 md:py-3 text-gray-700">Stock</th>
-              <th className="px-3 py-2 md:px-6 md:py-3 text-gray-700 hidden md:table-cell">
-                Quantity
-              </th>
               <th className="px-3 py-2 md:px-6 md:py-3 text-gray-700">
                 Actions
               </th>
@@ -141,6 +128,13 @@ const ProductManage = () => {
                   key={product._id}
                   className="border-b hover:bg-gray-50 text-xs md:text-sm"
                 >
+                  <td className="px-3 py-2 md:px-6 md:py-4">
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className="w-12 h-12 object-cover rounded-lg"
+                    />
+                  </td>
                   <td className="px-3 py-2 md:px-6 md:py-4 text-gray-700">
                     {product.name}
                   </td>
@@ -148,36 +142,37 @@ const ProductManage = () => {
                     ${product.price}
                   </td>
                   <td className="px-3 py-2 md:px-6 md:py-4 text-gray-700">
+                    <div className="flex items-center">
+                      <FaStar className="text-yellow-400 mr-1" />
+                      {product.rating || 'N/A'}
+                    </div>
+                  </td>
+                  <td className="px-3 py-2 md:px-6 md:py-4 text-gray-700">
                     {product.category}
                   </td>
                   <td className="px-3 py-2 md:px-6 md:py-4 text-gray-700 hidden md:table-cell">
-                    {product.author}
+                    <div className="truncate max-w-xs">
+                      {product.description || 'No description'}
+                    </div>
                   </td>
                   <td className="px-3 py-2 md:px-6 md:py-4 text-gray-700">
                     {product.brand}
                   </td>
-                  <td className="px-3 py-2 md:px-6 md:py-4 text-gray-700 hidden md:table-cell">
-                    {product.model}
-                  </td>
                   <td className="px-3 py-2 md:px-6 md:py-4 text-gray-700">
                     {product.stock}
                   </td>
-                  <td className="px-3 py-2 md:px-6 md:py-4 text-gray-700 hidden md:table-cell">
-                    {product.quantity}
-                  </td>
-                  <td className="px-3 py-2 md:px-6 md:py-4 text-gray-700 flex space-x-4">
+                  <td className="px-3 py-2 mt-4 md:px-6 md:py-4 text-gray-700 flex space-x-4">
                     <Link
                       to={`/dashboard/products/edit/${product._id}`}
-                      className="text-gray-800 text-lg hover:text-blue-800 transition"
+                      className="text-gray-800 hover:text-blue-800 transition"
                     >
                       <FaEdit />
                     </Link>
-
                     <button
-                      onClick={() => handleDelete(product._id!)} // Call the delete handler
+                      onClick={() => handleDelete(product._id!)}
                       className="text-red-500 hover:text-red-800 transition"
                     >
-                      <FaTrash className="text-lg" />
+                      <FaTrash />
                     </button>
                   </td>
                 </tr>
@@ -201,17 +196,17 @@ const ProductManage = () => {
         <button
           onClick={handlePrev}
           disabled={page === 1}
-          className="bg-gray-800 text-white px-2 rounded-lg shadow-md hover:bg-gray-700 transition disabled:opacity-50"
+          className="bg-gray-800 text-white px-4 py-2 rounded-lg shadow-md hover:bg-gray-700 transition disabled:opacity-50"
         >
           Previous
         </button>
-        <span className="self-center pl-4 pr-4 text-lg">
+        <span className="self-center px-4 text-lg">
           Page {page} of {Math.ceil(totalProducts / limit)}
         </span>
         <button
           onClick={handleNext}
           disabled={products.length < limit}
-          className="bg-gray-800 text-white px-5 rounded-lg shadow-md hover:bg-gray-700 transition disabled:opacity-50"
+          className="bg-gray-800 text-white px-4 py-2 rounded-lg shadow-md hover:bg-gray-700 transition disabled:opacity-50"
         >
           Next
         </button>

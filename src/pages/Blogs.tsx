@@ -90,7 +90,9 @@ const Blogs = () => {
             data-aos-easing="ease-out-cubic"
             data-aos-duration="2000"
             key={index}
-            className="bg-white shadow-md rounded-lg overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-xl w-full sm:w-[90%] mx-auto"
+            className="bg-white shadow-md
+             rounded-lg overflow-hidden transform transition-all
+              duration-300 hover:scale-105 hover:shadow-xl w-full sm:w-[90%] mx-auto"
           >
             <img
               src={blog.img}

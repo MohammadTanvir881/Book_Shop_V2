@@ -1,4 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
+
 import {
   useGetProductQuery,
   useUpdateProductMutation,
@@ -16,9 +18,16 @@ const EditProductPage = () => {
     pollingInterval: 3000,
   });
   const [updateProduct] = useUpdateProductMutation();
-  const [componentKey, setComponentKey] = useState(0);
 
-  const [productDetails, setProductDetails] = useState({
+  const validCategories = [
+    'Fiction',
+    'Science',
+    'SelfDevelopment',
+    'Poetry',
+    'Religious',
+  ];
+
+  const [originalProduct, setOriginalProduct] = useState({
     name: '',
     price: 0,
     category: '',
@@ -27,11 +36,21 @@ const EditProductPage = () => {
     stock: 0,
     quantity: 0,
     model: '',
+    image: '',
+    description: '',
+    rating: 0,
+    discount: 0,
+    tags: [],
+    features: [],
   });
+
+  const [changedFields, setChangedFields] = useState<Record<string, any>>({});
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [imagePreview, setImagePreview] = useState(originalProduct.image);
 
   useEffect(() => {
     if (data) {
-      setProductDetails({
+      setOriginalProduct({
         name: data.name || '',
         price: data.price || 0,
         category: data.category || '',
@@ -40,19 +59,60 @@ const EditProductPage = () => {
         stock: data.stock || 0,
         quantity: data.quantity || 0,
         model: data.model || '',
+        image: data.image || '',
+        description: data.description || '',
+        rating: data.rating || 0,
+        discount: data.discount || 0,
+        tags: data.tags || [],
+        features: data.features || [],
       });
+
+      setImagePreview(data.image || '');
     }
   }, [data]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >,
+  ) => {
     const { name, value } = e.target;
-    setProductDetails({
-      ...productDetails,
-      [name]:
-        name === 'price' || name === 'stock' || name === 'quantity'
-          ? Number(value)
-          : value,
-    });
+    const newValue = [
+      'price',
+      'stock',
+      'quantity',
+      'rating',
+      'discount',
+    ].includes(name)
+      ? Number(value)
+      : value;
+
+    if (originalProduct[name as keyof typeof originalProduct] !== newValue) {
+      setChangedFields((prev) => ({
+        ...prev,
+        [name]: newValue,
+      }));
+    } else {
+      setChangedFields((prev) => {
+        const newFields = { ...prev };
+        delete newFields[name];
+        return newFields;
+      });
+    }
+  };
+
+  const handleArrayChange = (name: string, value: string) => {
+    const arrayValue = value.split(',').map((item) => item.trim());
+    setChangedFields((prev) => ({
+      ...prev,
+      [name]: arrayValue,
+    }));
+  };
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newValue = e.target.value;
+    setImagePreview(newValue);
+    handleChange(e);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -63,9 +123,7 @@ const EditProductPage = () => {
     }
 
     try {
-      await updateProduct({ id, data: productDetails }).unwrap();
-
-      // ✅ Update করার পর refetch() কল করা
+      await updateProduct({ id, data: changedFields }).unwrap();
       await refetch();
 
       Swal.fire({
@@ -91,155 +149,150 @@ const EditProductPage = () => {
   if (error) return <p>Error loading product details.</p>;
 
   return (
-    <div key={componentKey} className="max-w-7xl mx-auto p-6">
+    <div className="max-w-7xl mx-auto p-6">
       <h1 className="text-3xl font-bold text-center text-gray-800 mb-6">
         Edit Product
       </h1>
       <form onSubmit={handleSubmit} className="space-y-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label className="block text-sm font-semibold text-gray-700">
+              Product Name
+            </label>
+            <input
+              type="text"
+              name="name"
+              defaultValue={originalProduct.name}
+              onChange={handleChange}
+              className="mt-1 p-2 w-full border border-gray-300 rounded-md"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-semibold text-gray-700">
+              Price
+            </label>
+            <input
+              type="number"
+              name="price"
+              defaultValue={originalProduct.price}
+              onChange={handleChange}
+              className="mt-1 p-2 w-full border border-gray-300 rounded-md"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-semibold text-gray-700">
+              Category
+            </label>
+            <select
+              name="category"
+              defaultValue={originalProduct.category}
+              onChange={handleChange}
+              className="mt-1 p-2 w-full border border-gray-300 rounded-md"
+            >
+              <option value="">Select a category</option>
+              {validCategories.map((category) => (
+                <option key={category} value={category}>
+                  {category}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div>
+            <label className="block text-sm font-semibold text-gray-700">
+              Stock
+            </label>
+            <input
+              type="number"
+              name="stock"
+              defaultValue={originalProduct.stock}
+              onChange={handleChange}
+              className="mt-1 p-2 w-full border border-gray-300 rounded-md"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-semibold text-gray-700">
+              Brand
+            </label>
+            <input
+              type="text"
+              name="brand"
+              defaultValue={originalProduct.brand}
+              onChange={handleChange}
+              className="mt-1 p-2 w-full border border-gray-300 rounded-md"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-semibold text-gray-700">
+              Model
+            </label>
+            <input
+              type="text"
+              name="model"
+              defaultValue={originalProduct.model}
+              onChange={handleChange}
+              className="mt-1 p-2 w-full border border-gray-300 rounded-md"
+            />
+          </div>
+        </div>
+
         <div>
-          <label
-            htmlFor="name"
-            className="block text-sm font-semibold text-gray-700"
-          >
-            Product Name
+          <label className="block text-sm font-semibold text-gray-700">
+            Image URL
           </label>
+          {imagePreview && (
+            <div className="mt-2 mb-4">
+              <img
+                src={imagePreview}
+                alt="Product Preview"
+                className="h-40 w-40 object-cover rounded-md"
+              />
+            </div>
+          )}
           <input
             type="text"
-            id="name"
-            name="name"
-            value={productDetails.name}
-            onChange={handleChange}
-            placeholder="Enter product name"
-            className="mt-1 p-2 w-full border border-gray-300 rounded-md"
-          />
-        </div>
-        <div>
-          <label
-            htmlFor="price"
-            className="block text-sm font-semibold text-gray-700"
-          >
-            Price
-          </label>
-          <input
-            type="number"
-            id="price"
-            name="price"
-            value={productDetails.price}
-            onChange={handleChange}
-            placeholder="Enter price"
-            className="mt-1 p-2 w-full border border-gray-300 rounded-md"
-          />
-        </div>
-        <div>
-          <label
-            htmlFor="category"
-            className="block text-sm font-semibold text-gray-700"
-          >
-            Category
-          </label>
-          <input
-            type="text"
-            id="category"
-            name="category"
-            value={productDetails.category}
-            onChange={handleChange}
-            placeholder="Enter product category"
-            className="mt-1 p-2 w-full border border-gray-300 rounded-md"
-          />
-        </div>
-        <div>
-          <label
-            htmlFor="author"
-            className="block text-sm font-semibold text-gray-700"
-          >
-            Author
-          </label>
-          <input
-            type="text"
-            id="author"
-            name="author"
-            value={productDetails.author}
-            onChange={handleChange}
-            placeholder="Enter author's name"
-            className="mt-1 p-2 w-full border border-gray-300 rounded-md"
-          />
-        </div>
-        <div>
-          <label
-            htmlFor="brand"
-            className="block text-sm font-semibold text-gray-700"
-          >
-            Brand
-          </label>
-          <input
-            type="text"
-            id="brand"
-            name="brand"
-            value={productDetails.brand}
-            onChange={handleChange}
-            placeholder="Enter brand name"
+            name="image"
+            defaultValue={originalProduct.image}
+            onChange={handleImageChange}
             className="mt-1 p-2 w-full border border-gray-300 rounded-md"
           />
         </div>
 
         <div>
-          <label
-            htmlFor="model"
-            className="block text-sm font-semibold text-gray-700"
-          >
-            Model
+          <label className="block text-sm font-semibold text-gray-700">
+            Description
           </label>
-          <input
-            type="text"
-            id="model"
-            name="model"
-            value={productDetails.model}
+          <textarea
+            name="description"
+            defaultValue={originalProduct.description}
             onChange={handleChange}
-            placeholder="Enter brand name"
+            rows={4}
             className="mt-1 p-2 w-full border border-gray-300 rounded-md"
           />
         </div>
 
         <div>
-          <label
-            htmlFor="stock"
-            className="block text-sm font-semibold text-gray-700"
-          >
-            Stock
+          <label className="block text-sm font-semibold text-gray-700">
+            Tags (comma separated)
           </label>
           <input
             type="text"
-            id="stock"
-            name="stock"
-            value={productDetails.stock}
-            onChange={handleChange}
-            placeholder="Enter brand name"
+            defaultValue={originalProduct.tags.join(', ')}
+            onChange={(e) => handleArrayChange('tags', e.target.value)}
             className="mt-1 p-2 w-full border border-gray-300 rounded-md"
           />
         </div>
 
-        <div>
-          <label
-            htmlFor="quantity"
-            className="block text-sm font-semibold text-gray-700"
-          >
-            Quantity
-          </label>
-          <input
-            type="text"
-            id="quantity"
-            name="quantity"
-            value={productDetails.quantity}
-            onChange={handleChange}
-            placeholder="Enter brand name"
-            className="mt-1 p-2 w-full border border-gray-300 rounded-md"
-          />
-        </div>
         <button
           type="submit"
-          className="bg-gray-800 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition"
+          className="bg-gray-900 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition"
+          disabled={Object.keys(changedFields).length === 0}
         >
-          Save Changes
+          Update Product
         </button>
       </form>
     </div>

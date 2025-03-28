@@ -1,5 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export interface Product {
+  rating: number;
+  discount: number;
+  tags: never[];
+  features: never[];
   image: string | undefined;
   data: Product;
   _id?: string;

@@ -1,8 +1,5 @@
 import App from '@/App';
-// import AdminLayout from '@/components/layout/AdminLayout';
-// import UserLayout from '@/components/layout/UserLayout';
-// import AdminDashboard from '@/pages/AdminDashboard';
-// import UserDashboard from '@/pages/UserDashboard';
+
 import ProtectedRoute from '../components/layout/ProtectedRoute';
 import About from '@/pages/About';
 import AllBooks from '@/pages/All-Books';
@@ -15,9 +12,6 @@ import Register from '@/pages/Register';
 import UserProfile from '@/pages/UserProfile';
 import { createBrowserRouter } from 'react-router-dom';
 
-// import AdminSettings from '@/pages/Home/AdminSettings';
-// import ManageUsers from '@/pages/Home/ManageUsers';
-// import UserOrders from '@/pages/Home/UserOrders';
 import Dashboard from './Dashboard';
 import OverviewDashboard from './OverviewDashboard';
 import AllUser from '@/pages/UserManagment/AllUser';
@@ -57,6 +51,7 @@ const router = createBrowserRouter([
     children: [
       { path: '/dashboard', element: <OverviewDashboard /> },
       { path: 'profile', element: <UserProfile /> },
+      { path: 'allbooks', element: <AllBooks /> },
       {
         path: 'user',
         element: (

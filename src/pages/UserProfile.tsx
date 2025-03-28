@@ -28,7 +28,7 @@ const UserProfile = () => {
 
   return (
     <div className="flex justify-center items-center mt-12">
-      <Card className="p-6 shadow-lg w-96 dark:bg-gray-800">
+      <Card className="p-6 mt-20 shadow-lg w-96 dark:bg-gray-800">
         <CardContent className="text-center ">
           <h2 className="text-xl font-bold mb-2">My Profile</h2>
           <p className="text-gray-700 dark:text-blue-200">Name: {data?.name}</p>

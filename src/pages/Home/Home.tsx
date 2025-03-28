@@ -3,6 +3,7 @@ import PCarousel from './PCarousel';
 import 'aos/dist/aos.css';
 import AOS from 'aos';
 import { useEffect } from 'react';
+import FeaturedProducts from './FeaturedProducts';
 
 const Home = () => {
   useEffect(() => {
@@ -12,6 +13,7 @@ const Home = () => {
   return (
     <div>
       <PCarousel></PCarousel>
+      <FeaturedProducts />
       <h1
         data-aos="flip-left"
         data-aos-easing="ease-out-cubic"

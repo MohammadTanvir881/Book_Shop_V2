@@ -23,7 +23,7 @@ const OverviewDashboard = () => {
 
   return (
     <div className="p-6 space-y-8 text-gray-900 dark:text-black">
-      <h2 className="text-2xl font-semibold text-gray-900 dark:text-black">
+      <h2 className="text-2xl mt-15 font-semibold text-gray-900 dark:text-black">
         Overview
       </h2>
 

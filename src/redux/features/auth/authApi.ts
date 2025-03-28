@@ -12,6 +12,17 @@ export interface User {
   status: boolean;
 }
 
+// Add a new interface for the query parameters
+export interface GetProductsParams {
+  page?: number;
+  limit?: number;
+  searchTerm?: string;
+  minPrice?: string | number;
+  maxPrice?: string | number;
+  category?: string;
+  author?: string;
+}
+
 export type GetProductsResponse = {
   total: number;
   result: Product[];
@@ -85,16 +96,33 @@ const authApi = baseApi.injectEndpoints({
       }),
     }),
 
-    getProducts: builder.query<
-      GetProductsResponse,
-      { page: number; limit: number }
-    >({
-      query: ({ page = 1, limit = 10 }) => {
+    // getProducts: builder.query<GetProductsResponse, { page: number; limit: number;  }>({
+    // query: ({ page = 1, limit = 10 }) => {
+    // return {
+    // url: '/products',
+    // params: { page, limit }, // Pass pagination parameters
+    // };
+    // },
+    // }),
+
+    // Update the getProducts query in your authApi
+    getProducts: builder.query<GetProductsResponse, GetProductsParams>({
+      query: (params) => {
+        const { page = 1, limit = 10, ...filters } = params;
         return {
           url: '/products',
-          params: { page, limit }, // Pass pagination parameters
+          params: {
+            page,
+            limit,
+            ...(filters.searchTerm && { searchTerm: filters.searchTerm }),
+            ...(filters.minPrice && { minPrice: filters.minPrice }),
+            ...(filters.maxPrice && { maxPrice: filters.maxPrice }),
+            ...(filters.category && { category: filters.category }),
+            ...(filters.author && { author: filters.author }),
+          },
         };
       },
+      providesTags: ['Product'],
     }),
 
     getProduct: builder.query<Product, string>({

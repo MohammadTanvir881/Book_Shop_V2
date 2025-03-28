@@ -17,9 +17,9 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
 
   return (
     <div
-      className={`bg-gray-900 text-white w-64 min-h-screen p-5 fixed md:static top-0 left-0 transform ${
+      className={`bg-gray-900 text-white w-64 h-screen p-5 fixed top-0 left-0 transform ${
         isOpen ? 'translate-x-0' : '-translate-x-full'
-      } transition-transform md:translate-x-0 z-50`}
+      } transition-transform md:translate-x-0 z-50 overflow-y-auto`}
     >
       <button
         className="md:hidden text-white text-2xl absolute top-4 right-4"
@@ -56,7 +56,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
           </NavLink>
         </li>
 
-        {/*  RBAC Routs */}
+        {/* RBAC Routes */}
         {user?.role === 'admin' && (
           <li>
             <NavLink
@@ -143,7 +143,7 @@ interface TopNavbarProps {
 const TopNavbar: React.FC<TopNavbarProps> = ({ toggleSidebar }) => {
   const { user } = useSelector((state: any) => state.auth);
   return (
-    <div className="flex justify-between items-center bg-gray-800 text-white p-4 relative">
+    <div className="flex justify-between items-center bg-gray-800 text-white p-4 fixed top-0 right-0 left-0 md:left-64 z-40">
       <button className="md:hidden text-2xl" onClick={toggleSidebar}>
         <AiOutlineMenu />
       </button>
@@ -180,9 +180,9 @@ const Dashboard = () => {
   return (
     <div className="flex flex-col md:flex-row min-h-screen">
       <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
-      <div className="flex-1 bg-gray-100 min-h-screen">
+      <div className="flex-1 bg-gray-100 min-h-screen pt-16 md:pt-0 md:ml-64">
         <TopNavbar toggleSidebar={toggleSidebar} />
-        <div className="p-4">
+        <div className="p-4 mt-16 md:mt-0">
           <Outlet />
         </div>
       </div>

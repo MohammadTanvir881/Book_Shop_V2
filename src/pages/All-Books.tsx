@@ -36,15 +36,18 @@ const AllBooks = () => {
   ];
 
   // Main query with all filters
-  const { data, isLoading, error, refetch } = useGetProductsQuery({
-    page,
-    limit,
-    searchTerm: searchTerm || undefined,
-    minPrice: minPrice || undefined,
-    maxPrice: maxPrice || undefined,
-    category: category || undefined,
-    author: author || undefined,
-  }, { pollingInterval: 10 }); // Fetch new data every 5 seconds
+  const { data, isLoading, error, refetch } = useGetProductsQuery(
+    {
+      page,
+      limit,
+      searchTerm: searchTerm || undefined,
+      minPrice: minPrice || undefined,
+      maxPrice: maxPrice || undefined,
+      category: category || undefined,
+      author: author || undefined,
+    },
+    { pollingInterval: 10 },
+  ); // Fetch new data every 5 seconds
 
   const products = data?.result || [];
 
@@ -312,12 +315,6 @@ const AllBooks = () => {
                       ))}
                     </div>
                   </div>
-
-                
-                  
-                  
-                  
-                  
 
                   <button
                     onClick={() => handleViewDetails(product._id)}

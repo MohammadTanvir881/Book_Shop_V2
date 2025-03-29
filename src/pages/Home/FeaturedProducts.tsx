@@ -1,5 +1,3 @@
-
-
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useNavigate } from 'react-router-dom';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -79,7 +77,9 @@ const FeaturedProducts = () => {
         data-aos-duration="1000"
       >
         <h2 className="text-4xl font-bold text-gray-900 mb-3  ">
-          <span className="text-gray-800 dark:text-white">Featured Products</span>
+          <span className="text-gray-800 dark:text-white">
+            Featured Products
+          </span>
         </h2>
         <p className="text-lg text-gray-600 dark:text-white max-w-2xl mx-auto">
           Discover our curated collection of premium products

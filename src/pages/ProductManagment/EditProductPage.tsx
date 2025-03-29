@@ -124,7 +124,6 @@ const EditProductPage = () => {
 
     try {
       await updateProduct({ id, data: changedFields }).unwrap();
-      
 
       Swal.fire({
         title: 'Success!',

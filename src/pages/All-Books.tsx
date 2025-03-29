@@ -5,8 +5,12 @@ import {
   useUpdateProductMutation,
 } from '@/redux/features/auth/authApi';
 import { FaStar } from 'react-icons/fa';
+import { useAuth } from '@/redux/useAuth';
+import { useNavigate } from 'react-router-dom';
 
 const AllBooks = () => {
+  const navigate = useNavigate();
+  const { isAuthenticated } = useAuth();
   // State for pagination and filters
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(20); // Set default limit to 20
@@ -40,7 +44,7 @@ const AllBooks = () => {
     maxPrice: maxPrice || undefined,
     category: category || undefined,
     author: author || undefined,
-  });
+  }, { pollingInterval: 10 }); // Fetch new data every 5 seconds
 
   const products = data?.result || [];
 
@@ -104,6 +108,19 @@ const AllBooks = () => {
     setLimit(20); // Reset to default limit of 20
   };
 
+  const handleViewDetails = (productId: string) => {
+    if (isAuthenticated) {
+      navigate(`/products/${productId}`);
+    } else {
+      navigate('/login', {
+        state: {
+          from: `/products/${productId}`,
+          message: 'Please login to view product details',
+        },
+      });
+    }
+  };
+
   // Page size options
   const pageSizeOptions = [
     { value: 10, label: '10 per page' },
@@ -161,18 +178,24 @@ const AllBooks = () => {
             </div>
 
             {/* Category Filter - Compact */}
+
+            {/* Category Filter - Compact */}
             <div className="flex-1 min-w-[150px]">
               <select
-                className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2 border text-sm"
+                className="w-full rounded-md border-gray-300 shadow-sm
+     focus:border-indigo-500 focus:ring-indigo-500 p-2 border
+      text-sm"
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
               >
                 <option value="">All Categories</option>
-                {uniqueCategories.map((cat) => (
-                  <option key={cat} value={cat}>
-                    {cat}
-                  </option>
-                ))}
+                {['Religious', ...uniqueCategories]
+                  .filter((value, index, self) => self.indexOf(value) === index)
+                  .map((cat) => (
+                    <option key={cat} value={cat}>
+                      {cat}
+                    </option>
+                  ))}
               </select>
             </div>
 
@@ -281,8 +304,8 @@ const AllBooks = () => {
                             className={
                               star <=
                               (hoverRating || localRatings[product._id] || 0)
-                                ? 'text-yellow-400'
-                                : 'text-gray-300'
+                                ? 'text-yellow-500'
+                                : 'text-gray-400'
                             }
                           />
                         </button>
@@ -290,7 +313,16 @@ const AllBooks = () => {
                     </div>
                   </div>
 
-                  <button className="mt-4 w-full bg-gray-800 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition text-sm">
+                
+                  
+                  
+                  
+                  
+
+                  <button
+                    onClick={() => handleViewDetails(product._id)}
+                    className="mt-4 w-full bg-gray-800 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition text-sm"
+                  >
                     View Details
                   </button>
                 </div>

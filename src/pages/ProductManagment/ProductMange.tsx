@@ -65,13 +65,14 @@ const ProductManage = () => {
             prevProducts.filter((product) => product._id !== productId),
           );
           await deleteProduct(productId).unwrap();
-          refetch();
+        
           Swal.fire({
             title: 'Deleted!',
             text: 'The product has been deleted.',
             icon: 'success',
             confirmButtonText: 'OK',
           });
+            await refetch(); // নতুন ডাটা ফেচ করুন
         } catch (error) {
           Swal.fire({
             title: 'Error!',
@@ -115,6 +116,7 @@ const ProductManage = () => {
                 Description
               </th>
               <th className="px-3 py-2 md:px-6 md:py-3 text-gray-700">Brand</th>
+              <th className="px-3 py-2 md:px-6 md:py-3 text-gray-700">Author</th>
               <th className="px-3 py-2 md:px-6 md:py-3 text-gray-700">Stock</th>
               <th className="px-3 py-2 md:px-6 md:py-3 text-gray-700">
                 Actions
@@ -158,6 +160,9 @@ const ProductManage = () => {
                   <td className="px-3 py-2 md:px-6 md:py-4 text-gray-700">
                     {product.brand}
                   </td>
+                   <td className="px-3 py-2 md:px-6 md:py-4 text-gray-700">
+   {product.author}
+ </td>
                   <td className="px-3 py-2 md:px-6 md:py-4 text-gray-700">
                     {product.stock}
                   </td>

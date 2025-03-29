@@ -18,11 +18,11 @@ const CreateProduct = () => {
 
   // Valid categories from your backend model
   const validCategories = [
-    'Religious',
     'Fiction',
     'Science',
     'Self Development',
     'Poetry',
+    'Religious',
   ];
 
   const [formData, setFormData] = useState({
@@ -154,7 +154,7 @@ const CreateProduct = () => {
         confirmButtonText: 'OK',
       });
 
-      refetch();
+     await refetch(); // নতুন ডাটা ফেচ করুন
 
       setFormData({
         name: '',

@@ -6,7 +6,7 @@ export interface Product {
   features: never[];
   image: string | undefined;
   data: Product;
-  _id?: string;
+  _id: string;
   name: string;
   brand: string;
   price: number;

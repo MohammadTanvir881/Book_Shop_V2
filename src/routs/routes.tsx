@@ -19,6 +19,7 @@ import ProductMange from '@/pages/ProductManagment/ProductMange';
 import OrderManagment from '@/pages/OrderManagment/OrderManagment';
 import CreateProduct from '@/pages/ProductManagment/CreateProduct';
 import EditProductPage from '@/pages/ProductManagment/EditProductPage';
+import ProductDetails from '@/pages/ProductManagment/ProductDetails';
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
       { path: 'allbooks', element: <AllBooks /> },
       { path: 'recomendeds', element: <Recomended /> },
       { path: 'blogs', element: <Blogs /> },
+      {
+        path: 'products/:id',
+        element: <ProductDetails />,
+      },
     ],
   },
 
@@ -52,6 +57,7 @@ const router = createBrowserRouter([
       { path: '/dashboard', element: <OverviewDashboard /> },
       { path: 'profile', element: <UserProfile /> },
       { path: 'allbooks', element: <AllBooks /> },
+
       {
         path: 'user',
         element: (

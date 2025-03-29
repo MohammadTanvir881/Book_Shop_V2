@@ -6,7 +6,8 @@ import { setUser } from '@/redux/features/auth/authSlice';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { useNavigate } from 'react-router-dom';
+
+import { useNavigate, useLocation, Location } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import AOS from 'aos';
@@ -19,6 +20,15 @@ export interface ErrorResponse {
   statusCode: number;
 }
 
+interface LocationState {
+  from?: string;
+  message?: string;
+}
+
+interface CustomLocation extends Location {
+  state: LocationState | null;
+}
+
 const Login = () => {
   useEffect(() => {
     AOS.init({ duration: 1000 });
@@ -28,6 +38,7 @@ const Login = () => {
   const [loginUser, { isLoading, error }] = useLoginMutation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation() as CustomLocation;
 
   const onSubmit = async (data: any) => {
     try {
@@ -43,9 +54,11 @@ const Login = () => {
         text: 'Welcome back!',
         icon: 'success',
         confirmButtonText: 'OK',
-      }).then(() => {
-        navigate('/');
       });
+
+      // Get redirect path or default to home
+      const from = location.state?.from || '/';
+      navigate(from, { replace: true });
     } catch (err: any) {
       console.error('Login failed:', err);
       Swal.fire({
@@ -56,47 +69,6 @@ const Login = () => {
       });
     }
   };
-
-  // const onSubmit = async (data: any) => {
-  // try {
-  // const response = await loginUser(data).unwrap();
-
-  // const user = verifyToken(response.data.token);
-  // console.log(user);
-
-  // localStorage.setItem('token', response.token);
-  // dispatch(setUser({ user: response.data, token: response.token }));
-  // console.log(response);
-  // reset();
-
-  //
-  // Swal.fire({
-  // title: 'Login Successful!',
-  // text: 'Welcome back!',
-  // icon: 'success',
-  // confirmButtonText: 'OK',
-  // }).then(() => {
-  // navigate('/');
-  // });
-  // } catch (err: any) {
-  //
-  // console.error('Login failed:', err);
-
-  //
-  // const errorMessage =
-  // err?.data?.message ||
-  // err?.error ||
-  // 'Please check your credentials and try again.';
-
-  //
-  // Swal.fire({
-  // title: 'Login Failed',
-  // text: errorMessage,
-  // icon: 'error',
-  // confirmButtonText: 'Try Again',
-  // });
-  // }
-  // };
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-800 p-4">

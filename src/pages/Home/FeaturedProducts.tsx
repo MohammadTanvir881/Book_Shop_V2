@@ -1,3 +1,5 @@
+
+
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useNavigate } from 'react-router-dom';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -7,11 +9,15 @@ import { useGetProductsQuery } from '@/redux/features/auth/authApi';
 import { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { useAuth } from '@/redux/useAuth';
+import { Product } from '../ProductManagment/productTypes';
 
 const FeaturedProducts = () => {
   const navigate = useNavigate();
+  const { isAuthenticated } = useAuth();
   const { data, error, isLoading } = useGetProductsQuery({ limit: 6 });
-  const products = data?.result || [];
+
+  const products = (data?.result || []) as Product[];
 
   useEffect(() => {
     AOS.init({
@@ -22,7 +28,20 @@ const FeaturedProducts = () => {
   }, []);
 
   const handleViewAll = () => {
-    navigate('allbooks');
+    navigate('/allbooks');
+  };
+
+  const handleViewDetails = (productId: string) => {
+    if (isAuthenticated) {
+      navigate(`/products/${productId}`);
+    } else {
+      navigate('/login', {
+        state: {
+          from: `/products/${productId}`,
+          message: 'Please login to view product details',
+        },
+      });
+    }
   };
 
   if (isLoading) {
@@ -53,24 +72,30 @@ const FeaturedProducts = () => {
 
   return (
     <div className="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-      <div className="text-center mb-12">
-        <h2 className="text-4xl font-bold text-gray-900 mb-3">
-          <span className="text-gray-800">Featured Products</span>
+      <div
+        className="text-center mb-12"
+        data-aos="flip-right"
+        data-aos-easing="ease-out-cubic"
+        data-aos-duration="1000"
+      >
+        <h2 className="text-4xl font-bold text-gray-900 mb-3  ">
+          <span className="text-gray-800 dark:text-white">Featured Products</span>
         </h2>
-        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+        <p className="text-lg text-gray-600 dark:text-white max-w-2xl mx-auto">
           Discover our curated collection of premium products
         </p>
       </div>
 
       {products.length > 0 ? (
         <>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {products.map((product: any, index: number) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {products.map((product) => (
               <div
                 key={product._id}
                 className="group relative"
-                data-aos="fade-up"
-                data-aos-delay={index * 100}
+                data-aos="flip-left"
+                data-aos-easing="ease-out-cubic"
+                data-aos-duration="1000"
               >
                 <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-gray-800 rounded-2xl opacity-25 group-hover:opacity-50 blur transition-all duration-300"></div>
                 <Card className="relative bg-white/80 backdrop-blur-sm border border-white/20 shadow-xl rounded-2xl overflow-hidden h-full flex flex-col transition-all duration-300 group-hover:-translate-y-2">
@@ -78,7 +103,7 @@ const FeaturedProducts = () => {
                     <img
                       src={product.image}
                       alt={product.name}
-                      className="w-full h-full  object-cover transition-transform duration-500 group-hover:scale-105"
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-gray-900/60 to-transparent"></div>
                     <span className="absolute top-4 right-4 bg-gray-700 text-white text-xs font-semibold px-3 py-1 rounded-full">
@@ -103,7 +128,7 @@ const FeaturedProducts = () => {
                           {[...Array(5)].map((_, i) => (
                             <svg
                               key={i}
-                              className={`w-4 h-4 ${i < 4 ? 'text-yellow-400' : 'text-gray-300'}`}
+                              className={`w-6 h-6 ${i < (product.rating || 0) ? 'text-yellow-500' : 'text-gray-400'}`}
                               fill="currentColor"
                               viewBox="0 0 20 20"
                             >
@@ -111,7 +136,7 @@ const FeaturedProducts = () => {
                             </svg>
                           ))}
                           <span className="text-xs text-gray-500 ml-1">
-                            (24)
+                            ({product.rating || 0})
                           </span>
                         </div>
                       </div>
@@ -119,7 +144,7 @@ const FeaturedProducts = () => {
                         variant="outline"
                         className="border border-gray-300 hover:bg-gray-50 hover:border-gray-400 rounded-lg px-4 py-2 transition-colors duration-200"
                         onClick={() =>
-                          navigate(`/dashboard/allbooks/${product._id}`)
+                          product._id && handleViewDetails(product._id)
                         }
                       >
                         View Details
@@ -134,9 +159,9 @@ const FeaturedProducts = () => {
           <div className="mt-16 text-center" data-aos="fade-up">
             <Button
               onClick={handleViewAll}
-              className=" bg-gray-700 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition"
+              className="bg-gray-700 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition"
             >
-              <h1>View All</h1>
+              View All
             </Button>
           </div>
         </>
@@ -154,7 +179,7 @@ const FeaturedProducts = () => {
                 strokeLinejoin="round"
                 strokeWidth="2"
                 d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-              ></path>
+              />
             </svg>
           </div>
           <h3 className="text-xl font-medium text-gray-900 mb-2">

@@ -124,7 +124,7 @@ const EditProductPage = () => {
 
     try {
       await updateProduct({ id, data: changedFields }).unwrap();
-      await refetch();
+      
 
       Swal.fire({
         title: 'Success!',
@@ -134,6 +134,7 @@ const EditProductPage = () => {
       }).then(() => {
         navigate('/dashboard/productManage');
       });
+      await refetch();
     } catch (error) {
       Swal.fire({
         title: 'Error!',

@@ -72,8 +72,8 @@ const ProductDetails = () => {
                     key={star}
                     className={
                       star <= (product.rating || 0)
-                        ? 'text-yellow-400'
-                        : 'text-gray-300'
+                        ? 'text-yellow-500'
+                        : 'text-gray-400'
                     }
                   />
                 ))}
@@ -95,7 +95,9 @@ const ProductDetails = () => {
             </div>
 
             <div className="mb-6">
-              <h2 className="text-lg font-semibold mb-2">Description</h2>
+              <h2 className="text-lg font-semibold dark:text-black mb-2">
+                Description
+              </h2>
               <p className="text-gray-700">
                 {product.description || 'No description available.'}
               </p>
@@ -151,7 +153,9 @@ const ProductDetails = () => {
 
         {/* Additional Information Section */}
         <div className="border-t border-gray-200 p-6">
-          <h2 className="text-xl font-semibold mb-4">Additional Information</h2>
+          <h2 className="text-xl dark:text-black font-semibold mb-4">
+            Additional Information
+          </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <h3 className="font-medium text-gray-800 mb-2">Specifications</h3>

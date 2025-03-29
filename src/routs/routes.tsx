@@ -20,6 +20,7 @@ import OrderManagment from '@/pages/OrderManagment/OrderManagment';
 import CreateProduct from '@/pages/ProductManagment/CreateProduct';
 import EditProductPage from '@/pages/ProductManagment/EditProductPage';
 import ProductDetails from '@/pages/ProductManagment/ProductDetails';
+import Checkout from '@/pages/OrderManagment/Checkout ';
 
 const router = createBrowserRouter([
   {
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
         path: 'products/:id',
         element: <ProductDetails />,
       },
+      {
+        path: 'checkout',
+        element: <Checkout />,
+      },
     ],
   },
 
@@ -44,7 +49,7 @@ const router = createBrowserRouter([
   { path: '/register', element: <Register /> },
   { path: '/profile', element: <UserProfile /> },
 
-  //---------------------- Admin Routes -------------------
+  //---------------------- Private Routes -------------------
 
   {
     path: '/dashboard',
@@ -98,6 +103,14 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute allowedRoles={['admin']}>
             <EditProductPage />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: 'checkout',
+        element: (
+          <ProtectedRoute allowedRoles={['admin', 'user']}>
+            <Checkout />
           </ProtectedRoute>
         ),
       },

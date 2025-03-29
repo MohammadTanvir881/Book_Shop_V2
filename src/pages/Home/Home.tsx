@@ -17,7 +17,7 @@ const Home = () => {
       <h1
         data-aos="flip-left"
         data-aos-easing="ease-out-cubic"
-        data-aos-duration="3000"
+        data-aos-duration="1000"
         className="font-bold text-center pt-10 pb-3 text-2xl"
       >
         CHILDREN’S BOOKS

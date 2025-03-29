@@ -185,7 +185,7 @@ const CreateProduct = () => {
   };
 
   return (
-    <div className="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-md">
+    <div className="max-w-lg mt-10 mx-auto bg-white p-6 rounded-lg shadow-md">
       <h2 className="text-2xl font-bold text-center mb-4">Create Product</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* Regular text inputs */}

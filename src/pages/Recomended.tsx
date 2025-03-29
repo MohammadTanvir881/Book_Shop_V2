@@ -54,9 +54,9 @@ const Recommended = () => {
   ];
 
   return (
-    <div className="py-16 px-4 md:px-16">
+    <div className="py-16 px-4 mt-10 md:px-16">
       <h2
-        data-aos="fade-up"
+        data-aos="flip-right"
         className="text-3xl font-bold text-center mb-10 text-gray-900 dark:text-white"
       >
         Recommended Islamic Books

@@ -13,7 +13,7 @@ const About = () => {
 
   return (
     <div className={theme}>
-      <main className="py-16 px-4 md:px-16">
+      <main className="py-16 px-4 mt-10 md:px-16">
         <section className="text-center max-w-3xl mx-auto">
           <h1
             data-aos="flip-left"

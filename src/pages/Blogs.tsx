@@ -74,8 +74,8 @@ const Blogs = () => {
   }, []);
 
   return (
-    <div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-6 sm:px-10 md:px-20 lg:px-40 py-10 md:py-20">
+    <div className="mt-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2  md:grid-cols-3 gap-6 px-6 sm:px-10 md:px-20 lg:px-40 py-10 md:py-20">
         <h1 className="text-4xl font-bold mb-4 text-gray-900 dark:text-white">
           Reading Our Letest Blogs...!
           <h4 className="text-lg pt-8">

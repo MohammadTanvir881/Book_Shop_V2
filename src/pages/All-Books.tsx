@@ -7,8 +7,13 @@ import {
 import { FaStar } from 'react-icons/fa';
 import { useAuth } from '@/redux/useAuth';
 import { useNavigate } from 'react-router-dom';
+import AOS from 'aos';
 
 const AllBooks = () => {
+  useEffect(() => {
+    AOS.init({ duration: 1000 });
+  }, []);
+
   const navigate = useNavigate();
   const { isAuthenticated } = useAuth();
   // State for pagination and filters
@@ -141,12 +146,15 @@ const AllBooks = () => {
 
   return (
     <div className="max-w-7xl mx-auto p-6">
-      <h1 className="text-3xl font-bold text-center text-gray-800 pt-12 mb-6">
+      <h1
+        className="text-3xl font-bold text-center   text-gray-800 dark:text-white pt-12 mb-6"
+        data-aos="flip-right"
+      >
         All Books
       </h1>
 
       {/* Search and Filter Section - Compact Layout */}
-      <div className="bg-white p-4 rounded-lg shadow-md mb-6">
+      <div className="bg-white dark:text-black p-4 rounded-lg shadow-md mb-6">
         <form onSubmit={handleSearchSubmit} className="space-y-4">
           <div className="flex flex-wrap items-end gap-4">
             {/* Search Input - Smaller Width */}
@@ -282,8 +290,10 @@ const AllBooks = () => {
                 </div>
 
                 <div className="p-4">
-                  <h2 className="text-lg font-semibold">{product.name}</h2>
-                  <p className="text-gray-600 text-sm">
+                  <h2 className="text-lg font-semibold text-black dark:text-black">
+                    {product.name}
+                  </h2>
+                  <p className="text-gray-600 dark:text-black text-sm">
                     Author: {product.author}
                   </p>
                   <p className="text-gray-600 text-sm">

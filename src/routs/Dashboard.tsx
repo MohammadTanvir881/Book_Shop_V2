@@ -102,10 +102,11 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
             All Products
           </NavLink>
         </li>
-        {user?.role === 'admin' && (
+
+        {(user?.role === 'admin' || user?.role === 'user') && (
           <li>
             <NavLink
-              to="/dashboard/orderManage"
+              to="/dashboard/orderList"
               onClick={toggleSidebar}
               className={({ isActive }) =>
                 `block rounded-md px-4 py-2 text-sm font-medium ${

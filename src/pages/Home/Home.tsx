@@ -13,6 +13,7 @@ const Home = () => {
   return (
     <div>
       <PCarousel></PCarousel>
+     
       <FeaturedProducts />
       <h1
         data-aos="flip-left"

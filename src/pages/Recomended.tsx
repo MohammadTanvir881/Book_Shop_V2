@@ -145,7 +145,7 @@ const Recommended = () => {
       <div className="flex justify-center items-center pt-20 pb-10">
         <Link to="/">
           <button
-            className="bg-blue-500 hover:bg-blue-700
+            className="bg-gray-800 hover:bg-blue-700
      text-white font-bold py-2 px-4 border border-blue-700 rounded"
           >
             Back To Home

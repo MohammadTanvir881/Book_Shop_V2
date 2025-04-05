@@ -56,6 +56,8 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
           </NavLink>
         </li>
 
+        
+
         {/* RBAC Routes */}
         {user?.role === 'admin' && (
           <li>
@@ -103,7 +105,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
           </NavLink>
         </li>
 
-        {(user?.role === 'admin' || user?.role === 'user') && (
+        {(user?.role === 'admin' || user?.role === '') && (
           <li>
             <NavLink
               to="/dashboard/orderList"
@@ -119,7 +121,12 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
           </li>
         )}
 
+
+        
+
         <li>
+
+
           <NavLink
             to="/"
             onClick={toggleSidebar}

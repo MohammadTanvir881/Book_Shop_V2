@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
 import { baseApi } from "../api/baseApi";
@@ -11,6 +12,7 @@ interface ProductItem {
 interface Order {
   shurjopayOrderId: string;
   _id: string;
+  
   user: {
     _id: string;
     name: string;
@@ -95,7 +97,7 @@ const orderApi = baseApi.injectEndpoints({
 
     // Get orders for current user
     getUserOrders: builder.query<GetOrdersResponse, void>({
-      query: () => '/orders/me',
+      query: (id) => `/orders/${id}`,
       providesTags: ['Order'],
     }),
 
@@ -106,20 +108,37 @@ const orderApi = baseApi.injectEndpoints({
     }),
 
     // Update order status
-    updateOrderStatus: builder.mutation<
-      Order, 
-      { id: string; data: UpdateOrderStatusRequest }
-    >({
-      query: ({ id, data }) => ({
-        url: `/orders/${id}/status`,
-        method: 'PATCH',
-        body: data,
-      }),
-      invalidatesTags: (result, error, { id }) => [
-        { type: 'Order', id },
-        'Order',
-      ],
-    }),
+    // updateOrderStatus: builder.mutation<
+      // Order, 
+      // { id: string; data: UpdateOrderStatusRequest }
+    // >({
+      // query: ({ id, data }) => ({
+        // url: `/orders/${id}`,
+        // method: 'PATCH',
+        // body: data,
+      // }),
+      // invalidatesTags: (result, error, { id }) => [
+        // { type: 'Order', id },
+        // 'Order',
+      // ],
+    // }),
+
+    // In your orderApi.ts
+updateOrderStatus: builder.mutation<{
+  success: boolean;
+  status: boolean;
+  message: string;
+  result: any;
+}, { id: string; data: UpdateOrderStatusRequest }>({
+  query: ({ id, data }) => ({
+    url: `orders/${id}`,
+    method: 'PATCH',
+    body: data,
+  }),
+ 
+ 
+ 
+}),
 
     // Verify payment
     // verifyPayment: builder.mutation<
@@ -147,6 +166,15 @@ verifyPayment: builder.mutation<{
   }),
 }),
 
+
+// In your orderApi.ts
+deleteOrder: builder.mutation<void, string>({
+  query: (id) => ({
+    url: `orders/${id}`,
+    method: 'DELETE',
+  }),
+}),
+
    
 
     // Cancel order
@@ -167,6 +195,7 @@ export const {
   useGetOrderByIdQuery,
   useUpdateOrderStatusMutation,
   useVerifyPaymentMutation,
+  useDeleteOrderMutation,
   useCancelOrderMutation,
 } = orderApi;
 

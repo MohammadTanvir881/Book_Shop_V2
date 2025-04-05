@@ -197,6 +197,8 @@ import ProductDetails from '@/pages/ProductManagment/ProductDetails';
 import PaymentSuccess from '@/pages/OrderManagment/PaymentSuccess'; // Add this import
 import OrderDetails from '@/pages/OrderManagment/OrderDetails'; // Add this import
 import Checkout from '@/pages/OrderManagment/Checkout ';
+import OrderList from '@/pages/OrderManagment/OrderList';
+import OrderEdit from '@/pages/OrderManagment/OrderEdit';
 
 const router = createBrowserRouter([
   {
@@ -310,6 +312,37 @@ const router = createBrowserRouter([
           </ProtectedRoute>
         ),
       },
+
+       {
+   path: 'orders/:id',
+   element: (
+     <ProtectedRoute allowedRoles={['admin', 'user']}>
+       <OrderDetails />
+     </ProtectedRoute>
+   ),
+ },
+
+       {
+   path: 'orders/edit/:id',
+   element: (
+     <ProtectedRoute allowedRoles={['admin', 'user']}>
+       <OrderEdit/>
+     </ProtectedRoute>
+   ),
+ },
+
+
+       {
+   path: 'orderList',
+   element: (
+     <ProtectedRoute allowedRoles={['admin',]}>
+       <OrderList/>
+     </ProtectedRoute>
+   ),
+ },
+
+
+ 
     ],
   },
 ]);

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import 'aos/dist/aos.css';
 import AOS from 'aos';
+import { Link } from 'react-router-dom';
 
 const images = [
   '/src/assets/images/bs-2.jpg',
@@ -82,7 +83,7 @@ const PCarousel = () => {
              text-white font-semibold hover:text-white w-40 lg:h-12 border
               border-blue-500 hover:border-transparent rounded"
               >
-                Order Now
+                <Link to="allbooks">Order Now</Link>
               </button>
             </div>
           </h1>

@@ -21,8 +21,6 @@
 // import ProductDetails from '@/pages/ProductManagment/ProductDetails';
 // import Checkout from '@/pages/OrderManagment/Checkout ';
 
-
-
 // const router = createBrowserRouter([
 //   {
 //     path: '/',
@@ -42,14 +40,6 @@
 //         path: 'checkout',
 //         element: <Checkout />,
 //       },
- 
- 
- 
- 
- 
- 
- 
- 
 
 //     ],
 //   },
@@ -146,40 +136,17 @@
 //         ),
 //       },
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //     ],
 //   },
 // ]);
 
 // export default router;
 
-
-
-
-
-
 import App from '@/App';
 import ProtectedRoute from '../components/layout/ProtectedRoute';
 import About from '@/pages/About';
 import AllBooks from '@/pages/All-Books';
 import Blogs from '@/pages/Blogs';
-import Contact from '@/pages/Contact';
 import Home from '@/pages/Home/Home';
 import Login from '@/pages/Login';
 import Recomended from '@/pages/Recomended';
@@ -199,6 +166,8 @@ import OrderDetails from '@/pages/OrderManagment/OrderDetails'; // Add this impo
 import Checkout from '@/pages/OrderManagment/Checkout ';
 import OrderList from '@/pages/OrderManagment/OrderList';
 import OrderEdit from '@/pages/OrderManagment/OrderEdit';
+import MyOrders from '@/pages/OrderManagment/MyOrder';
+import ContactPage from '@/pages/Home/ContactPage';
 
 const router = createBrowserRouter([
   {
@@ -206,11 +175,12 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       { path: '/', element: <Home /> },
-      { path: 'contact', element: <Contact /> },
+      { path: 'contact', element: <ContactPage /> },
       { path: 'about', element: <About /> },
       { path: 'allbooks', element: <AllBooks /> },
       { path: 'recomendeds', element: <Recomended /> },
       { path: 'blogs', element: <Blogs /> },
+
       {
         path: 'products/:id',
         element: <ProductDetails />,
@@ -293,15 +263,14 @@ const router = createBrowserRouter([
         ),
       },
 
-       {
-   path: 'payment-success',
-   element: (
-     <ProtectedRoute allowedRoles={['admin', 'user']}>
-       <PaymentSuccess/>
-     </ProtectedRoute>
-   ),
- },
-
+      {
+        path: 'payment-success',
+        element: (
+          <ProtectedRoute allowedRoles={['admin', 'user']}>
+            <PaymentSuccess />
+          </ProtectedRoute>
+        ),
+      },
 
       // Add dashboard version of order details if needed
       {
@@ -313,36 +282,41 @@ const router = createBrowserRouter([
         ),
       },
 
-       {
-   path: 'orders/:id',
-   element: (
-     <ProtectedRoute allowedRoles={['admin', 'user']}>
-       <OrderDetails />
-     </ProtectedRoute>
-   ),
- },
+      {
+        path: 'orders/:id',
+        element: (
+          <ProtectedRoute allowedRoles={['admin', 'user']}>
+            <OrderDetails />
+          </ProtectedRoute>
+        ),
+      },
 
-       {
-   path: 'orders/edit/:id',
-   element: (
-     <ProtectedRoute allowedRoles={['admin', 'user']}>
-       <OrderEdit/>
-     </ProtectedRoute>
-   ),
- },
+      {
+        path: 'orders/edit/:id',
+        element: (
+          <ProtectedRoute allowedRoles={['admin', 'user']}>
+            <OrderEdit />
+          </ProtectedRoute>
+        ),
+      },
 
+      {
+        path: 'orderList',
+        element: (
+          <ProtectedRoute allowedRoles={['admin']}>
+            <OrderList />
+          </ProtectedRoute>
+        ),
+      },
 
-       {
-   path: 'orderList',
-   element: (
-     <ProtectedRoute allowedRoles={['admin',]}>
-       <OrderList/>
-     </ProtectedRoute>
-   ),
- },
-
-
- 
+      {
+        path: 'my-orders',
+        element: (
+          <ProtectedRoute allowedRoles={['admin', 'user']}>
+            <MyOrders />
+          </ProtectedRoute>
+        ),
+      },
     ],
   },
 ]);

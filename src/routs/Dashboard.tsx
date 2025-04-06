@@ -6,6 +6,14 @@ import { NavLink, Outlet } from 'react-router-dom';
 import { Navigate } from 'react-router-dom';
 import { useState } from 'react';
 import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai';
+import { CgProfile } from 'react-icons/cg';
+import { FaBorderAll } from 'react-icons/fa';
+import { AiOutlineProduct } from 'react-icons/ai';
+import { FaUsersRectangle } from 'react-icons/fa6';
+import { MdOutlineShoppingCart } from 'react-icons/md';
+import { BsBorderWidth } from 'react-icons/bs';
+import { IoMdHome } from 'react-icons/io';
+import { GrOverview } from 'react-icons/gr';
 
 interface SidebarProps {
   isOpen: boolean;
@@ -34,29 +42,43 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
             to="/dashboard"
             onClick={toggleSidebar}
             className={({ isActive }) =>
-              `block rounded-md px-4 py-2 text-sm font-medium ${
+              `block rounded-md  py-2 text-sm font-medium ${
                 isActive ? 'text-blue-500' : 'text-gray-300'
               } hover:bg-gray-700 hover:text-white`
             }
           >
-            Overview
+            <div className="flex gap-1">
+              {' '}
+              <div className="pt-1">
+                <GrOverview />
+              </div>{' '}
+              <div> Overview</div>
+            </div>
           </NavLink>
         </li>
         <li>
-          <NavLink
-            to="/dashboard/profile"
-            onClick={toggleSidebar}
-            className={({ isActive }) =>
-              `block rounded-md px-4 py-2 text-sm font-medium ${
-                isActive ? 'text-blue-500' : 'text-gray-300'
-              } hover:bg-gray-700 hover:text-white`
-            }
-          >
-            My Profile
-          </NavLink>
+          <div className="flex">
+            <div>
+              <NavLink
+                to="/dashboard/profile"
+                onClick={toggleSidebar}
+                className={({ isActive }) =>
+                  `block rounded-md  py-2  text-sm font-medium ${
+                    isActive ? 'text-blue-500' : 'text-gray-300'
+                  } hover:bg-gray-700 hover:text-white`
+                }
+              >
+                <div className="flex  gap-1">
+                  <div className="text-lg ">
+                    {' '}
+                    <CgProfile />
+                  </div>{' '}
+                  <div> My Profile</div>
+                </div>
+              </NavLink>
+            </div>
+          </div>
         </li>
-
-        
 
         {/* RBAC Routes */}
         {user?.role === 'admin' && (
@@ -65,12 +87,38 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
               to="/dashboard/user"
               onClick={toggleSidebar}
               className={({ isActive }) =>
-                `block rounded-md px-4 py-2 text-sm font-medium ${
+                `block rounded-md  py-2 text-sm font-medium ${
                   isActive ? 'text-blue-500' : 'text-gray-300'
                 } hover:bg-gray-700 hover:text-white`
               }
             >
-              User Management
+              <div className="flex gap-1">
+                <div className="text-lg">
+                  <FaUsersRectangle />{' '}
+                </div>{' '}
+                <div>User Management</div>
+              </div>
+            </NavLink>
+          </li>
+        )}
+
+        {user?.role === 'user' && (
+          <li>
+            <NavLink
+              to="/dashboard/my-orders"
+              onClick={toggleSidebar}
+              className={({ isActive }) =>
+                `block rounded-md  py-2 text-sm font-medium ${
+                  isActive ? 'text-blue-500' : 'text-gray-300'
+                } hover:bg-gray-700 hover:text-white`
+              }
+            >
+              <div className="flex gap-1">
+                <div className=" text-lg">
+                  <FaBorderAll />
+                </div>
+                <div className="pl-l">My Order</div>
+              </div>
             </NavLink>
           </li>
         )}
@@ -81,12 +129,17 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
               to="/dashboard/productManage"
               onClick={toggleSidebar}
               className={({ isActive }) =>
-                `block rounded-md px-4 py-2 text-sm font-medium ${
+                `block rounded-md py-2 text-sm font-medium ${
                   isActive ? 'text-blue-500' : 'text-gray-300'
                 } hover:bg-gray-700 hover:text-white`
               }
             >
-              Products Management
+              <div className="flex gap-1">
+                <div className="text-lg">
+                  <AiOutlineProduct />
+                </div>{' '}
+                <div>Products Management</div>
+              </div>
             </NavLink>
           </li>
         )}
@@ -96,12 +149,17 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
             to="/dashboard/allbooks"
             onClick={toggleSidebar}
             className={({ isActive }) =>
-              `block rounded-md px-4 py-2 text-sm font-medium ${
+              `block rounded-md py-2 text-sm font-medium ${
                 isActive ? 'text-blue-500' : 'text-gray-300'
               } hover:bg-gray-700 hover:text-white`
             }
           >
-            All Products
+            <div className="flex">
+              <div className="text-lg">
+                <MdOutlineShoppingCart />{' '}
+              </div>
+              <div>All Products</div>
+            </div>
           </NavLink>
         </li>
 
@@ -111,32 +169,37 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
               to="/dashboard/orderList"
               onClick={toggleSidebar}
               className={({ isActive }) =>
-                `block rounded-md px-4 py-2 text-sm font-medium ${
+                `block rounded-md  py-2 text-sm font-medium ${
                   isActive ? 'text-blue-500' : 'text-gray-300'
                 } hover:bg-gray-700 hover:text-white`
               }
             >
-              Order Management
+              <div className="flex gap-1">
+                <div className="pt-1">
+                  <BsBorderWidth />
+                </div>
+                <div>Order Management</div>
+              </div>
             </NavLink>
           </li>
         )}
 
-
-        
-
         <li>
-
-
           <NavLink
             to="/"
             onClick={toggleSidebar}
             className={({ isActive }) =>
-              `block rounded-md px-4 py-2 text-sm font-medium ${
+              `block rounded-md  py-2 text-sm font-medium ${
                 isActive ? 'text-blue-500' : 'text-gray-300'
               } hover:bg-gray-700 hover:text-white`
             }
           >
-            Back To Home
+            <div className="flex gap-1">
+              <div className="text-lg">
+                <IoMdHome />
+              </div>{' '}
+              <div>Back To Home</div>
+            </div>
           </NavLink>
         </li>
       </ul>

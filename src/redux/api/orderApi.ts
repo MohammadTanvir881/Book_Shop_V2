@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
-import { baseApi } from "../api/baseApi";
+import { baseApi } from '../api/baseApi';
 
 // Types
 interface ProductItem {
@@ -12,7 +12,7 @@ interface ProductItem {
 interface Order {
   shurjopayOrderId: string;
   _id: string;
-  
+
   user: {
     _id: string;
     name: string;
@@ -33,7 +33,13 @@ interface Order {
   phoneNumber: string;
   paymentMethod: 'shurjopay' | 'cashOnDelivery';
   totalPrice: number;
-  status: 'Pending' | 'Processing' | 'Shipped' | 'Delivered' | 'Cancelled' | 'Failed';
+  status:
+    | 'Pending'
+    | 'Processing'
+    | 'Shipped'
+    | 'Delivered'
+    | 'Cancelled'
+    | 'Failed';
   transaction?: {
     id: string;
     transactionStatus: string;
@@ -96,8 +102,9 @@ const orderApi = baseApi.injectEndpoints({
     }),
 
     // Get orders for current user
-    getUserOrders: builder.query<GetOrdersResponse, void>({
-      query: (id) => `/orders/${id}`,
+
+    getUserOrders: builder.query<GetOrdersResponse, string>({
+      query: (id) => `/orders/${id}`, // id = userId
       providesTags: ['Order'],
     }),
 
@@ -109,73 +116,71 @@ const orderApi = baseApi.injectEndpoints({
 
     // Update order status
     // updateOrderStatus: builder.mutation<
-      // Order, 
-      // { id: string; data: UpdateOrderStatusRequest }
+    // Order,
+    // { id: string; data: UpdateOrderStatusRequest }
     // >({
-      // query: ({ id, data }) => ({
-        // url: `/orders/${id}`,
-        // method: 'PATCH',
-        // body: data,
-      // }),
-      // invalidatesTags: (result, error, { id }) => [
-        // { type: 'Order', id },
-        // 'Order',
-      // ],
+    // query: ({ id, data }) => ({
+    // url: `/orders/${id}`,
+    // method: 'PATCH',
+    // body: data,
+    // }),
+    // invalidatesTags: (result, error, { id }) => [
+    // { type: 'Order', id },
+    // 'Order',
+    // ],
     // }),
 
     // In your orderApi.ts
-updateOrderStatus: builder.mutation<{
-  success: boolean;
-  status: boolean;
-  message: string;
-  result: any;
-}, { id: string; data: UpdateOrderStatusRequest }>({
-  query: ({ id, data }) => ({
-    url: `orders/${id}`,
-    method: 'PATCH',
-    body: data,
-  }),
- 
- 
- 
-}),
+    updateOrderStatus: builder.mutation<
+      {
+        success: boolean;
+        status: boolean;
+        message: string;
+        result: any;
+      },
+      { id: string; data: UpdateOrderStatusRequest }
+    >({
+      query: ({ id, data }) => ({
+        url: `orders/${id}`,
+        method: 'PATCH',
+        body: data,
+      }),
+    }),
 
     // Verify payment
     // verifyPayment: builder.mutation<
-      // { success: boolean; data: Order },
-      // VerifyPaymentRequest
+    // { success: boolean; data: Order },
+    // VerifyPaymentRequest
     // >({
-      // query: (body) => ({
-        // url: '/orders/verify-payment',
-        // method: 'POST',
-        // body,
-      // }),
-      // invalidatesTags: ['Order'],
+    // query: (body) => ({
+    // url: '/orders/verify-payment',
+    // method: 'POST',
+    // body,
+    // }),
+    // invalidatesTags: ['Order'],
     // }),
 
- 
- 
-verifyPayment: builder.mutation<{
-  success: boolean;
-  data: Order;
-}, { orderId: string }>({
-  query: (body) => ({
-    url: '/orders/verify-payment',
-    method: 'POST',
-    body,
-  }),
-}),
+    verifyPayment: builder.mutation<
+      {
+        success: boolean;
+        data: Order;
+      },
+      { orderId: string }
+    >({
+      query: (body) => ({
+        url: '/orders/verify-payment',
+        method: 'POST',
+        body,
+      }),
+    }),
 
-
-// In your orderApi.ts
-deleteOrder: builder.mutation<void, string>({
-  query: (id) => ({
-    url: `orders/${id}`,
-    method: 'DELETE',
-  }),
-}),
-
-   
+    // In your orderApi.ts
+    deleteOrder: builder.mutation<void, string>({
+      query: (id) => ({
+        url: `orders/${id}`,
+        method: 'DELETE',
+      }),
+    }),
 
     // Cancel order
     cancelOrder: builder.mutation<void, string>({

@@ -14,7 +14,7 @@ const PaymentSuccess = () => {
     const verifyPaymentStatus = async () => {
       const searchParams = new URLSearchParams(location.search);
       const orderId = searchParams.get('order_id');
-      
+
       if (!orderId) {
         toast.error('Invalid payment response');
         navigate('/');
@@ -23,7 +23,7 @@ const PaymentSuccess = () => {
 
       try {
         const result = await verifyPayment({ orderId }).unwrap();
-        
+
         if (result.success) {
           toast.success('Payment verified successfully!');
           navigate(`/orders/${orderId}`, { state: { paymentSuccess: true } });

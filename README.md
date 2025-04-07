@@ -1,183 +1,53 @@
-<<<<<<< HEAD
-
-# Book-Shop-Frontend-Site
-
-# Next Level Projects using Node.js Express.js Mongoose TypeScript Redux React JWT Shadcn Antd and Tailwind-CSS
-
-# React + TypeScript + Vite
-
-=======
-
-# Book-Shop-Frontend-Site
-
-Bookshop E-Commerce Application
-
-Project Overview!
-
-This is a full-stack e-commerce application for a bookshop with user authentication, product management, and order processing functionalities. The application features role-based access control (admin/user), secure payment integration, and responsive design.
-
-Features
-Core Functionalities
-User Authentication
-
-Secure registration and login with JWT
-
-Role-based access control (admin/user)
-
-Password hashing for security
-
-Protected routes based on user roles
-
-Product Management
-
-Browse books with search and filtering
-
-Product details pages
-
-Admin CRUD operations for products
-
-Stock management
-
-Order Processing
-
-Checkout system
-
-Order placement with quantity validation
-
-Payment integration (SurjoPay)
-
-Order history and details
-
-Dashboard
-
-Admin dashboard for user/product/order management
-
-User dashboard for order history and profile management
-
-UI/UX Features
-Responsive design for all screen sizes
-
-Loading states and error handling
-
-Toast notifications for user feedback
-
-Interactive product browsing
-
-Technologies Used
-Frontend
-React v19
-
-React Router v7
-
-Redux Toolkit for state management
-
-TailwindCSS with plugins for styling
-
-Framer Motion for animations
-
-Various UI component libraries (Ant Design, Material UI, shadcn/ui)
-
-Backend
-Node.js with Express (implied by JWT and Mongoose usage)
-
-MongoDB with Mongoose ODM
-
-JWT for authentication
-
-Development Tools
-Vite for build tooling
-
-TypeScript
-
-ESLint and Prettier for code quality
-
-Setup Instructions
-Prerequisites
-Node.js (v18 or higher recommended)
-
-MongoDB Atlas account or local MongoDB installation
-
-Git
-
-Installation
-Clone the repository:
-
-bash
-Copy
-git clone [repository-url]
-cd bookshope-4
-Install dependencies:
-
-bash
-Copy
-npm install
-Set up environment variables:
-Create a .env file in the root directory with the following variables:
-
-Copy
-VITE_API_BASE_URL=your_backend_api_url
-VITE_JWT_SECRET=your_jwt_secret_key
-VITE_PAYMENT_GATEWAY_KEY=your_surjopay_key
-Start the development server:
-
-bash
-Copy
-npm run dev
-Backend Setup
-Note: The backend implementation is not included in this frontend code. You'll need to set up a separate backend service with the following endpoints:
-
-Authentication: /api/auth/register, /api/auth/login
-
-Products: /api/products, /api/products/:id
-
-Orders: /api/orders, /api/orders/:id
-
-Users: /api/users, /api/users/:id
-
-Project Structure
-Copy
-src/
-├── App.tsx                # Main application component
-├── main.tsx               # Application entry point
-├── pages/                 # Route components
-│   ├── Home/              # Home page components
-│   ├── About.tsx          # About page
-│   ├── All-Books.tsx      # Product listing page
-│   ├── Blogs.tsx          # Blog page
-│   ├── Login.tsx          # Login page
-│   ├── Register.tsx       # Registration page
-│   └── ...                # Other pages
-├── components/            # Reusable components
-│   ├── layout/            # Layout components
-│   └── ...                # Other components
-├── routes/                # Routing configuration
-├── store/                 # Redux store configuration
-├── types/                 # TypeScript type definitions
-└── utils/                 # Utility functions
-Available Scripts
-npm run dev: Start development server
-
-npm run build: Build for production
-
-npm run lint: Run ESLint
-
-npm run format: Format code with Prettier
-
-npm run preview: Preview production build
-
-Deployment
-The application can be deployed to platforms like Vercel, Netlify, or any static hosting service. For full functionality, you'll need to deploy the backend separately to a service like Render, Railway, or AWS.
-
-Future Enhancements
-Product review system
-
-Wishlist functionality
-
-Advanced analytics dashboard
-
-Email notifications
-
-Social media integration
-
-Support
-For any issues or questions, please contact the development team at [support-email].
+# 📚 BookVerse - Modern E-Commerce Bookstore Platform
+
+![BookVerse Banner](https://via.placeholder.com/1500x500/2563eb/ffffff?text=BookVerse+E-Commerce+Solution)
+
+## 🚀 Live Demo
+
+🔗 [https://bookverse-demo.com](https://bookverse-demo.com)  
+*(Note: Replace with your actual deployment URL)*
+
+## 🌟 Key Features
+
+### 🔐 Advanced Authentication
+- 🛡️ JWT-based secure authentication
+- 👨‍💻 Role-based access control (Admin/User)
+- 🔄 Password reset functionality
+- 🚦 Protected routes with `ProtectedRoute` component
+
+### 📦 Comprehensive Product Management
+- 🔍 Advanced search (title, author, category)
+- 🏷️ Multi-filter system (price, availability)
+- 📊 Real-time stock management
+- 🖼️ Product gallery with multiple images
+
+### 🛒 Robust Order System
+- 🛍️ Shopping cart functionality
+- 💳 SurjoPay payment gateway integration
+- 📦 Order tracking history
+- 📧 Automated order confirmation
+
+### 📊 Powerful Admin Dashboard
+- 👥 User management (CRUD operations)
+- 📚 Full product lifecycle management
+- 💰 Sales analytics dashboard
+- 📦 Order fulfillment system
+
+## 🛠️ Technology Stack
+
+### Frontend
+| Technology | Usage | Version |
+|------------|-------|---------|
+| ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB) | Core Framework | 19.0.0 |
+| ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white) | Type Safety | ~5.7.2 |
+| ![Redux](https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white) | State Management | 4.2.0 |
+| ![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white) | Styling | 4.0.12 |
+
+### Backend
+| Technology | Usage | Version |
+|------------|-------|---------|
+| ![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white) | Runtime | 18+ |
+| ![Express](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white) | Framework | 4.x |
+| ![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white) | Database | 8.13.1 |
+
+## 🖥️ Project Structure

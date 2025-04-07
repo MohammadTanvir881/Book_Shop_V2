@@ -1,11 +1,10 @@
-# 📚 BookVerse - Modern E-Commerce Bookstore Platform
+# 📚 Book-Shop-Frontend-Site  - Modern E-Commerce Bookstore Platform
 
-![BookVerse Banner](https://via.placeholder.com/1500x500/2563eb/ffffff?text=BookVerse+E-Commerce+Solution)
 
 ## 🚀 Live Demo
 
 🔗 [https://bookverse-demo.com](https://bookverse-demo.com)  
-*(Note: Replace with your actual deployment URL)*
+
 
 ## 🌟 Key Features
 
@@ -51,3 +50,76 @@
 | ![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white) | Database | 8.13.1 |
 
 ## 🖥️ Project Structure
+
+book-shop/
+├── src/
+│ ├── components/ # Reusable components (ProtectedRoute, etc.)
+│ ├── hooks/ # Custom React hooks
+│ ├── pages/ # Route components
+│ │ ├── Home/ # Home page components
+│ │ ├── Dashboard/ # Admin/user dashboard
+│ │ ├── Product/ # Product management
+│ │ └── Order/ # Order processing
+│ ├── store/ # Redux store configuration
+│ ├── types/ # TypeScript interfaces
+│ ├── utils/ # Utility functions
+│ ├── App.tsx # Main application
+│ └── main.tsx # Entry point
+├── public/ # Static assets
+├── .env.example # Environment template
+└── package.json # Project configuration
+
+
+🔧 Available Scripts
+Script	Description
+npm run dev	Starts development server
+npm run build	Creates production build
+npm run lint	Runs ESLint for code quality
+npm run format	Formats code with Prettier
+npm run preview	Previews production build
+
+
+
+🌐 API Endpoints
+Endpoint	Method	Description
+/api/auth/register	POST	User registration
+/api/auth/login	POST	User login
+/api/products	GET	Get all products
+/api/orders	POST	Create new order
+
+
+📊 Database Schema
+mermaid
+Copy
+erDiagram
+    USER ||--o{ ORDER : places
+    USER {
+        string _id PK
+        string name
+        string email
+        string password
+        string role
+        date createdAt
+    }
+    PRODUCT ||--o{ ORDER_ITEM : includes
+    PRODUCT {
+        string _id PK
+        string title
+        string author
+        string category
+        number price
+        number stock
+    }
+    ORDER ||--o{ ORDER_ITEM : contains
+    ORDER {
+        string _id PK
+        string user FK
+        string status
+        number total
+    }
+
+
+📧 Contact
+Project Lead: [Hasan Mahadi]
+Email: hasanmahadihm99@gmail.com
+GitHub: Hasan-Mahadi

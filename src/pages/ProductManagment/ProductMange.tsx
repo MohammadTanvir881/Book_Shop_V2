@@ -72,7 +72,7 @@ const ProductManage = () => {
             icon: 'success',
             confirmButtonText: 'OK',
           });
-          await refetch(); // নতুন ডাটা ফেচ করুন
+          await refetch(); 
         } catch (error) {
           Swal.fire({
             title: 'Error!',
@@ -90,7 +90,7 @@ const ProductManage = () => {
       <h1 className="text-3xl font-bold text-center text-gray-800 mt-9 mb-6">
         Product List
       </h1>
-      <div className="text-right mb-4">
+      <div className="text-right pr-5 mb-4">
         <Link
           to="/dashboard/products/create"
           className="bg-gray-800 text-white px-4 py-2 rounded-lg shadow-md hover:bg-blue-700 transition"

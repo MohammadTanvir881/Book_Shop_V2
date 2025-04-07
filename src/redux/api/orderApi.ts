@@ -3,7 +3,7 @@
 
 import { baseApi } from '../api/baseApi';
 
-// Types
+
 interface ProductItem {
   product: string;
   quantity: number;
@@ -114,23 +114,12 @@ const orderApi = baseApi.injectEndpoints({
       providesTags: (result, error, id) => [{ type: 'Order', id }],
     }),
 
-    // Update order status
-    // updateOrderStatus: builder.mutation<
-    // Order,
-    // { id: string; data: UpdateOrderStatusRequest }
-    // >({
-    // query: ({ id, data }) => ({
-    // url: `/orders/${id}`,
-    // method: 'PATCH',
-    // body: data,
-    // }),
-    // invalidatesTags: (result, error, { id }) => [
-    // { type: 'Order', id },
-    // 'Order',
-    // ],
-    // }),
+    
 
-    // In your orderApi.ts
+    
+    
+
+    
     updateOrderStatus: builder.mutation<
       {
         success: boolean;
@@ -147,18 +136,14 @@ const orderApi = baseApi.injectEndpoints({
       }),
     }),
 
-    // Verify payment
-    // verifyPayment: builder.mutation<
-    // { success: boolean; data: Order },
-    // VerifyPaymentRequest
-    // >({
-    // query: (body) => ({
-    // url: '/orders/verify-payment',
-    // method: 'POST',
-    // body,
-    // }),
-    // invalidatesTags: ['Order'],
-    // }),
+    
+    
+    
+    
+    
+    
+    
+
 
     verifyPayment: builder.mutation<
       {
@@ -174,7 +159,7 @@ const orderApi = baseApi.injectEndpoints({
       }),
     }),
 
-    // In your orderApi.ts
+    
     deleteOrder: builder.mutation<void, string>({
       query: (id) => ({
         url: `orders/${id}`,
@@ -182,7 +167,7 @@ const orderApi = baseApi.injectEndpoints({
       }),
     }),
 
-    // Cancel order
+    
     cancelOrder: builder.mutation<void, string>({
       query: (id) => ({
         url: `/orders/${id}/cancel`,

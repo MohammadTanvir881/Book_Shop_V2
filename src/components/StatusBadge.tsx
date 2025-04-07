@@ -1,5 +1,7 @@
 // src/components/StatusBadge.tsx
-import { OrderStatus } from '@/pages/OrderManagment/OrderTypes';
+
+import { OrderStatus } from "@/pages/OrderManagment/Ordertyps";
+
 
 interface StatusBadgeProps {
   status: OrderStatus;

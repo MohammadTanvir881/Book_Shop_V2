@@ -22,7 +22,7 @@ const OrderDetails = () => {
         timer: 20000,
         timerProgressBar: true,
         didOpen: () => {
-          // Clear the state to prevent showing the message again
+         
           window.history.replaceState({}, document.title);
         },
       });

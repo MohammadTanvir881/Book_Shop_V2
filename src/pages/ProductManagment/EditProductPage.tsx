@@ -169,6 +169,20 @@ const EditProductPage = () => {
           </div>
 
           <div>
+  <label className="block text-sm font-semibold text-gray-700">
+    Author
+  </label>
+  <input
+    type="text"
+    name="author"
+    defaultValue={originalProduct.author}
+    onChange={handleChange}
+    className="mt-1 p-2 w-full border border-gray-300 rounded-md"
+  />
+</div>
+
+
+          <div>
             <label className="block text-sm font-semibold text-gray-700">
               Price
             </label>

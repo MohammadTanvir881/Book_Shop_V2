@@ -12,7 +12,7 @@ export interface User {
   status: boolean;
 }
 
-// Add a new interface for the query parameters
+
 export interface GetProductsParams {
   page?: number;
   limit?: number;
@@ -32,7 +32,7 @@ export interface ApiResponse {
   status: boolean;
   message: string;
 
-  result: UserD; // Assuming 'result' is the actual user object
+  result: UserD; 
 }
 
 export interface User {
@@ -45,7 +45,7 @@ export interface User {
   isBlocked: boolean;
   createdAt: string;
   updatedAt: string;
-  // Add other user fields as needed
+ 
 }
 
 export interface RegisterResponse {
@@ -91,19 +91,19 @@ const authApi = baseApi.injectEndpoints({
     }),
     deactivateUser: builder.mutation({
       query: (userId) => ({
-        url: `/user/${userId}/deactivate`, // Endpoint to deactivate user
+        url: `/user/${userId}/deactivate`,
         method: 'PATCH',
       }),
     }),
 
-    // getProducts: builder.query<GetProductsResponse, { page: number; limit: number;  }>({
-    // query: ({ page = 1, limit = 10 }) => {
-    // return {
-    // url: '/products',
-    // params: { page, limit }, // Pass pagination parameters
-    // };
-    // },
-    // }),
+
+   
+   
+   
+   
+   
+   
+   
 
     // Update the getProducts query in your authApi
     getProducts: builder.query<GetProductsResponse, GetProductsParams>({
@@ -146,7 +146,7 @@ const authApi = baseApi.injectEndpoints({
         method: 'PUT',
         body: data,
       }),
-      invalidatesTags: (result, error, { id }) => [{ type: 'Product', id }], // ক্যাশ ইনভ্যালিড করে
+      invalidatesTags: (result, error, { id }) => [{ type: 'Product', id }], 
     }),
     deleteProduct: builder.mutation<{ success: boolean }, string>({
       query: (id) => ({

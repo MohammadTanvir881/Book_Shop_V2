@@ -11,9 +11,8 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 
-// Overview Dashboard Content with Cards, Charts, and Tables
 const OverviewDashboard = () => {
-  // Example data for chart and table (could be dynamic)
+ 
   const data = [
     { name: 'Page A', uv: 4000, pv: 2400, amt: 2400 },
     { name: 'Page B', uv: 3000, pv: 1398, amt: 2210 },
@@ -83,7 +82,7 @@ const OverviewDashboard = () => {
               <td className="border px-4 py-2">Jane Smith</td>
               <td className="border px-4 py-2">Created a post</td>
             </tr>
-            {/* More rows can be added */}
+          
           </tbody>
         </table>
       </div>

@@ -1,10 +1,10 @@
-// src/types/orderTypes.ts
+
 export interface TOrderUser {
   _id: string;
   name: string;
   email: string;
-  address?: string; // Make optional if not always present
-  phone?: string; // Make optional if not always present
+  address?: string; 
+  phone?: string; 
 }
 
 export interface TOrderProduct {
@@ -31,7 +31,7 @@ export interface TOrder {
   user: TOrderUser;
   products: TOrderProduct[];
   shippingAddress: string;
-  phoneNumber: string; // Changed from 'phone' to match your error
+  phoneNumber: string; 
   paymentMethod: string;
   totalPrice: number;
   status: OrderStatus;

@@ -154,7 +154,7 @@ const CreateProduct = () => {
         confirmButtonText: 'OK',
       });
 
-      await refetch(); // নতুন ডাটা ফেচ করুন
+      await refetch();
 
       setFormData({
         name: '',

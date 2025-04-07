@@ -1,7 +1,7 @@
 import { useGetUserInfoQuery } from '@/redux/features/auth/authApi';
-import { Skeleton } from '@/components/ui/skeleton'; // ShadCN Skeleton
-import { Alert, AlertTitle } from '@/components/ui/alert'; // ShadCN Alert
-import { Card, CardContent } from '@/components/ui/card'; // ShadCN Card
+import { Skeleton } from '@/components/ui/skeleton'; 
+import { Alert, AlertTitle } from '@/components/ui/alert'; 
+import { Card, CardContent } from '@/components/ui/card'; 
 
 const UserProfile = () => {
   const { data, error, isLoading } = useGetUserInfoQuery({});

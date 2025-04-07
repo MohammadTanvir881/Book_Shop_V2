@@ -47,8 +47,7 @@ const Recommended = () => {
     {
       title: 'Islam and the Future of Tolerance',
       author: 'Sam Harris & Maajid Nawaz',
-      image:
-        'https://ia802307.us.archive.org/BookReader/BookReaderPreview.php?id=islamfutureoftol0000harr&subPrefix=islamfutureoftol0000harr&itemPath=/17/items/islamfutureoftol0000harr&server=ia802307.us.archive.org&page=leaf7&fail=preview&&scale=2&rotate=0',
+      image:'https://www.stanfords.co.uk/media/catalog/product/700x700/7/e/7e661a3457e4ce3c8c79b4b219a8358e8366ffc3c045bf608c77aaf07cd3e614.jpeg',
       rating: 4.5,
     },
   ];

@@ -12,7 +12,6 @@ export interface User {
   status: boolean;
 }
 
-
 export interface GetProductsParams {
   page?: number;
   limit?: number;
@@ -32,7 +31,7 @@ export interface ApiResponse {
   status: boolean;
   message: string;
 
-  result: UserD; 
+  result: UserD;
 }
 
 export interface User {
@@ -45,7 +44,6 @@ export interface User {
   isBlocked: boolean;
   createdAt: string;
   updatedAt: string;
- 
 }
 
 export interface RegisterResponse {
@@ -96,15 +94,6 @@ const authApi = baseApi.injectEndpoints({
       }),
     }),
 
-
-   
-   
-   
-   
-   
-   
-   
-
     // Update the getProducts query in your authApi
     getProducts: builder.query<GetProductsResponse, GetProductsParams>({
       query: (params) => {
@@ -146,7 +135,7 @@ const authApi = baseApi.injectEndpoints({
         method: 'PUT',
         body: data,
       }),
-      invalidatesTags: (result, error, { id }) => [{ type: 'Product', id }], 
+      invalidatesTags: (result, error, { id }) => [{ type: 'Product', id }],
     }),
     deleteProduct: builder.mutation<{ success: boolean }, string>({
       query: (id) => ({

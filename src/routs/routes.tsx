@@ -1,4 +1,3 @@
-
 import App from '@/App';
 import ProtectedRoute from '../components/layout/ProtectedRoute';
 import About from '@/pages/About';
@@ -18,8 +17,8 @@ import CreateProduct from '@/pages/ProductManagment/CreateProduct';
 import EditProductPage from '@/pages/ProductManagment/EditProductPage';
 import ProductDetails from '@/pages/ProductManagment/ProductDetails';
 
-import PaymentSuccess from '@/pages/OrderManagment/PaymentSuccess'; 
-import OrderDetails from '@/pages/OrderManagment/OrderDetails'; 
+import PaymentSuccess from '@/pages/OrderManagment/PaymentSuccess';
+import OrderDetails from '@/pages/OrderManagment/OrderDetails';
 import Checkout from '@/pages/OrderManagment/Checkout ';
 import OrderList from '@/pages/OrderManagment/OrderList';
 import OrderEdit from '@/pages/OrderManagment/OrderEdit';
@@ -46,7 +45,7 @@ const router = createBrowserRouter([
         path: 'checkout',
         element: <Checkout />,
       },
-      
+
       {
         path: 'payment-success',
         element: <PaymentSuccess />,
@@ -129,7 +128,6 @@ const router = createBrowserRouter([
         ),
       },
 
-     
       {
         path: 'orders/:id',
         element: (

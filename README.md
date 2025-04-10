@@ -1,32 +1,34 @@
-# 📚 Book-Shop-Frontend-Site  - Modern E-Commerce Bookstore Platform
-
+# 📚 Book-Shop-Frontend-Site - Modern E-Commerce Bookstore Platform
 
 ## 🚀 Live Demo
 
-🔗 [https://bookverse-demo.com](https://bookverse-demo.com)  
-
+🔗 [https://bookverse-demo.com](https://bookverse-demo.com)
 
 ## 🌟 Key Features
 
 ### 🔐 Advanced Authentication
+
 - 🛡️ JWT-based secure authentication
 - 👨‍💻 Role-based access control (Admin/User)
 - 🔄 Password reset functionality
 - 🚦 Protected routes with `ProtectedRoute` component
 
 ### 📦 Comprehensive Product Management
+
 - 🔍 Advanced search (title, author, category)
 - 🏷️ Multi-filter system (price, availability)
 - 📊 Real-time stock management
 - 🖼️ Product gallery with multiple images
 
 ### 🛒 Robust Order System
+
 - 🛍️ Shopping cart functionality
 - 💳 SurjoPay payment gateway integration
 - 📦 Order tracking history
 - 📧 Automated order confirmation
 
 ### 📊 Powerful Admin Dashboard
+
 - 👥 User management (CRUD operations)
 - 📚 Full product lifecycle management
 - 💰 Sales analytics dashboard
@@ -35,19 +37,21 @@
 ## 🛠️ Technology Stack
 
 ### Frontend
-| Technology | Usage | Version |
-|------------|-------|---------|
-| ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB) | Core Framework | 19.0.0 |
-| ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white) | Type Safety | ~5.7.2 |
-| ![Redux](https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white) | State Management | 4.2.0 |
-| ![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white) | Styling | 4.0.12 |
+
+| Technology                                                                                                             | Usage            | Version |
+| ---------------------------------------------------------------------------------------------------------------------- | ---------------- | ------- |
+| ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)                    | Core Framework   | 19.0.0  |
+| ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)      | Type Safety      | ~5.7.2  |
+| ![Redux](https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white)                     | State Management | 4.2.0   |
+| ![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white) | Styling          | 4.0.12  |
 
 ### Backend
-| Technology | Usage | Version |
-|------------|-------|---------|
-| ![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white) | Runtime | 18+ |
-| ![Express](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white) | Framework | 4.x |
-| ![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white) | Database | 8.13.1 |
+
+| Technology                                                                                                  | Usage     | Version |
+| ----------------------------------------------------------------------------------------------------------- | --------- | ------- |
+| ![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)  | Runtime   | 18+     |
+| ![Express](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white) | Framework | 4.x     |
+| ![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)    | Database  | 8.13.1  |
 
 ## 🖥️ Project Structure
 
@@ -69,55 +73,50 @@ book-shop/
 ├── .env.example # Environment template
 └── package.json # Project configuration
 
-
 🔧 Available Scripts
-Script	Description
-npm run dev	Starts development server
-npm run build	Creates production build
-npm run lint	Runs ESLint for code quality
-npm run format	Formats code with Prettier
-npm run preview	Previews production build
-
-
+Script Description
+npm run dev Starts development server
+npm run build Creates production build
+npm run lint Runs ESLint for code quality
+npm run format Formats code with Prettier
+npm run preview Previews production build
 
 🌐 API Endpoints
-Endpoint	Method	Description
-/api/auth/register	POST	User registration
-/api/auth/login	POST	User login
-/api/products	GET	Get all products
-/api/orders	POST	Create new order
-
+Endpoint Method Description
+/api/auth/register POST User registration
+/api/auth/login POST User login
+/api/products GET Get all products
+/api/orders POST Create new order
 
 📊 Database Schema
 mermaid
 Copy
 erDiagram
-    USER ||--o{ ORDER : places
-    USER {
-        string _id PK
-        string name
-        string email
-        string password
-        string role
-        date createdAt
-    }
-    PRODUCT ||--o{ ORDER_ITEM : includes
-    PRODUCT {
-        string _id PK
-        string title
-        string author
-        string category
-        number price
-        number stock
-    }
-    ORDER ||--o{ ORDER_ITEM : contains
-    ORDER {
-        string _id PK
-        string user FK
-        string status
-        number total
-    }
-
+USER ||--o{ ORDER : places
+USER {
+string \_id PK
+string name
+string email
+string password
+string role
+date createdAt
+}
+PRODUCT ||--o{ ORDER_ITEM : includes
+PRODUCT {
+string \_id PK
+string title
+string author
+string category
+number price
+number stock
+}
+ORDER ||--o{ ORDER_ITEM : contains
+ORDER {
+string \_id PK
+string user FK
+string status
+number total
+}
 
 📧 Contact
 Project Lead: [Hasan Mahadi]

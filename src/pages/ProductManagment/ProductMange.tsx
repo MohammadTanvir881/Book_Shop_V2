@@ -72,7 +72,7 @@ const ProductManage = () => {
             icon: 'success',
             confirmButtonText: 'OK',
           });
-          await refetch(); 
+          await refetch();
         } catch (error) {
           Swal.fire({
             title: 'Error!',

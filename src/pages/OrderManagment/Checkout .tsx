@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-
 import { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useCreateOrderMutation } from '@/redux/api/orderApi';
@@ -55,8 +54,6 @@ const Checkout = () => {
     }
   }, [isError, error]);
 
-
- 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 

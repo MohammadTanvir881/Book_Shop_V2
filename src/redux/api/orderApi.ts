@@ -3,7 +3,6 @@
 
 import { baseApi } from '../api/baseApi';
 
-
 interface ProductItem {
   product: string;
   quantity: number;
@@ -114,12 +113,6 @@ const orderApi = baseApi.injectEndpoints({
       providesTags: (result, error, id) => [{ type: 'Order', id }],
     }),
 
-    
-
-    
-    
-
-    
     updateOrderStatus: builder.mutation<
       {
         success: boolean;
@@ -136,15 +129,6 @@ const orderApi = baseApi.injectEndpoints({
       }),
     }),
 
-    
-    
-    
-    
-    
-    
-    
-
-
     verifyPayment: builder.mutation<
       {
         success: boolean;
@@ -159,7 +143,6 @@ const orderApi = baseApi.injectEndpoints({
       }),
     }),
 
-    
     deleteOrder: builder.mutation<void, string>({
       query: (id) => ({
         url: `orders/${id}`,
@@ -167,7 +150,6 @@ const orderApi = baseApi.injectEndpoints({
       }),
     }),
 
-    
     cancelOrder: builder.mutation<void, string>({
       query: (id) => ({
         url: `/orders/${id}/cancel`,

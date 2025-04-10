@@ -156,7 +156,7 @@ const EditProductPage = () => {
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-semibold text-gray-700">
+            <label className="block text-sm font-semibold dark:text-black text-gray-700">
               Product Name
             </label>
             <input
@@ -164,26 +164,25 @@ const EditProductPage = () => {
               name="name"
               defaultValue={originalProduct.name}
               onChange={handleChange}
-              className="mt-1 p-2 w-full border border-gray-300 rounded-md"
+              className="mt-1 p-2 w-full border dark:text-black border-gray-300 rounded-md"
             />
           </div>
 
           <div>
-  <label className="block text-sm font-semibold text-gray-700">
-    Author
-  </label>
-  <input
-    type="text"
-    name="author"
-    defaultValue={originalProduct.author}
-    onChange={handleChange}
-    className="mt-1 p-2 w-full border border-gray-300 rounded-md"
-  />
-</div>
-
+            <label className="block text-sm font-semibold dark:text-black text-gray-700">
+              Author
+            </label>
+            <input
+              type="text"
+              name="author"
+              defaultValue={originalProduct.author}
+              onChange={handleChange}
+              className="mt-1 p-2 w-full border dark:text-black border-gray-300 rounded-md"
+            />
+          </div>
 
           <div>
-            <label className="block text-sm font-semibold text-gray-700">
+            <label className="block text-sm font-semibold dark:text-black text-gray-700">
               Price
             </label>
             <input
@@ -191,19 +190,19 @@ const EditProductPage = () => {
               name="price"
               defaultValue={originalProduct.price}
               onChange={handleChange}
-              className="mt-1 p-2 w-full border border-gray-300 rounded-md"
+              className="mt-1 p-2 w-full border dark:text-black border-gray-300 rounded-md"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-semibold text-gray-700">
+            <label className="block text-sm font-semibold dark:text-black text-gray-700">
               Category
             </label>
             <select
               name="category"
               defaultValue={originalProduct.category}
               onChange={handleChange}
-              className="mt-1 p-2 w-full border border-gray-300 rounded-md"
+              className="mt-1 p-2 w-full border dark:text-black border-gray-300 rounded-md"
             >
               <option value="">Select a category</option>
               {validCategories.map((category) => (
@@ -215,7 +214,7 @@ const EditProductPage = () => {
           </div>
 
           <div>
-            <label className="block text-sm font-semibold text-gray-700">
+            <label className="block text-sm font-semibold dark:text-black text-gray-700">
               Stock
             </label>
             <input
@@ -223,12 +222,12 @@ const EditProductPage = () => {
               name="stock"
               defaultValue={originalProduct.stock}
               onChange={handleChange}
-              className="mt-1 p-2 w-full border border-gray-300 rounded-md"
+              className="mt-1 p-2 w-full border dark:text-black border-gray-300 rounded-md"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-semibold text-gray-700">
+            <label className="block text-sm font-semibold dark:text-black text-gray-700">
               Brand
             </label>
             <input
@@ -236,12 +235,12 @@ const EditProductPage = () => {
               name="brand"
               defaultValue={originalProduct.brand}
               onChange={handleChange}
-              className="mt-1 p-2 w-full border border-gray-300 rounded-md"
+              className="mt-1 p-2 w-full dark:text-black border border-gray-300 rounded-md"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-semibold text-gray-700">
+            <label className="block text-sm font-semibold dark:text-black text-gray-700">
               Model
             </label>
             <input
@@ -249,13 +248,13 @@ const EditProductPage = () => {
               name="model"
               defaultValue={originalProduct.model}
               onChange={handleChange}
-              className="mt-1 p-2 w-full border border-gray-300 rounded-md"
+              className="mt-1 p-2 w-full border dark:text-black border-gray-300 rounded-md"
             />
           </div>
         </div>
 
         <div>
-          <label className="block text-sm font-semibold text-gray-700">
+          <label className="block text-sm font-semibold dark:text-black text-gray-700">
             Image URL
           </label>
           {imagePreview && (
@@ -263,7 +262,7 @@ const EditProductPage = () => {
               <img
                 src={imagePreview}
                 alt="Product Preview"
-                className="h-40 w-40 object-cover rounded-md"
+                className="h-40 w-40 object-cover dark:text-black rounded-md"
               />
             </div>
           )}
@@ -272,12 +271,12 @@ const EditProductPage = () => {
             name="image"
             defaultValue={originalProduct.image}
             onChange={handleImageChange}
-            className="mt-1 p-2 w-full border border-gray-300 rounded-md"
+            className="mt-1 p-2 w-full border dark:text-black border-gray-300 rounded-md"
           />
         </div>
 
         <div>
-          <label className="block text-sm font-semibold text-gray-700">
+          <label className="block text-sm font-semibold dark:text-black text-gray-700">
             Description
           </label>
           <textarea
@@ -285,19 +284,19 @@ const EditProductPage = () => {
             defaultValue={originalProduct.description}
             onChange={handleChange}
             rows={4}
-            className="mt-1 p-2 w-full border border-gray-300 rounded-md"
+            className="mt-1 p-2 w-full border dark:text-black border-gray-300 rounded-md"
           />
         </div>
 
         <div>
-          <label className="block text-sm font-semibold text-gray-700">
+          <label className="block text-sm font-semibold dark:text-black text-gray-700">
             Tags (comma separated)
           </label>
           <input
             type="text"
             defaultValue={originalProduct.tags.join(', ')}
             onChange={(e) => handleArrayChange('tags', e.target.value)}
-            className="mt-1 p-2 w-full border border-gray-300 rounded-md"
+            className="mt-1 p-2 w-full border dark:text-black border-gray-300 rounded-md"
           />
         </div>
 

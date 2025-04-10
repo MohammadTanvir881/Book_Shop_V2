@@ -88,7 +88,7 @@ const OrderEdit = () => {
 
       if (response?.status === true || response?.success === true) {
         toast.success(response.message || 'Order status updated successfully');
-        await refetch(); 
+        await refetch();
 
         setTimeout(() => navigate('/dashboard/orderList'), 1000);
       } else {

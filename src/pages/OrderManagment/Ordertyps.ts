@@ -1,10 +1,9 @@
-
 export interface TOrderUser {
   _id: string;
   name: string;
   email: string;
-  address?: string; 
-  phone?: string; 
+  address?: string;
+  phone?: string;
 }
 
 export interface TOrderProduct {
@@ -31,7 +30,7 @@ export interface TOrder {
   user: TOrderUser;
   products: TOrderProduct[];
   shippingAddress: string;
-  phoneNumber: string; 
+  phoneNumber: string;
   paymentMethod: string;
   totalPrice: number;
   status: OrderStatus;

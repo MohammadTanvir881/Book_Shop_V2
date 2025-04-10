@@ -22,7 +22,6 @@ const OrderDetails = () => {
         timer: 20000,
         timerProgressBar: true,
         didOpen: () => {
-         
           window.history.replaceState({}, document.title);
         },
       });

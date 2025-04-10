@@ -2,7 +2,9 @@
 
 ## 🚀 Live Demo
 
-🔗 [https://bookverse-demo.com](https://bookverse-demo.com)
+🔗 [https://book-shop-app-five.vercel.app](https://book-shop-app-five.vercel.app)
+
+## Admin Credentials: admin@gmail.com | 111111
 
 ## 🌟 Key Features
 

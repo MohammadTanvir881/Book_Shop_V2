@@ -10,7 +10,7 @@ const Footer = () => {
           <div className="flex shrink-0 items-center pl-25  lg:pl-40">
             <img
               className="h-8  "
-              src="/src/assets/images/Bk-logo-removebg-preview.png"
+              src="https://i.postimg.cc/tCLPxXkG/Bk-logo-removebg-preview.png"
               alt="Your Company"
             />
             <h4

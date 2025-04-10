@@ -3,7 +3,6 @@
 import Logout from '@/pages/Logout';
 import { useSelector } from 'react-redux';
 import { NavLink, Outlet } from 'react-router-dom';
-import { Navigate } from 'react-router-dom';
 import { useState } from 'react';
 import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai';
 import { CgProfile } from 'react-icons/cg';
@@ -224,7 +223,7 @@ const TopNavbar: React.FC<TopNavbarProps> = ({ toggleSidebar }) => {
       <div className="hidden md:flex items-center space-x-2">
         <img
           className="h-8 w-auto"
-          src="/src/assets/images/Bk-logo-removebg-preview.png"
+          src="https://i.postimg.cc/tCLPxXkG/Bk-logo-removebg-preview.png"
           alt="Logo"
         />
         <h4 className="text-xl font-medium text-blue-500">BookShop</h4>
@@ -237,12 +236,14 @@ const TopNavbar: React.FC<TopNavbarProps> = ({ toggleSidebar }) => {
   );
 };
 
-const RoleBasedDashboard = () => {
-  const { user } = useSelector((state: any) => state.auth);
-  if (user?.role === 'admin') return <Navigate to="/admin/dashboard" replace />;
-  if (user?.role === 'user') return <Navigate to="/user/dashboard" replace />;
-  return <Navigate to="/login" />;
-};
+// const RoleBasedDashboard = () => {
+  // const { user } = useSelector((state: any) => state.auth);
+  // if (user?.role === 'admin') return <Navigate to="/admin/dashboard" replace />;
+  // if (user?.role === 'user') return <Navigate to="/user/dashboard" replace />;
+  // return <Navigate to="/login" />;
+// };
+// 
+
 
 const Dashboard = () => {
   const [isSidebarOpen, setSidebarOpen] = useState(false);

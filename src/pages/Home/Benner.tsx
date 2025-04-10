@@ -16,16 +16,16 @@ const Benner = () => {
   );
 
   const images = [
-    '/src/assets/images/bk7.jpg',
-    '/src/assets/images/bk1.jpg',
-    '/src/assets/images/bk2.jpg',
-    '/src/assets/images/bk8.jpg',
+    'https://img.freepik.com/free-photo/front-view-stacked-books-ladders-education-day_23-2149241046.jpg?uid=R104361349&ga=GA1.1.1841229347.1715426784&semt=ais_hybrid&w=740',
+    'https://img.freepik.com/free-photo/3d-view-books-cartoon-style_52683-117188.jpg?uid=R104361349&ga=GA1.1.1841229347.1715426784&semt=ais_hybrid&w=740',
+    'https://img.freepik.com/free-vector/modern-school-education-knowledge-concept_3446-665.jpg?uid=R104361349&ga=GA1.1.1841229347.1715426784&semt=ais_hybrid&w=740',
+    'https://img.freepik.com/free-vector/realistic-world-book-day-theme_23-2148476893.jpg?uid=R104361349&ga=GA1.1.1841229347.1715426784&semt=ais_hybrid&w=740',
 
-    '/src/assets/images/bk5.jpg',
-    '/src/assets/images/bk3.jpg',
-    '/src/assets/images/bk4.jpg',
+    'https://img.freepik.com/free-photo/front-view-stacked-books-ladders-education-day_23-2149241046.jpg?uid=R104361349&ga=GA1.1.1841229347.1715426784&semt=ais_hybrid&w=740',
+    'https://img.freepik.com/free-vector/hand-drawn-flat-design-stack-books_23-2149331952.jpg?uid=R104361349&ga=GA1.1.1841229347.1715426784&semt=ais_hybrid&w=740',
+    'https://img.freepik.com/free-psd/books-icon-isolated-3d-render-illustration_47987-7695.jpg?uid=R104361349&ga=GA1.1.1841229347.1715426784&semt=ais_hybrid&w=740',
 
-    '/src/assets/images/bk6.jpg',
+    'https://img.freepik.com/free-psd/pile-books-icon-isolated-3d-render-illustration_47987-15486.jpg?uid=R104361349&ga=GA1.1.1841229347.1715426784&semt=ais_hybrid&w=740',
   ];
 
   const renderCarousel = () => (

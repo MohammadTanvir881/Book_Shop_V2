@@ -78,9 +78,9 @@ interface UpdateOrderStatusRequest {
   status: 'Processing' | 'Shipped' | 'Delivered' | 'Cancelled';
 }
 
-interface VerifyPaymentRequest {
-  orderId: string;
-}
+// interface VerifyPaymentRequest {
+  // orderId: string;
+// }
 
 const orderApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
@@ -110,7 +110,7 @@ const orderApi = baseApi.injectEndpoints({
     // Get order by ID
     getOrderById: builder.query<{ success: boolean; data: Order }, string>({
       query: (id) => `/orders/${id}`,
-      providesTags: (result, error, id) => [{ type: 'Order', id }],
+      providesTags: (_result, _error, id) => [{ type: 'Order', id }],
     }),
 
     updateOrderStatus: builder.mutation<

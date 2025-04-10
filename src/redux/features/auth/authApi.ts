@@ -116,7 +116,7 @@ const authApi = baseApi.injectEndpoints({
 
     getProduct: builder.query<Product, string>({
       query: (id) => `/products/${id}`,
-      providesTags: (result, error, id) => [{ type: 'Product', id }],
+      providesTags: (_result, _error, id) => [{ type: 'Product', id }],
     }),
 
     createProduct: builder.mutation<Product, Partial<Product>>({
@@ -135,7 +135,7 @@ const authApi = baseApi.injectEndpoints({
         method: 'PUT',
         body: data,
       }),
-      invalidatesTags: (result, error, { id }) => [{ type: 'Product', id }],
+      invalidatesTags: (_result, _error, { id }) => [{ type: 'Product', id }],
     }),
     deleteProduct: builder.mutation<{ success: boolean }, string>({
       query: (id) => ({

@@ -5,10 +5,10 @@ import AOS from 'aos';
 import { Link } from 'react-router-dom';
 
 const images = [
-  '/src/assets/images/bs-2.jpg',
-  '/src/assets/images/bs-1.jpg',
-  '/src/assets/images/bs-3.jpg',
-  '/src/assets/images/bs-4.jpg',
+  'https://i.postimg.cc/7hGqkrpq/bs-1.jpg',
+  'https://i.postimg.cc/C5szRqFc/bs-2.jpg',
+  'https://i.postimg.cc/G3xF8BS0/bs-3.jpg',
+  'https://i.postimg.cc/G3vCkRkn/bs-4.jpg',
 ];
 
 const PCarousel = () => {

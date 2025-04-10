@@ -45,7 +45,7 @@ const EditProductPage = () => {
   });
 
   const [changedFields, setChangedFields] = useState<Record<string, any>>({});
-  const [errors, setErrors] = useState<Record<string, string>>({});
+  // const [errors, setErrors] = useState<Record<string, string>>({});
   const [imagePreview, setImagePreview] = useState(originalProduct.image);
 
   useEffect(() => {

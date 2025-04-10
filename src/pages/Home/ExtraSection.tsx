@@ -20,7 +20,7 @@ const testimonials = [
     role: 'Book Club Founder',
     content:
       'The collection is phenomenal! Found first editions I thought were lost forever. Shipping was faster than my local bookstore.',
-    avatar: '/src/assets/images/image.png',
+    avatar: 'https://i.postimg.cc/WbXbkjvb/image.png',
     rating: 5,
   },
   {
@@ -29,7 +29,7 @@ const testimonials = [
     role: 'University Professor',
     content:
       'My rare academic references arrived in perfect condition. The authentication certificates gave me complete peace of mind.',
-    avatar: '/src/assets/images/image.png',
+    avatar: 'https://i.postimg.cc/WbXbkjvb/image.png',
     rating: 4,
   },
   {
@@ -38,7 +38,7 @@ const testimonials = [
     role: 'Literary Blogger',
     content:
       'Their limited edition releases are stunning. The packaging feels like unwrapping a precious gift every single time.',
-    avatar: '/src/assets/images/image.png',
+    avatar: 'https://i.postimg.cc/WbXbkjvb/image.png',
     rating: 3,
   },
 ];

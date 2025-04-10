@@ -78,7 +78,7 @@ const Navbar = () => {
               <div className="flex shrink-0 items-center pr-12">
                 <img
                   className="h-8 w-auto "
-                  src="/src/assets/images/Bk-logo-removebg-preview.png"
+                  src="https://i.postimg.cc/tCLPxXkG/Bk-logo-removebg-preview.png"
                   alt="Your Company"
                 />
                 <h4

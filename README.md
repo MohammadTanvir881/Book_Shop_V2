@@ -75,6 +75,41 @@ book-shop/
 ├── .env.example # Environment template
 └── package.json # Project configuration
 
+
+
+## 🚀 Local Development Setup
+
+### Prerequisites
+- Node.js v18+
+- MongoDB (local or Atlas)
+- Git
+
+### 1. Clone Both Repositories
+```bash
+git clone https://github.com/Hasan-Mahadi/Book-Shop-Frontend-Site.git
+git clone https://github.com/Hasan-Mahadi/Book-Shop-Baeckend-Site.git
+
+cd Book-Shop-Baeckend-Site
+
+# Install dependencies
+npm install
+
+# Create environment file
+echo "NODE_ENV=development
+PORT=5000
+BCRYPT_SALT_ROUNDS=6
+DATABASE_URL=mongodb+srv://Book-shop2:XMOsBxvSqhRx4H9e@cluster0.dxhiq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+SP_ENDPOINT=https://sandbox.shurjopayment.com
+SP_USERNAME=sp_sandbox
+SP_PASSWORD=pyyk97hu&6u6
+SP_PREFIX=SP
+SP_RETURN_URL=http://localhost:5173
+CLIENT_URL=http://localhost:5173
+JWT_SECRET=your_jwt_secret_here" > .env
+
+# Start development server
+npm run dev
+
 🔧 Available Scripts
 Script Description
 npm run dev Starts development server

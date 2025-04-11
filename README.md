@@ -98,14 +98,13 @@ npm install
 echo "NODE_ENV=development
 PORT=5000
 BCRYPT_SALT_ROUNDS=6
-DATABASE_URL=mongodb+srv://Book-shop2:XMOsBxvSqhRx4H9e@cluster0.dxhiq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
 SP_ENDPOINT=https://sandbox.shurjopayment.com
 SP_USERNAME=sp_sandbox
 SP_PASSWORD=pyyk97hu&6u6
 SP_PREFIX=SP
 SP_RETURN_URL=http://localhost:5173
 CLIENT_URL=http://localhost:5173
-JWT_SECRET=your_jwt_secret_here" > .env
+JWT_SECRET=your_jwt_secret_here" > 
 
 # Start development server
 npm run dev

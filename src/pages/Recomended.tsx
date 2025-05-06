@@ -39,7 +39,7 @@ const Recommended = () => {
       rating: 4.7,
     },
     {
-      title: 'In the Footsteps of the Prophet',
+      title: 'In the Footsteps of the Prophet.',
       author: 'Tariq Ramadan',
       image: 'https://m.media-amazon.com/images/I/51JGmkS3SXL._SL500_.jpg',
       rating: 4.6,

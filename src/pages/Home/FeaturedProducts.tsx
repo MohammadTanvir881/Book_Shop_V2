@@ -158,8 +158,9 @@ const FeaturedProducts = () => {
 
           <div className="mt-16 text-center" data-aos="fade-up">
             <Button
+            variant="outline"
               onClick={handleViewAll}
-              className="bg-gray-700 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition"
+              className= "inline-flex items-center px-10 py-3 border border-gray-800 dark:border-white text-gray-800 dark:text-white rounded-lg hover:bg-gray-800 hover:text-white transition-all duration-300 hover:shadow-lg"
             >
               View All
             </Button>

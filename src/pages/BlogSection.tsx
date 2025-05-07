@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState, useEffect } from 'react';
-import { FiBook, FiArrowRight } from 'react-icons/fi';
+import { FiArrowRight } from 'react-icons/fi';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
@@ -34,7 +34,9 @@ export default function BlogSection() {
     const fetchFeaturedArticles = async () => {
       try {
         setIsLoading(true);
-        const response = await fetch('https://dev.to/api/articles?per_page=4&tag=books');
+        const response = await fetch(
+          'https://dev.to/api/articles?per_page=4&tag=books',
+        );
         const data = await response.json();
 
         const formattedArticles = data.map((article: any) => ({
@@ -42,7 +44,7 @@ export default function BlogSection() {
           title: article.title,
           description: article.description,
           cover_image: article.cover_image || '/default-book-cover.jpg',
-          url: `/blogs/${article.id}`,
+          url: article.url,
           readable_publish_date: article.readable_publish_date,
           user: { name: article.user.name },
           tag_list: article.tag_list.slice(0, 2),
@@ -60,14 +62,27 @@ export default function BlogSection() {
   }, []);
 
   return (
-    <section className="py-16 bg-gray-50">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4" data-aos="fade-up">
+    <section className="lg:p-30 lg:pt-8  lg:-mt-14 lg:pb-8 bg-gray-200 dark:bg-black ">
+      <div className="container mx-auto px-6 ">
+        <div
+          className="text-center mb-12"
+          data-aos="flip-right"
+          data-aos-easing="ease-out-cubic"
+          data-aos-duration="1000"
+        >
+          <h2
+            className="text-3xl md:text-4xl font-bold mb-4 text-gray-800 dark:text-white"
+            data-aos="fade-up"
+          >
             Latest From Our Blog
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">
-            Discover book reviews, author interviews, and reading recommendations
+          <p
+            className="text-lg text-gray-600 dark:text-white max-w-2xl mx-auto"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            Discover book reviews, author interviews, and reading
+            recommendations
           </p>
         </div>
 
@@ -94,7 +109,7 @@ export default function BlogSection() {
             {featuredArticles.map((article, index) => (
               <article
                 key={article.id}
-                className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all duration-300"
+                className="group bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 ease-in-out hover:-translate-y-2"
                 data-aos="fade-up"
                 data-aos-delay={index * 100}
               >
@@ -102,14 +117,15 @@ export default function BlogSection() {
                   <img
                     src={article.cover_image}
                     alt={article.title}
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
-                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-gray-900 to-transparent p-4">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute bottom-0 left-0 right-0 p-4">
                     <div className="flex flex-wrap gap-2">
                       {article.tag_list.map((tag) => (
                         <span
                           key={tag}
-                          className="px-2 py-1 bg-gray-800 bg-opacity-60 text-white text-xs rounded-full backdrop-blur-sm"
+                          className="px-2 py-1 bg-gray-800 bg-opacity-60 text-white text-xs rounded-full backdrop-blur-sm transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300"
                         >
                           {tag}
                         </span>
@@ -118,20 +134,21 @@ export default function BlogSection() {
                   </div>
                 </div>
                 <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-800 mb-2 line-clamp-2">
+                  <h3 className="text-xl font-bold text-gray-800 mb-2 line-clamp-2 group-hover:text-gray-900 transition-colors">
                     {article.title}
                   </h3>
-                  <p className="text-gray-600 mb-4 line-clamp-3">
+                  <p className="text-gray-600 mb-4 line-clamp-3 group-hover:text-gray-700 transition-colors">
                     {article.description}
                   </p>
                   <div className="flex items-center justify-between">
-                    <span className="text-sm text-gray-500">
+                    <span className="text-sm text-gray-500 group-hover:text-gray-600 transition-colors">
                       {article.readable_publish_date}
                     </span>
-                    
                     <a
                       href={article.url}
-                      className="inline-flex items-center text-gray-800 hover:text-gray-900 font-medium group"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center text-gray-800 hover:text-gray-900 font-medium group-hover:text-indigo-600 transition-colors"
                     >
                       Read more
                       <FiArrowRight className="ml-1 transition-transform group-hover:translate-x-1" />
@@ -143,14 +160,14 @@ export default function BlogSection() {
           </div>
         )}
 
-        <div className="text-center mt-12" data-aos="fade-up">
-            
+        <div className="text-center pb-5 mt-12" data-aos="fade-up">
           <a
             href="/blogs"
-            className="inline-flex items-center px-6 py-3 border border-gray-800 text-gray-800 rounded-lg hover:bg-gray-800 hover:text-white transition-colors duration-300"
+            rel="noopener noreferrer"
+            className="inline-flex items-center px-6 py-3 border border-gray-800 dark:border-white text-gray-800 dark:text-white rounded-lg hover:bg-gray-800 hover:text-white transition-all duration-300 hover:shadow-lg"
           >
             View All Articles
-            <FiArrowRight className="ml-2" />
+            <FiArrowRight className="ml-2 transition-transform group-hover:translate-x-1" />
           </a>
         </div>
       </div>

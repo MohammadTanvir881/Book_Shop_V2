@@ -5,6 +5,7 @@ import AOS from 'aos';
 import { useEffect } from 'react';
 import FeaturedProducts from './FeaturedProducts';
 import EcommerceExtras from './ExtraSection';
+import BlogSection from '../BlogSection';
 
 const Home = () => {
   useEffect(() => {
@@ -16,6 +17,7 @@ const Home = () => {
       <PCarousel></PCarousel>
 
       <FeaturedProducts />
+      <BlogSection/>
       <EcommerceExtras />
       <h1
         data-aos="flip-left"

@@ -13,7 +13,7 @@ import { Product } from '../ProductManagment/productTypes';
 const FeaturedProducts = () => {
   const navigate = useNavigate();
   const { isAuthenticated } = useAuth();
-  const { data, error, isLoading } = useGetProductsQuery({ limit: 6 });
+  const { data, error, isLoading } = useGetProductsQuery({ limit: 8 });
 
   const products = (data?.result || []) as Product[];
 
@@ -88,7 +88,7 @@ const FeaturedProducts = () => {
 
       {products.length > 0 ? (
         <>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
             {products.map((product) => (
               <div
                 key={product._id}
@@ -98,12 +98,12 @@ const FeaturedProducts = () => {
                 data-aos-duration="1000"
               >
                 <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-gray-800 rounded-2xl opacity-25 group-hover:opacity-50 blur transition-all duration-300"></div>
-                <Card className="relative bg-white/80 backdrop-blur-sm border border-white/20 shadow-xl rounded-2xl overflow-hidden h-full flex flex-col transition-all duration-300 group-hover:-translate-y-2">
-                  <div className="h-56 overflow-hidden relative">
+                <Card className="p-0 pt-0 mt-0 pb-3 relative bg-white/80 backdrop-blur-sm border border-white/20 shadow-xl rounded-2xl overflow-hidden h-full flex flex-col transition-all duration-300 group-hover:-translate-y-2">
+                  <div className="h-36 overflow-hidden relative m-0 p-0">
                     <img
                       src={product.image}
                       alt={product.name}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      className="w-full h-full object-cover  transition-transform duration-500 group-hover:scale-105 p-0 m-0"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-gray-900/60 to-transparent"></div>
                     <span className="absolute top-4 right-4 bg-gray-700 text-white text-xs font-semibold px-3 py-1 rounded-full">
@@ -142,7 +142,7 @@ const FeaturedProducts = () => {
                       </div>
                       <Button
                         variant="outline"
-                        className="border border-gray-300 hover:bg-gray-50 hover:border-gray-400 rounded-lg px-4 py-2 transition-colors duration-200"
+                        className="border border-gray-300 hover:bg-gray-800 hover:text-white  hover:border-gray-400 rounded-lg mt-6 ml-1 transition-colors duration-200"
                         onClick={() =>
                           product._id && handleViewDetails(product._id)
                         }

@@ -1,126 +1,315 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useState, useEffect } from 'react';
+import {
+  FiSearch,
+  FiCalendar,
+  FiUser,
+  FiBook,
+  FiArrowRight,
+  FiChevronDown,
+} from 'react-icons/fi';
 import AOS from 'aos';
-import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import 'aos/dist/aos.css';
 
-const blogs = [
-  {
-    title: 'The Art of Reading',
-    description:
-      'Discover how reading books can transform your perspective and creativity.',
-    img: 'https://images.unsplash.com/photo-1556740749-887f6717d7e4',
-    date: 'March 10, 2025',
-  },
-  {
-    title: 'Best Fiction Books of 2025',
-    description:
-      'A curated list of the most captivating fiction books this year.',
-    img: 'https://images.pexels.com/photos/159711/books-bookstore-book-reading-159711.jpeg?auto=compress&cs=tinysrgb&w=600',
-    date: 'March 8, 2025',
-  },
-  {
-    title: 'Productivity Hacks for Book Lovers',
-    description:
-      'How to manage time effectively and read more books in a busy schedule.',
-    img: 'https://images.pexels.com/photos/6636122/pexels-photo-6636122.jpeg?auto=compress&cs=tinysrgb&w=600',
-    date: 'March 5, 2025',
-  },
-  {
-    title: 'Classic Literature You Must Read',
-    description:
-      'Explore timeless classics that everyone should experience at least once.',
-    img: 'https://images.pexels.com/photos/19975716/pexels-photo-19975716/free-photo-of-fingers-on-open-book.jpeg?auto=compress&cs=tinysrgb&w=600',
-    date: 'March 3, 2025',
-  },
-  {
-    title: 'How to Write a Book Review',
-    description:
-      'Tips and techniques for writing engaging and insightful book reviews.',
-    img: 'https://images.pexels.com/photos/5527531/pexels-photo-5527531.jpeg?auto=compress&cs=tinysrgb&w=600',
-    date: 'March 1, 2025',
-  },
-  {
-    title: 'The Science Behind Reading',
-    description:
-      'Learn how reading impacts brain development and cognitive skills.',
-    img: 'https://media.istockphoto.com/id/1336651648/photo/close-up-of-a-young-person-studying-science-topic-about-robotics-at-home-student-is-working.jpg?s=2048x2048&w=is&k=20&c=gR1gti0EQCvqwyzd9lUDUSUjIkon2cRhDsmneILRZs8=',
-    date: 'February 28, 2025',
-  },
-  {
-    title: 'Must-Read Self-Help Books',
-    description:
-      'A selection of self-help books that can guide you toward success and happiness.',
-    img: 'https://images.pexels.com/photos/731510/pexels-photo-731510.jpeg?auto=compress&cs=tinysrgb&w=600',
-    date: 'February 25, 2025',
-  },
-  {
-    title: 'Exploring Different Book Genres',
-    description:
-      'Dive into various book genres and find what suits your taste best.',
-    img: 'https://images.pexels.com/photos/6981060/pexels-photo-6981060.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-    date: 'February 22, 2025',
-  },
-  {
-    title: 'Building a Personal Library',
-    description:
-      'Steps to curate and organize your own personal book collection.',
-    img: 'https://images.pexels.com/photos/6550411/pexels-photo-6550411.jpeg?auto=compress&cs=tinysrgb&w=600',
-    date: 'February 20, 2025',
-  },
-];
-
-const Blogs = () => {
-  useEffect(() => {
-    AOS.init({ duration: 1000 });
-  }, []);
-
-  return (
-    <div className="mt-6">
-      <div className="grid grid-cols-1 sm:grid-cols-2  md:grid-cols-3 gap-6 px-6 sm:px-10 md:px-20 lg:px-40 py-10 md:py-20">
-        <h1 className="text-4xl font-bold mb-4 text-gray-900 dark:text-white">
-          Reading Our Letest Blogs...!
-          <h4 className="text-lg pt-8">
-            Your one-stop online destination for books of all genres. Whether
-            you're a passionate reader, a student, or looking for the perfect
-            gift, we have something for everyone.
-          </h4>
-        </h1>
-        {blogs.map((blog, index) => (
-          <div
-            data-aos="flip-left"
-            data-aos-easing="ease-out-cubic"
-            data-aos-duration="2000"
-            key={index}
-            className="bg-white shadow-md
-             rounded-lg overflow-hidden transform transition-all
-              duration-300 hover:scale-105 hover:shadow-xl w-full sm:w-[90%] mx-auto"
-          >
-            <img
-              src={blog.img}
-              alt={blog.title}
-              className="w-full h-40 sm:h-36 object-cover"
-            />
-            <div className="p-4">
-              <p className="text-xs text-gray-500">{blog.date}</p>
-              <h2 className="text-md font-semibold text-gray-800 mt-1">
-                {blog.title}
-              </h2>
-              <p className="text-gray-600 mt-1 text-xs">{blog.description}</p>
-            </div>
-          </div>
-        ))}
-      </div>
-      <div className="flex justify-center items-center pt-10 pb-10 ">
-        <Link to="/">
-          <button
-            className="bg-gray-800 hover:bg-blue-700 text-white font-bold 
-  py-2 px-4 border border-blue-700 rounded"
-          >
-            Back To Home
-          </button>
-        </Link>
-      </div>
-    </div>
-  );
+type Article = {
+  id: number;
+  title: string;
+  description: string;
+  cover_image: string;
+  url: string;
+  readable_publish_date: string;
+  user: {
+    name: string;
+  };
+  tag_list: string[];
 };
 
-export default Blogs;
+export default function BookBlogPage() {
+  const [articles, setArticles] = useState<Article[]>([]);
+  const [filteredArticles, setFilteredArticles] = useState<Article[]>([]);
+  const [displayedArticles, setDisplayedArticles] = useState<Article[]>([]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [activeCategory, setActiveCategory] = useState('all');
+  const [isLoading, setIsLoading] = useState(true);
+  const [showAll, setShowAll] = useState(false);
+
+  const categories = [
+    { id: 'all', name: 'All Articles', tag: 'books' },
+    { id: 'reviews', name: 'Book Reviews', tag: 'bookreview' },
+    {
+      id: 'recommendations',
+      name: 'Recommendations',
+      tag: 'bookrecommendations',
+    },
+    { id: 'authors', name: 'Author Spotlights', tag: 'authors' },
+    { id: 'industry', name: 'Publishing News', tag: 'publishing' },
+  ];
+
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      easing: 'ease-in-out',
+      once: true,
+      mirror: false,
+    });
+  }, []);
+
+  useEffect(() => {
+    const fetchArticles = async () => {
+      try {
+        setIsLoading(true);
+        const activeTag =
+          categories.find((cat) => cat.id === activeCategory)?.tag || 'books';
+        const url = `https://dev.to/api/articles?per_page=30&tag=${activeTag}`;
+
+        const response = await fetch(url);
+        const data = await response.json();
+
+        const formattedArticles = data.map((article: any) => ({
+          id: article.id,
+          title: article.title,
+          description: article.description,
+          cover_image:
+            article.cover_image ||
+            'https://images.unsplash.com/photo-1544947950-fa07a98d237f',
+          url: article.url,
+          readable_publish_date: article.readable_publish_date,
+          user: { name: article.user.name },
+          tag_list: article.tag_list,
+        }));
+
+        setArticles(formattedArticles);
+        setIsLoading(false);
+      } catch (error) {
+        console.error('Error fetching articles:', error);
+        setIsLoading(false);
+      }
+    };
+
+    fetchArticles();
+  }, [activeCategory]);
+
+  useEffect(() => {
+    let results = articles;
+
+    if (searchTerm) {
+      results = results.filter(
+        (article) =>
+          article.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          article.description
+            .toLowerCase()
+            .includes(searchTerm.toLowerCase()) ||
+          article.tag_list.some((tag) =>
+            tag.toLowerCase().includes(searchTerm.toLowerCase()),
+          ),
+      );
+    }
+
+    setFilteredArticles(results);
+    setDisplayedArticles(showAll ? results : results.slice(0, 8));
+  }, [searchTerm, articles, showAll]);
+
+  const toggleShowAll = () => setShowAll(!showAll);
+
+  return (
+    <div className="min-h-screen pt-5 bg-gray-50">
+      {/* Hero */}
+      <section
+        className="bg-gradient-to-r from-gray-700 to-gray-900 text-white py-20"
+        data-aos="fade-down"
+      >
+        <div className="container mx-auto px-6 text-center">
+          <h1
+            className="text-4xl md:text-5xl font-bold mb-6"
+            data-aos="zoom-in"
+            data-aos-delay="200"
+          >
+            Book Blog & News
+          </h1>
+          <p
+            className="text-xl max-w-3xl mx-auto"
+            data-aos="fade-up"
+            data-aos-delay="400"
+          >
+            Discover book reviews, author interviews, reading recommendations,
+            and the latest in publishing news
+          </p>
+        </div>
+      </section>
+
+      {/* Search and Filter */}
+      <section className="py-12 bg-white">
+        <div className="container mx-auto px-6 max-w-6xl">
+          <div
+            className="flex flex-col md:flex-row gap-6 items-center justify-between mb-8"
+            data-aos="fade-up"
+          >
+            <div className="relative w-full md:w-96">
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <FiSearch className="text-gray-400" />
+              </div>
+              <input
+                type="text"
+                placeholder="Search book articles..."
+                className="pl-10 pr-4 py-3 w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-800 focus:border-gray-800"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {categories.map((category) => (
+                <button
+                  key={category.id}
+                  onClick={() => {
+                    setActiveCategory(category.id);
+                    setShowAll(false);
+                    setSearchTerm('');
+                  }}
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${activeCategory === category.id ? 'bg-gray-800 text-white' : 'bg-gray-100 text-gray-800 hover:bg-gray-200'}`}
+                  data-aos="zoom-in"
+                  data-aos-delay={categories.indexOf(category) * 100}
+                >
+                  {category.name}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Articles */}
+      <section className="py-12">
+        <div
+          className="container mx-auto px-6 max-w-7xl"
+          data-aos="flip-left"
+          data-aos-easing="ease-out-cubic"
+          data-aos-duration="2000"
+        >
+          {isLoading ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+              {[...Array(8)].map((_, index) => (
+                <div
+                  key={index}
+                  className="bg-white rounded-xl shadow-md overflow-hidden animate-pulse"
+                  data-aos="fade-up"
+                  data-aos-delay={index * 100}
+                >
+                  <div className="h-48 bg-gray-200"></div>
+                  <div className="p-6">
+                    <div className="h-6 bg-gray-200 rounded mb-4"></div>
+                    <div className="h-4 bg-gray-200 rounded mb-2"></div>
+                    <div className="h-4 bg-gray-200 rounded w-3/4"></div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : filteredArticles.length > 0 ? (
+            <>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                {displayedArticles.map((article, index) => (
+                  <article
+                    key={article.id}
+                    className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow"
+                    data-aos="fade-up"
+                    data-aos-delay={(index % 4) * 100}
+                  >
+                    {article.cover_image && (
+                      <img
+                        src={article.cover_image}
+                        alt={article.title}
+                        className="w-full h-40 object-cover"
+                      />
+                    )}
+                    <div className="p-6 pb-2">
+                      <div className="flex flex-wrap gap-2 ">
+                        {article.tag_list.slice(0, 3).map((tag) => (
+                          <span
+                            key={tag}
+                            className="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded-full"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                      <h3 className="text-xl font-bold  text-gray-800">
+                        {article.title}
+                      </h3>
+
+                      <div className="flex items-center justify-between text-sm text-gray-500">
+                        <div className="flex items-center">
+                          <FiUser className="mr-1" />
+                          <span>{article.user.name}</span>
+                        </div>
+                        <div className="flex items-center">
+                          <FiCalendar className="mr-1" />
+                          <span>{article.readable_publish_date}</span>
+                        </div>
+                      </div>
+                      <a
+                        href={article.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-2 inline-flex items-center text-gray-800 hover:text-gray-900 font-medium"
+                      >
+                        Read more <FiArrowRight className="ml-1" />
+                      </a>
+                    </div>
+                  </article>
+                ))}
+              </div>
+              {filteredArticles.length > 8 && (
+                <div className="text-center mt-10" data-aos="fade-up">
+                  <button
+                    onClick={toggleShowAll}
+                    className="inline-flex items-center px-6 py-3 border border-gray-800 text-gray-800 rounded-lg hover:bg-gray-100 transition-colors"
+                  >
+                    {showAll ? 'Show Less' : 'See More'}
+                    <FiChevronDown
+                      className={`ml-2 transition-transform ${showAll ? 'rotate-180' : ''}`}
+                    />
+                  </button>
+                </div>
+              )}
+            </>
+          ) : (
+            <div className="text-center py-12" data-aos="fade-in">
+              <FiBook className="mx-auto text-4xl text-gray-400 mb-4" />
+              <h3 className="text-xl font-semibold text-gray-800 mb-2">
+                No articles found
+              </h3>
+              <p className="text-gray-600">
+                Try adjusting your search or filter criteria
+              </p>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* Newsletter */}
+      <section className="py-16 bg-gray-100">
+        <div
+          className="container mx-auto px-6 max-w-4xl text-center"
+          data-aos="zoom-in"
+        >
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-4">
+            Stay Updated on Books
+          </h2>
+          <p className="text-gray-600 mb-6">
+            Subscribe to our newsletter for the latest book reviews, author
+            interviews, and reading recommendations
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+            <input
+              type="email"
+              placeholder="Your email address"
+              className="flex-grow px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-gray-800 focus:border-gray-800"
+            />
+            <button className="bg-gray-800 hover:bg-gray-900 text-white font-medium px-6 py-3 rounded-lg transition-colors">
+              Subscribe
+            </button>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}

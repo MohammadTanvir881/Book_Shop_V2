@@ -75,16 +75,16 @@ book-shop/
 ├── .env.example # Environment template
 └── package.json # Project configuration
 
-
-
 ## 🚀 Local Development Setup
 
 ### Prerequisites
+
 - Node.js v18+
 - MongoDB (local or Atlas)
 - Git
 
 ### 1. Clone Both Repositories
+
 ```bash
 git clone https://github.com/Hasan-Mahadi/Book-Shop-Frontend-Site.git
 git clone https://github.com/Hasan-Mahadi/Book-Shop-Baeckend-Site.git
@@ -104,7 +104,7 @@ SP_PASSWORD=pyyk97hu&6u6
 SP_PREFIX=SP
 SP_RETURN_URL=http://localhost:5173
 CLIENT_URL=http://localhost:5173
-JWT_SECRET=your_jwt_secret_here" > 
+JWT_SECRET=your_jwt_secret_here" >
 
 # Start development server
 npm run dev
@@ -158,3 +158,4 @@ number total
 Project Lead: [Hasan Mahadi]
 Email: hasanmahadihm99@gmail.com
 GitHub: Hasan-Mahadi
+```

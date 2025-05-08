@@ -7,6 +7,8 @@ import FeaturedProducts from './FeaturedProducts';
 
 import BlogSection from '../BlogSection';
 import Offers from './Offers';
+import HomeCategories from './CategorySection ';
+import TestimonialSection from './TestimonialSection';
 
 const Home = () => {
   useEffect(() => {
@@ -18,17 +20,24 @@ const Home = () => {
       <PCarousel></PCarousel>
 
       <FeaturedProducts />
-      <Offers/>
-      <BlogSection/>
-     
-      <h1
+      <Offers />
+      <HomeCategories />
+      <BlogSection />
+      <TestimonialSection />
+
+      <div
         data-aos="flip-left"
         data-aos-easing="ease-out-cubic"
         data-aos-duration="1000"
-        className="font-bold text-center pt-10 pb-3 text-2xl"
       >
-        CHILDREN’S BOOKS
-      </h1>
+        <h1 className="lg:pt-14 text-3xl md:text-4xl font-bold mb-4 text-gray-800 dark:text-white text-center">
+          Upcoming Releases
+        </h1>
+        <p className="text-center text-lg text-gray-600 dark:text-white max-w-2xl mx-auto">
+          Discover our newest books coming soon
+        </p>
+      </div>
+
       <Benner></Benner>
     </div>
   );

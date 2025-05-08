@@ -1,4 +1,3 @@
- 
 import { useNavigate } from 'react-router-dom';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -44,7 +43,7 @@ const FeaturedProducts = () => {
 
   if (isLoading) {
     return (
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 p-6">
+      <div className="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 gap-8 p-6">
         {[...Array(6)].map((_, index) => (
           <div key={index} className="flex flex-col space-y-3">
             <Skeleton className="h-60 w-full rounded-2xl" />
@@ -158,9 +157,9 @@ const FeaturedProducts = () => {
 
           <div className="mt-16 text-center" data-aos="fade-up">
             <Button
-            variant="outline"
+              variant="outline"
               onClick={handleViewAll}
-              className= "inline-flex items-center px-10 py-3 border border-gray-800 dark:border-white text-gray-800 dark:text-white rounded-lg hover:bg-gray-800 hover:text-white transition-all duration-300 hover:shadow-lg"
+              className="inline-flex items-center px-10 py-3 border border-gray-800 dark:border-white text-gray-800 dark:text-white rounded-lg hover:bg-gray-800 hover:text-white transition-all duration-300 hover:shadow-lg"
             >
               View All
             </Button>

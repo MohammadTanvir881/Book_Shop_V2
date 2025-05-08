@@ -237,13 +237,12 @@ const TopNavbar: React.FC<TopNavbarProps> = ({ toggleSidebar }) => {
 };
 
 // const RoleBasedDashboard = () => {
-  // const { user } = useSelector((state: any) => state.auth);
-  // if (user?.role === 'admin') return <Navigate to="/admin/dashboard" replace />;
-  // if (user?.role === 'user') return <Navigate to="/user/dashboard" replace />;
-  // return <Navigate to="/login" />;
+// const { user } = useSelector((state: any) => state.auth);
+// if (user?.role === 'admin') return <Navigate to="/admin/dashboard" replace />;
+// if (user?.role === 'user') return <Navigate to="/user/dashboard" replace />;
+// return <Navigate to="/login" />;
 // };
-// 
-
+//
 
 const Dashboard = () => {
   const [isSidebarOpen, setSidebarOpen] = useState(false);

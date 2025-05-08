@@ -79,7 +79,7 @@ interface UpdateOrderStatusRequest {
 }
 
 // interface VerifyPaymentRequest {
-  // orderId: string;
+// orderId: string;
 // }
 
 const orderApi = baseApi.injectEndpoints({

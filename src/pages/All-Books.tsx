@@ -33,9 +33,9 @@ const AllBooks = () => {
   const allProducts = allProductsData?.result || [];
 
   // Extract unique categories and authors for dropdowns
-  const uniqueCategories = [
-    ...new Set(allProducts.map((product: any) => product.category)),
-  ];
+  // const uniqueCategories = [
+  // ...new Set(allProducts.map((product: any) => product.category)),
+  // ];
   const uniqueAuthors = [
     ...new Set(allProducts.map((product: any) => product.author)),
   ];
@@ -193,15 +193,36 @@ const AllBooks = () => {
             {/* Category Filter - Compact */}
             <div className="flex-1 min-w-[150px]">
               <select
-                className="w-full rounded-md border-gray-300 shadow-sm
-     focus:border-indigo-500 focus:ring-indigo-500 p-2 border
-      text-sm"
+                className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2 border text-sm"
                 value={category}
-                onChange={(e) => setCategory(e.target.value)}
+                onChange={(e) =>
+                  setCategory(
+                    e.target.value as
+                      | 'Fiction'
+                      | 'Science'
+                      | 'SelfDevelopment'
+                      | 'Poetry'
+                      | 'Religious',
+                  )
+                }
               >
                 <option value="">All Categories</option>
-                {['Religious', ...uniqueCategories]
-                  .filter((value, index, self) => self.indexOf(value) === index)
+                {[
+                  'Fiction',
+                  'Science',
+                  'SelfDevelopment',
+                  'Poetry',
+                  'Religious',
+                ]
+                  .filter((cat) =>
+                    [
+                      'Fiction',
+                      'Science',
+                      'SelfDevelopment',
+                      'Poetry',
+                      'Religious',
+                    ].includes(cat),
+                  )
                   .map((cat) => (
                     <option key={cat} value={cat}>
                       {cat}

@@ -15,13 +15,13 @@ const PCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
-    AOS.init({ duration: 4000 });
+    AOS.init({ duration: 1000, once: true });
   }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
       nextSlide();
-    }, 3000);
+    }, 5000);
     return () => clearInterval(interval);
   }, [currentIndex]);
 
@@ -34,65 +34,71 @@ const PCarousel = () => {
   };
 
   return (
-    <div className="relative  w-full max-w-6xl h-[300px] sm:h-[400px] md:h-[500px] mt-17 mx-auto overflow-hidden rounded-lg shadow-lg">
+    <div className="relative w-full max-w-7xl h-[400px] md:h-[600px] mx-auto overflow-hidden rounded-xl shadow-2xl">
+      {/* Slides container */}
       <div
-        className="flex transition-transform duration-500 ease-in-out"
+        className="flex h-full transition-transform duration-700 ease-out"
         style={{ transform: `translateX(-${currentIndex * 100}%)` }}
       >
         {images.map((img, index) => (
-          <img
-            key={index}
-            src={img}
-            alt={`Banner ${index + 1}`}
-            className="w-full object-cover"
-          />
+          <div key={index} className="relative w-full flex-shrink-0">
+            <img
+              src={img}
+              alt={`Banner ${index + 1}`}
+              className="w-full h-full object-cover"
+            />
+            {/* Overlay */}
+            <div className="absolute inset-0 bg-black/50  flex items-center justify-center">
+              <div className="text-center px-4">
+                <h1
+                  data-aos="fade-down"
+                  className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 font-serif tracking-tight"
+                >
+                  Discover Your Next{' '}
+                  <span className="text-blue-300">Favorite Read</span>
+                </h1>
+                <div data-aos="fade-up" data-aos-delay="300">
+                  <Link
+                    to="allbooks"
+                    className="inline-block px-8 py-3 text-lg font-semibold text-white bg-green-600 hover:bg-green-700 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
+                  >
+                    Browse Collection
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
         ))}
       </div>
 
+      {/* Navigation buttons */}
       <button
-        title="Previous Slide"
         onClick={prevSlide}
-        className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-2 rounded-full"
+        className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/30 hover:bg-white/50 text-white p-2 rounded-full backdrop-blur-sm transition-all duration-300 shadow-lg"
+        aria-label="Previous slide"
       >
-        <ChevronLeft size={24} />
+        <ChevronLeft size={28} />
       </button>
       <button
-        title="Next Slide"
         onClick={nextSlide}
-        className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-2 rounded-full"
+        className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/30 hover:bg-white/50 text-white p-2 rounded-full backdrop-blur-sm transition-all duration-300 shadow-lg"
+        aria-label="Next slide"
       >
-        <ChevronRight size={24} />
+        <ChevronRight size={28} />
       </button>
 
-      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
-        <div className="absolute inset-0    bg-opacity-40 flex items-center justify-center ">
-          <h1
-            data-aos-duration="2000"
-            data-aos-easing="ease-out-cubic"
-            data-aos="zoom-out-left"
-            className="text-blue-300 -mt-40  lg:-mt-120 sm:mr-40 md:mr-80 lg:mr-140 text-lg
-         text-5xl md:text-6xl lg:text-8xl font-bold font-serif "
-          >
-            Grab Your Favorite Book
-            <div className="lg:-mt-28 lg:ml-80 ml-30 ">
-              <button
-                data-aos-duration="2000"
-                data-aos-easing="ease-out-cubic"
-                data-aos="flip-right"
-                className="bg-transparent lg:text-2xl  hover:bg-blue-500
-             text-white font-semibold hover:text-white w-40 lg:h-12 border
-              border-blue-500 hover:border-transparent rounded"
-              >
-                <Link to="allbooks">Order Now</Link>
-              </button>
-            </div>
-          </h1>
-        </div>
-
+      {/* Indicators */}
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex space-x-2">
         {images.map((_, index) => (
-          <div
+          <button
             key={index}
-            className={`w-3 h-3 rounded-full ${index === currentIndex ? 'bg-white' : 'bg-gray-400'}`}
+            onClick={() => setCurrentIndex(index)}
+            className={`w-3 h-3 rounded-full transition-all duration-300 ${
+              index === currentIndex
+                ? 'bg-blue-400 w-6'
+                : 'bg-white/50 hover:bg-white/80'
+            }`}
+            aria-label={`Go to slide ${index + 1}`}
           />
         ))}
       </div>

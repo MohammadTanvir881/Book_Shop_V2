@@ -7,6 +7,10 @@ import {
   FaLinkedin,
   FaTwitter,
   FaArrowRight,
+  FaBookOpen,
+  FaShieldAlt,
+  FaHeadset,
+  FaTags
 } from 'react-icons/fa';
 
 const About = () => {
@@ -18,234 +22,224 @@ const About = () => {
 
   return (
     <div className={theme}>
-      <main className="py-16 px-4 mt-10 md:px-16 bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">
-        <section className="text-center max-w-4xl mx-auto">
-          {/* Hero Section */}
-          <div
-            data-aos="fade-down"
-            className="mb-16 p-8 rounded-xl bg-green-50 dark:bg-gray-800 shadow-lg"
-          >
+      <main className="py-16 px-4 md:px-16 bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 min-h-screen">
+        {/* Hero Section */}
+        <section 
+          data-aos="fade-down"
+          className="max-w-6xl mx-auto mb-20 p-10 rounded-2xl bg-gradient-to-r from-green-50 to-green-100 dark:from-gray-800 dark:to-gray-700 shadow-xl text-center"
+        >
+          <div className="max-w-3xl mx-auto">
             <h1 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
-              Welcome to <span className="text-green-500">BookShop</span>
+              Discover <span className="text-green-500">BookShop</span>
             </h1>
-            <p className="text-xl text-gray-700 dark:text-gray-300 mb-8">
-              Your premier online destination for books of all genres. Whether
-              you're a passionate reader, a student, or looking for the perfect
-              gift, we have something for everyone.
+            <p className="text-xl text-gray-700 dark:text-gray-300 mb-8 leading-relaxed">
+              Your premier destination for literary adventures. We curate the finest collection of books across all genres to satisfy every reader's appetite.
             </p>
+            <div className="w-20 h-1 bg-green-500 mx-auto mb-8 rounded-full"></div>
+            <div className="flex justify-center space-x-4">
+              <span className="px-4 py-2 bg-green-500 text-white rounded-full text-sm font-medium">50,000+ Titles</span>
+              <span className="px-4 py-2 bg-green-100 dark:bg-gray-700 text-green-800 dark:text-green-300 rounded-full text-sm font-medium">500+ Publishers</span>
+              <span className="px-4 py-2 bg-green-100 dark:bg-gray-700 text-green-800 dark:text-green-300 rounded-full text-sm font-medium">24/7 Support</span>
+            </div>
           </div>
+        </section>
 
-          {/* Mission Section */}
-          <div
+        {/* Mission & Vision Sections */}
+        <section className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 mb-20">
+          {/* Mission */}
+          <div 
             data-aos="fade-right"
-            className="mb-20 p-8 rounded-xl bg-white dark:bg-gray-800 shadow-md"
+            className="p-8 rounded-xl bg-white dark:bg-gray-800 shadow-lg border-t-4 border-green-500"
           >
-            <div className="flex items-center justify-center mb-6">
-              <div className="w-16 h-1 bg-green-500 rounded-full mr-4"></div>
-              <h2 className="text-3xl font-semibold text-green-500 dark:text-green-400">
+            <div className="flex items-center mb-6">
+              <div className="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center text-white mr-4">
+                <span className="text-xl">1</span>
+              </div>
+              <h2 className="text-2xl font-bold text-green-500 dark:text-green-400">
                 Our Mission
               </h2>
-              <div className="w-16 h-1 bg-green-500 rounded-full ml-4"></div>
             </div>
-            <p className="text-lg text-gray-700 dark:text-gray-300 mb-8">
-              At BookShop, we believe in the transformative power of books to
-              educate, inspire, and change lives.
+            <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">
+              To ignite imaginations and empower minds through accessible literature.
             </p>
-            <ul className="text-left space-y-4 text-lg text-gray-700 dark:text-gray-300 mx-auto max-w-xl">
+            <ul className="space-y-3">
               {[
-                'Provide a vast collection of books at affordable prices',
-                'Offer a seamless and user-friendly shopping experience',
-                'Ensure fast and reliable delivery to your doorstep',
-                'Promote a love for reading and lifelong learning',
+                'Democratize access to quality books',
+                'Foster a culture of reading',
+                'Support authors and publishers',
+                'Deliver exceptional customer experiences'
               ].map((item, index) => (
-                <li
-                  key={index}
-                  className="flex items-start space-x-3"
-                  data-aos="fade-up"
-                  data-aos-delay={index * 100}
-                >
-                  <span className="text-green-500 dark:text-green-400 mt-1">
-                    <FaArrowRight />
+                <li key={index} className="flex items-start">
+                  <span className="text-green-500 dark:text-green-400 mt-1 mr-2">
+                    <FaArrowRight size={14} />
                   </span>
-                  <span>{item}</span>
+                  <span className="text-gray-700 dark:text-gray-300">{item}</span>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Vision Section */}
-          <div
+          {/* Vision */}
+          <div 
             data-aos="fade-left"
-            className="mb-20 p-8 rounded-xl bg-white dark:bg-gray-800 shadow-md"
+            className="p-8 rounded-xl bg-white dark:bg-gray-800 shadow-lg border-t-4 border-green-500"
           >
-            <div className="flex items-center justify-center mb-6">
-              <div className="w-16 h-1 bg-green-500 rounded-full mr-4"></div>
-              <h2 className="text-3xl font-semibold text-green-500 dark:text-green-400">
+            <div className="flex items-center mb-6">
+              <div className="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center text-white mr-4">
+                <span className="text-xl">2</span>
+              </div>
+              <h2 className="text-2xl font-bold text-green-500 dark:text-green-400">
                 Our Vision
               </h2>
-              <div className="w-16 h-1 bg-green-500 rounded-full ml-4"></div>
             </div>
-            <p className="text-lg text-gray-700 dark:text-gray-300 mb-8">
-              We envision a world where everyone has access to quality books
-              that enrich their lives and expand their horizons.
+            <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">
+              To be the most trusted literary companion for readers worldwide.
             </p>
-            <ul className="text-left space-y-4 text-lg text-gray-700 dark:text-gray-300 mx-auto max-w-xl">
+            <ul className="space-y-3">
               {[
-                'Become the leading online bookstore in the region',
-                'Create a community of passionate readers',
-                'Support local authors and publishers',
-                'Innovate with digital reading experiences',
+                'Expand to 50 countries by 2030',
+                'Digital transformation of reading',
+                'AI-powered personalized recommendations',
+                'Sustainable book distribution'
               ].map((item, index) => (
-                <li
-                  key={index}
-                  className="flex items-start space-x-3"
-                  data-aos="fade-up"
-                  data-aos-delay={index * 100}
-                >
-                  <span className="text-green-500 dark:text-green-400 mt-1">
-                    <FaArrowRight />
+                <li key={index} className="flex items-start">
+                  <span className="text-green-500 dark:text-green-400 mt-1 mr-2">
+                    <FaArrowRight size={14} />
                   </span>
-                  <span>{item}</span>
+                  <span className="text-gray-700 dark:text-gray-300">{item}</span>
                 </li>
               ))}
             </ul>
           </div>
+        </section>
 
-          {/* Why Choose Us Section */}
-          <div
-            data-aos="zoom-in"
-            className="mb-20 p-8 rounded-xl bg-green-50 dark:bg-gray-800 shadow-lg"
-          >
-            <h2 className="text-3xl font-semibold text-green-500 dark:text-green-400 mb-8">
-              Why Choose BookShop?
+        {/* Why Choose Us */}
+        <section 
+          data-aos="zoom-in"
+          className="max-w-6xl mx-auto mb-20"
+        >
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+              Why <span className="text-green-500">BookShop</span> Stands Out
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {[
-                {
-                  title: 'Extensive Collection',
-                  content:
-                    'Wide range of books across all categories and genres',
-                },
-                {
-                  title: 'Secure Shopping',
-                  content: 'Multiple secure and easy payment options',
-                },
-                {
-                  title: 'Excellent Support',
-                  content:
-                    'Dedicated customer service team for all your queries',
-                },
-                {
-                  title: 'Great Value',
-                  content:
-                    'Regular discounts and special offers for our customers',
-                },
-              ].map((feature, index) => (
-                <div
-                  key={index}
-                  data-aos="flip-up"
-                  data-aos-delay={index * 150}
-                  className="p-6 bg-white dark:bg-gray-700 rounded-lg shadow-sm hover:shadow-md transition duration-300"
-                >
-                  <h3 className="text-xl font-bold text-green-500 dark:text-green-400 mb-3">
+            <div className="w-20 h-1 bg-green-500 mx-auto rounded-full"></div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              {
+                icon: <FaBookOpen className="text-3xl mb-4 text-green-500" />,
+                title: "Vast Collection",
+                description: "200,000+ titles across all genres and categories"
+              },
+              {
+                icon: <FaShieldAlt className="text-3xl mb-4 text-green-500" />,
+                title: "Secure Shopping",
+                description: "Bank-level security for all transactions"
+              },
+              {
+                icon: <FaHeadset className="text-3xl mb-4 text-green-500" />,
+                title: "Dedicated Support",
+                description: "24/7 customer service with real humans"
+              },
+              {
+                icon: <FaTags className="text-3xl mb-4 text-green-500" />,
+                title: "Great Value",
+                description: "Daily deals and member-exclusive discounts"
+              }
+            ].map((feature, index) => (
+              <div 
+                key={index}
+                data-aos="fade-up"
+                data-aos-delay={index * 150}
+                className="p-8 bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 border-l-4 border-green-500"
+              >
+                <div className="text-center">
+                  {feature.icon}
+                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
                     {feature.title}
                   </h3>
-                  <p className="text-gray-700 dark:text-gray-300">
-                    {feature.content}
+                  <p className="text-gray-600 dark:text-gray-400">
+                    {feature.description}
                   </p>
                 </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Closing CTA */}
-          <div
-            data-aos="fade-up"
-            className="mb-20 p-8 rounded-xl bg-white dark:bg-gray-800 shadow-md"
-          >
-            <p className="text-2xl text-gray-900 dark:text-white mb-6">
-              Join us in our journey to spread the joy of reading!
-            </p>
-            <p className="text-xl text-gray-700 dark:text-gray-300">
-              Happy shopping at{' '}
-              <span className="font-bold text-green-500 dark:text-green-400">
-                BookShop
-              </span>
-              !
-            </p>
-          </div>
-
-          {/* Contact Section */}
-          <div
-            data-aos="fade-in"
-            className="p-8 rounded-xl bg-green-50 dark:bg-gray-800 shadow-lg"
-          >
-            <h2 className="text-3xl font-semibold text-green-500 dark:text-green-400 mb-8">
-              Get In Touch
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-              <div
-                data-aos="fade-right"
-                className="p-6 bg-white dark:bg-gray-700 rounded-lg shadow-sm"
-              >
-                <h3 className="text-xl font-bold text-green-500 dark:text-green-400 mb-3">
-                  Contact Information
-                </h3>
-                <p className="text-gray-700 dark:text-gray-300 mb-2">
-                  <strong>Email:</strong> support@bookshop.com
-                </p>
-                <p className="text-gray-700 dark:text-gray-300 mb-2">
-                  <strong>Phone:</strong> +123 456 7890
-                </p>
-                <p className="text-gray-700 dark:text-gray-300">
-                  <strong>Address:</strong> 123 Book Street, Knowledge City
-                </p>
               </div>
-              <div
-                data-aos="fade-left"
+            ))}
+          </div>
+        </section>
+
+        {/* Testimonials */}
+        <section 
+          data-aos="fade-up"
+          className="max-w-4xl mx-auto mb-20 p-10 bg-green-50 dark:bg-gray-800 rounded-2xl shadow-lg"
+        >
+          <h2 className="text-3xl font-bold text-center text-green-500 dark:text-green-400 mb-12">
+            What Our Readers Say
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {[
+              {
+                quote: "BookShop has transformed my reading habits. The recommendations are always spot on!",
+                author: "Sarah Johnson",
+                role: "Avid Reader"
+              },
+              {
+                quote: "As a student, I appreciate the academic discounts and fast delivery. Lifesaver!",
+                author: "Michael Chen",
+                role: "University Student"
+              }
+            ].map((testimonial, index) => (
+              <div 
+                key={index}
                 className="p-6 bg-white dark:bg-gray-700 rounded-lg shadow-sm"
               >
-                <h3 className="text-xl font-bold text-green-500 dark:text-green-400 mb-3">
-                  Follow Us
-                </h3>
-                <div className="flex justify-center space-x-6">
-                  <a
-                    href="https://facebook.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-green-500 hover:text-green-600 dark:text-green-400 dark:hover:text-green-300 text-3xl transition duration-300"
-                  >
-                    <FaFacebook />
-                  </a>
-                  <a
-                    href="https://linkedin.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-green-500 hover:text-green-600 dark:text-green-400 dark:hover:text-green-300 text-3xl transition duration-300"
-                  >
-                    <FaLinkedin />
-                  </a>
-                  <a
-                    href="https://twitter.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-green-500 hover:text-green-600 dark:text-green-400 dark:hover:text-green-300 text-3xl transition duration-300"
-                  >
-                    <FaTwitter />
-                  </a>
+                <p className="text-gray-700 dark:text-gray-300 italic mb-4">
+                  "{testimonial.quote}"
+                </p>
+                <div className="flex items-center">
+                  <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white font-bold mr-4">
+                    {testimonial.author.charAt(0)}
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-gray-900 dark:text-white">
+                      {testimonial.author}
+                    </h4>
+                    <p className="text-sm text-green-500 dark:text-green-400">
+                      {testimonial.role}
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
+            ))}
+          </div>
+        </section>
 
-            <Link to="/">
-              <button
-                className="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-8 rounded-lg shadow-md hover:shadow-lg transition duration-300 flex items-center mx-auto"
-                data-aos="zoom-in"
+        {/* CTA Section */}
+        <section 
+          data-aos="fade-up"
+          className="max-w-4xl mx-auto text-center"
+        >
+          <div className="p-10 bg-white dark:bg-gray-800 rounded-2xl shadow-lg">
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">
+              Ready to Begin Your Reading Journey?
+            </h2>
+            <p className="text-xl text-gray-700 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
+              Join our community of passionate readers today and discover your next favorite book.
+            </p>
+            <div className="flex flex-col sm:flex-row justify-center gap-4">
+              <Link 
+                to="/allbooks"
+                className="px-8 py-3 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition duration-300"
               >
-                Back To Home
-                <FaArrowRight className="ml-2" />
-              </button>
-            </Link>
+                Browse Collection
+              </Link>
+              <Link 
+                to="/contact"
+                className="px-8 py-3 border-2 border-green-500 text-green-500 dark:text-green-400 hover:bg-green-50 dark:hover:bg-gray-700 font-semibold rounded-lg transition duration-300"
+              >
+                Contact Us
+              </Link>
+            </div>
           </div>
         </section>
       </main>

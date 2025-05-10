@@ -1,6 +1,6 @@
 import AOS from 'aos';
 import { useEffect } from 'react';
-import { FaStar } from 'react-icons/fa';
+import { FaStar, FaArrowRight, FaBookOpen } from 'react-icons/fa';
 import ReactPlayer from 'react-player';
 import { Link } from 'react-router-dom';
 
@@ -16,6 +16,7 @@ const Recommended = () => {
       image:
         'https://myfreequran.net/wp-content/uploads/2022/04/quran-saheeh-1-1.jpg',
       rating: 5,
+      category: 'Holy Scripture',
     },
     {
       title: 'The Sealed Nectar',
@@ -23,6 +24,7 @@ const Recommended = () => {
       image:
         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKb55hltaeySkEi-evdg1S4sU_ezUhQuS9Vw&s',
       rating: 4.9,
+      category: 'Prophetic Biography',
     },
     {
       title: 'Fortress of the Muslim',
@@ -30,19 +32,22 @@ const Recommended = () => {
       image:
         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwhf7UwI1fs0phMix5a0UxxwcCQcxCVBf53w&s',
       rating: 4.8,
+      category: 'Daily Prayers',
     },
     {
-      title: 'Don’t Be Sad',
+      title: "Don't Be Sad",
       author: 'Dr. Aaidh ibn Abdullah al-Qarni',
       image:
         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLgBJjbuRwkbMx60DyRI-J6TwLH2XzHGe3qg&s',
       rating: 4.7,
+      category: 'Spiritual Growth',
     },
     {
-      title: 'In the Footsteps of the Prophet.',
+      title: 'In the Footsteps of the Prophet',
       author: 'Tariq Ramadan',
       image: 'https://m.media-amazon.com/images/I/51JGmkS3SXL._SL500_.jpg',
       rating: 4.6,
+      category: 'Prophetic Studies',
     },
     {
       title: 'Islam and the Future of Tolerance',
@@ -50,106 +55,102 @@ const Recommended = () => {
       image:
         'https://www.stanfords.co.uk/media/catalog/product/700x700/7/e/7e661a3457e4ce3c8c79b4b219a8358e8366ffc3c045bf608c77aaf07cd3e614.jpeg',
       rating: 4.5,
+      category: 'Interfaith Dialogue',
     },
   ];
 
   return (
-    <div className="py-16 px-4 mt-10 md:px-16">
-      <h2
-        data-aos="flip-right"
-        className="text-3xl font-bold text-center mb-10 text-gray-900 dark:text-white"
-      >
-        Recommended Islamic Books
-      </h2>
-
-      {/* First Row with 3 Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mb-8">
-        {books.slice(0, 3).map((book, index) => (
-          <div
-            key={index}
-            className="bg-white dark:bg-gray-800 p-1 rounded-xl shadow-lg transform transition duration-500 hover:scale-105"
-            data-aos="zoom-in"
-          >
-            <img
-              src={book.image}
-              alt={book.title}
-              className="w-full h-60 object-cover rounded-lg"
-            />
-            <h3 className="text-xl font-semibold mt-4 text-gray-900 dark:text-white">
-              {book.title}
-            </h3>
-            <p className="text-gray-700 dark:text-gray-300">by {book.author}</p>
-            <div className="flex items-center mt-2 text-yellow-500">
-              {[...Array(5)].map((_, i) => (
-                <FaStar
-                  key={i}
-                  className={i < Math.floor(book.rating) ? '' : 'opacity-50'}
-                />
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* Second Row with 6 Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8">
-        {books.slice(3, 6).map((book, index) => (
-          <div
-            key={index}
-            className="bg-white dark:bg-gray-800 p-5 rounded-xl shadow-lg transform transition duration-500 hover:scale-105"
-            data-aos="zoom-in"
-          >
-            <img
-              src={book.image}
-              alt={book.title}
-              className="w-full h-60 object-cover rounded-lg"
-            />
-            <h3 className="text-xl font-semibold mt-4 text-gray-900 dark:text-white">
-              {book.title}
-            </h3>
-            <p className="text-gray-700 dark:text-gray-300">by {book.author}</p>
-            <div className="flex items-center mt-2 text-yellow-500">
-              {[...Array(5)].map((_, i) => (
-                <FaStar
-                  key={i}
-                  className={i < Math.floor(book.rating) ? '' : 'opacity-50'}
-                />
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* YouTube Video Section */}
-      <div className="mt-30  text-center">
+    <div className="py-16 px-4 md:px-16 bg-white dark:bg-gray-900">
+      {/* Header with decorative elements */}
+      <div className="max-w-4xl mx-auto text-center mb-16 relative">
+        <div
+          className="absolute -top-18 left-1/2 transform -translate-x-1/2 text-green-500 opacity-20"
+          data-aos="fade-down"
+        >
+          <FaBookOpen size={80} />
+        </div>
         <h2
           data-aos="fade-up"
-          className="text-3xl font-bold text-gray-900 dark:text-white mb-6"
+          className="text-4xl font-bold text-gray-900 dark:text-white mb-4 relative z-10"
         >
-          Islamic Book Review & Insights
+          Sacred <span className="text-green-500">Readings</span>
         </h2>
-        <div
-          className="relative w-full max-w-3xl mx-auto"
-          style={{ paddingBottom: '56.25%' }}
+        <p
+          data-aos="fade-up"
+          data-aos-delay="100"
+          className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto"
         >
-          {' '}
-          {/* Responsive Video */}
-          <ReactPlayer
-            url="https://youtu.be/I-s64gzQlrs?si=tV8UacFbyOvqQur1"
-            controls
-            width="100%"
-          />
-        </div>
+          Curated collection of Islamic literature for spiritual enrichment
+        </p>
       </div>
 
-      <div className="flex justify-center items-center pt-20 pb-10">
-        <Link to="/">
-          <button
-            className="bg-gray-800 hover:bg-blue-700
-     text-white font-bold py-2 px-4 border border-blue-700 rounded"
+      {/* Masonry-inspired grid layout */}
+      <div className="max-w-7xl mx-auto columns-1 md:columns-2 lg:columns-3 gap-8 space-y-8 mb-20">
+        {books.map((book, index) => (
+          <div
+            key={index}
+            data-aos="fade-up"
+            data-aos-delay={index * 100}
+            className="break-inside-avoid bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300"
           >
-            Back To Home
-          </button>
+            <div className="p-6">
+              <div className="flex items-start gap-5">
+                <div className="flex-shrink-0 w-24 h-32 overflow-hidden rounded-lg shadow-md">
+                  <img
+                    src={book.image}
+                    alt={book.title}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="flex-1">
+                  <span className="inline-block px-3 py-1 text-xs font-semibold text-green-600 dark:text-green-400 bg-green-50 dark:bg-gray-700 rounded-full mb-2">
+                    {book.category}
+                  </span>
+                  <h3 className="text-lg font-bold text-gray-900 dark:text-white line-clamp-2">
+                    {book.title}
+                  </h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                    {book.author}
+                  </p>
+                  <div className="flex items-center mt-3">
+                    <div className="flex mr-2">
+                      {[...Array(5)].map((_, i) => (
+                        <FaStar
+                          key={i}
+                          className={`${i < Math.floor(book.rating) ? 'text-yellow-400' : 'text-gray-300 dark:text-gray-600'} text-sm`}
+                        />
+                      ))}
+                    </div>
+                    <span className="text-xs font-medium text-gray-500 dark:text-gray-400">
+                      {book.rating.toFixed(1)}
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <Link
+                to="#"
+                className="mt-4 inline-flex items-center text-sm font-medium text-green-600 dark:text-green-400 hover:text-green-800 dark:hover:text-green-300 transition-colors"
+                data-aos="fade-in"
+                data-aos-delay="300"
+              >
+                Explore this book <FaArrowRight className="ml-1" />
+              </Link>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Video Section with modern treatment */}
+   
+
+      {/* Minimalist CTA */}
+      <div className="text-center">
+        <Link
+          to="/"
+          className="inline-flex items-center px-6 py-2 border-2 border-green-500 text-green-500 dark:text-green-400 font-medium rounded-full hover:bg-green-50 dark:hover:bg-gray-800 transition-colors"
+          data-aos="fade-up"
+        >
+          Return to Home
         </Link>
       </div>
     </div>

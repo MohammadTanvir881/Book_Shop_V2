@@ -112,35 +112,29 @@ export default function BookBlogPage() {
   const toggleShowAll = () => setShowAll(!showAll);
 
   return (
-    <div className="min-h-screen pt-5 bg-gray-50">
-      {/* Hero */}
-      <section
-        className="bg-gradient-to-r from-gray-700 to-gray-900 text-white py-20"
-        data-aos="fade-down"
-      >
-        <div className="container mx-auto px-6 text-center">
-          <h1
-            className="text-4xl md:text-5xl font-bold mb-6"
-            data-aos="zoom-in"
-            data-aos-delay="200"
-          >
-            Book Blog & News
-          </h1>
-          <p
-            className="text-xl max-w-3xl mx-auto"
+    <div className="min-h-screen bg-white">
+      {/* Hero Section */}
+      <section className="relative bg-green-500 text-white py-24 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-green-600 to-green-500 opacity-90"></div>
+        <div className="container mx-auto px-6 relative z-10">
+          <div 
+            className="max-w-3xl mx-auto text-center"
             data-aos="fade-up"
-            data-aos-delay="400"
           >
-            Discover book reviews, author interviews, reading recommendations,
-            and the latest in publishing news
-          </p>
+            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+              Discover Literary Treasures
+            </h1>
+            <p className="text-xl md:text-2xl font-light">
+              Your curated collection of book reviews, author insights, and publishing news
+            </p>
+          </div>
         </div>
       </section>
 
-      {/* Search and Filter */}
-      <section className="py-12 bg-white">
+      {/* Search and Filter Section */}
+      <section className="py-12 bg-gray-50">
         <div className="container mx-auto px-6 max-w-6xl">
-          <div
+          <div 
             className="flex flex-col md:flex-row gap-6 items-center justify-between mb-8"
             data-aos="fade-up"
           >
@@ -151,12 +145,12 @@ export default function BookBlogPage() {
               <input
                 type="text"
                 placeholder="Search book articles..."
-                className="pl-10 pr-4 py-3 w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-800 focus:border-gray-800"
+                className="pl-10 pr-4 py-3 w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
             </div>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2 justify-center">
               {categories.map((category) => (
                 <button
                   key={category.id}
@@ -165,7 +159,7 @@ export default function BookBlogPage() {
                     setShowAll(false);
                     setSearchTerm('');
                   }}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${activeCategory === category.id ? 'bg-gray-800 text-white' : 'bg-gray-100 text-gray-800 hover:bg-gray-200'}`}
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${activeCategory === category.id ? 'bg-green-500 text-white shadow-md' : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200'}`}
                   data-aos="zoom-in"
                   data-aos-delay={categories.indexOf(category) * 100}
                 >
@@ -177,71 +171,74 @@ export default function BookBlogPage() {
         </div>
       </section>
 
-      {/* Articles */}
+      {/* Articles Grid */}
       <section className="py-12">
-        <div
-          className="container mx-auto px-6 max-w-7xl"
-          data-aos="flip-left"
-          data-aos-easing="ease-out-cubic"
-          data-aos-duration="2000"
-        >
+        <div className="container mx-auto px-6 max-w-7xl">
           {isLoading ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-              {[...Array(8)].map((_, index) => (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              {[...Array(6)].map((_, index) => (
                 <div
                   key={index}
-                  className="bg-white rounded-xl shadow-md overflow-hidden animate-pulse"
+                  className="bg-gray-50 rounded-2xl overflow-hidden animate-pulse"
                   data-aos="fade-up"
                   data-aos-delay={index * 100}
                 >
                   <div className="h-48 bg-gray-200"></div>
                   <div className="p-6">
-                    <div className="h-6 bg-gray-200 rounded mb-4"></div>
-                    <div className="h-4 bg-gray-200 rounded mb-2"></div>
-                    <div className="h-4 bg-gray-200 rounded w-3/4"></div>
+                    <div className="h-6 bg-gray-200 rounded mb-4 w-3/4"></div>
+                    <div className="h-4 bg-gray-200 rounded mb-2 w-full"></div>
+                    <div className="h-4 bg-gray-200 rounded w-2/3"></div>
+                    <div className="flex justify-between mt-6">
+                      <div className="h-4 bg-gray-200 rounded w-24"></div>
+                      <div className="h-4 bg-gray-200 rounded w-24"></div>
+                    </div>
                   </div>
                 </div>
               ))}
             </div>
           ) : filteredArticles.length > 0 ? (
             <>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 {displayedArticles.map((article, index) => (
                   <article
                     key={article.id}
-                    className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow"
+                    className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100"
                     data-aos="fade-up"
-                    data-aos-delay={(index % 4) * 100}
+                    data-aos-delay={(index % 3) * 100}
                   >
-                    {article.cover_image && (
+                    <div className="relative h-56 overflow-hidden">
                       <img
                         src={article.cover_image}
                         alt={article.title}
-                        className="w-full h-40 object-cover"
+                        className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
                       />
-                    )}
-                    <div className="p-6 pb-2">
-                      <div className="flex flex-wrap gap-2 ">
-                        {article.tag_list.slice(0, 3).map((tag) => (
-                          <span
-                            key={tag}
-                            className="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded-full"
-                          >
-                            {tag}
-                          </span>
-                        ))}
+                      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
+                        <div className="flex flex-wrap gap-2">
+                          {article.tag_list.slice(0, 2).map((tag) => (
+                            <span
+                              key={tag}
+                              className="px-3 py-1 bg-green-500 text-white text-xs font-medium rounded-full"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
                       </div>
-                      <h3 className="text-xl font-bold  text-gray-800">
+                    </div>
+                    <div className="p-6">
+                      <h3 className="text-xl font-bold text-gray-800 mb-3 line-clamp-2">
                         {article.title}
                       </h3>
-
-                      <div className="flex items-center justify-between text-sm text-gray-500">
+                      <p className="text-gray-600 mb-4 line-clamp-3">
+                        {article.description.replace(/<[^>]*>?/gm, '')}
+                      </p>
+                      <div className="flex items-center justify-between text-sm text-gray-500 border-t pt-4">
                         <div className="flex items-center">
-                          <FiUser className="mr-1" />
+                          <FiUser className="mr-2 text-green-500" />
                           <span>{article.user.name}</span>
                         </div>
                         <div className="flex items-center">
-                          <FiCalendar className="mr-1" />
+                          <FiCalendar className="mr-2 text-green-500" />
                           <span>{article.readable_publish_date}</span>
                         </div>
                       </div>
@@ -249,21 +246,22 @@ export default function BookBlogPage() {
                         href={article.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="mt-2 inline-flex items-center text-gray-800 hover:text-gray-900 font-medium"
+                        className="mt-4 inline-flex items-center text-green-600 hover:text-green-800 font-medium group"
                       >
-                        Read more <FiArrowRight className="ml-1" />
+                        Read article
+                        <FiArrowRight className="ml-2 transition-transform group-hover:translate-x-1" />
                       </a>
                     </div>
                   </article>
                 ))}
               </div>
               {filteredArticles.length > 8 && (
-                <div className="text-center mt-10" data-aos="fade-up">
+                <div className="text-center mt-12" data-aos="fade-up">
                   <button
                     onClick={toggleShowAll}
-                    className="inline-flex items-center px-6 py-3 border border-gray-800 text-gray-800 rounded-lg hover:bg-gray-100 transition-colors"
+                    className="inline-flex items-center px-6 py-3 bg-white text-green-600 border border-green-600 rounded-lg hover:bg-green-50 transition-colors font-medium"
                   >
-                    {showAll ? 'Show Less' : 'See More'}
+                    {showAll ? 'Show Less Articles' : 'Load More Articles'}
                     <FiChevronDown
                       className={`ml-2 transition-transform ${showAll ? 'rotate-180' : ''}`}
                     />
@@ -272,41 +270,45 @@ export default function BookBlogPage() {
               )}
             </>
           ) : (
-            <div className="text-center py-12" data-aos="fade-in">
-              <FiBook className="mx-auto text-4xl text-gray-400 mb-4" />
-              <h3 className="text-xl font-semibold text-gray-800 mb-2">
+            <div 
+              className="text-center py-16 bg-gray-50 rounded-xl"
+              data-aos="fade-in"
+            >
+              <FiBook className="mx-auto text-5xl text-green-500 mb-4" />
+              <h3 className="text-2xl font-semibold text-gray-800 mb-3">
                 No articles found
               </h3>
-              <p className="text-gray-600">
-                Try adjusting your search or filter criteria
+              <p className="text-gray-600 max-w-md mx-auto">
+                Try adjusting your search query or select a different category
               </p>
             </div>
           )}
         </div>
       </section>
 
-      {/* Newsletter */}
-      <section className="py-16 bg-gray-100">
+      {/* Newsletter CTA */}
+      <section className="py-16 bg-green-50">
         <div
           className="container mx-auto px-6 max-w-4xl text-center"
           data-aos="zoom-in"
         >
-          <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-4">
-            Stay Updated on Books
-          </h2>
-          <p className="text-gray-600 mb-6">
-            Subscribe to our newsletter for the latest book reviews, author
-            interviews, and reading recommendations
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-            <input
-              type="email"
-              placeholder="Your email address"
-              className="flex-grow px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-gray-800 focus:border-gray-800"
-            />
-            <button className="bg-gray-800 hover:bg-gray-900 text-white font-medium px-6 py-3 rounded-lg transition-colors">
-              Subscribe
-            </button>
+          <div className="bg-white p-8 md:p-10 rounded-xl shadow-sm">
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-3">
+              Never Miss a Book Update
+            </h2>
+            <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
+              Subscribe to our monthly newsletter for the latest in literary news and curated reading lists
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+              <input
+                type="email"
+                placeholder="Your email address"
+                className="flex-grow px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-500 focus:border-green-500"
+              />
+              <button className="bg-green-500 hover:bg-green-600 text-white font-medium px-6 py-3 rounded-lg transition-colors shadow-md hover:shadow-lg">
+                Subscribe
+              </button>
+            </div>
           </div>
         </div>
       </section>

@@ -2,7 +2,12 @@ import AOS from 'aos';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useTheme } from '../components/theme-provider';
-import { FaFacebook, FaLinkedin, FaTwitter } from 'react-icons/fa';
+import {
+  FaFacebook,
+  FaLinkedin,
+  FaTwitter,
+  FaArrowRight,
+} from 'react-icons/fa';
 
 const About = () => {
   useEffect(() => {
@@ -13,188 +18,232 @@ const About = () => {
 
   return (
     <div className={theme}>
-      <main className="py-16 px-4 mt-10 md:px-16">
-        <section className="text-center max-w-3xl mx-auto">
-          <h1
-            data-aos="flip-left"
-            className="text-4xl font-bold mb-4 text-gray-900 dark:text-white"
+      <main className="py-16 px-4 mt-10 md:px-16 bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">
+        <section className="text-center max-w-4xl mx-auto">
+          {/* Hero Section */}
+          <div
+            data-aos="fade-down"
+            className="mb-16 p-8 rounded-xl bg-green-50 dark:bg-gray-800 shadow-lg"
           >
-            Welcome to BookShop
-          </h1>
-          <p className="text-lg text-gray-700 dark:text-gray-300 mb-8">
-            Your one-stop online destination for books of all genres. Whether
-            you're a passionate reader, a student, or looking for the perfect
-            gift, we have something for everyone.
-          </p>
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
+              Welcome to <span className="text-green-500">BookShop</span>
+            </h1>
+            <p className="text-xl text-gray-700 dark:text-gray-300 mb-8">
+              Your premier online destination for books of all genres. Whether
+              you're a passionate reader, a student, or looking for the perfect
+              gift, we have something for everyone.
+            </p>
+          </div>
 
           {/* Mission Section */}
-          <h2
-            data-aos="flip-left"
-            data-aos-easing="ease-out-cubic"
-            data-aos-duration="2000"
-            className="text-3xl font-semibold text-blue-500 dark:text-indigo-400 mt-20 mb-4"
+          <div
+            data-aos="fade-right"
+            className="mb-20 p-8 rounded-xl bg-white dark:bg-gray-800 shadow-md"
           >
-            Our Mission
-          </h2>
-          <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">
-            At BookShop, we believe in the power of books to educate, inspire,
-            and transform lives. Our goal is to:
-          </p>
-          <ul className="text-left space-y-3 text-lg text-gray-700 dark:text-gray-300 mx-auto max-w-xl">
-            <li className="flex items-center space-x-2">
-              <span className="text-indigo-600 dark:text-indigo-400">✔</span>
-              <span>
-                Provide a vast collection of books at affordable prices.
-              </span>
-            </li>
-            <li className="flex items-center space-x-2">
-              <span className="text-indigo-600 dark:text-indigo-400">✔</span>
-              <span>
-                Offer a seamless and user-friendly shopping experience.
-              </span>
-            </li>
-            <li className="flex items-center space-x-2">
-              <span className="text-indigo-600 dark:text-indigo-400">✔</span>
-              <span>Ensure fast and reliable delivery to your doorstep.</span>
-            </li>
-            <li className="flex items-center space-x-2">
-              <span className="text-indigo-600 dark:text-indigo-400">✔</span>
-              <span>Promote a love for reading and lifelong learning.</span>
-            </li>
-          </ul>
+            <div className="flex items-center justify-center mb-6">
+              <div className="w-16 h-1 bg-green-500 rounded-full mr-4"></div>
+              <h2 className="text-3xl font-semibold text-green-500 dark:text-green-400">
+                Our Mission
+              </h2>
+              <div className="w-16 h-1 bg-green-500 rounded-full ml-4"></div>
+            </div>
+            <p className="text-lg text-gray-700 dark:text-gray-300 mb-8">
+              At BookShop, we believe in the transformative power of books to
+              educate, inspire, and change lives.
+            </p>
+            <ul className="text-left space-y-4 text-lg text-gray-700 dark:text-gray-300 mx-auto max-w-xl">
+              {[
+                'Provide a vast collection of books at affordable prices',
+                'Offer a seamless and user-friendly shopping experience',
+                'Ensure fast and reliable delivery to your doorstep',
+                'Promote a love for reading and lifelong learning',
+              ].map((item, index) => (
+                <li
+                  key={index}
+                  className="flex items-start space-x-3"
+                  data-aos="fade-up"
+                  data-aos-delay={index * 100}
+                >
+                  <span className="text-green-500 dark:text-green-400 mt-1">
+                    <FaArrowRight />
+                  </span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-          {/* Mission Section */}
-          <h2
-            data-aos="flip-left"
-            data-aos-easing="ease-out-cubic"
-            data-aos-duration="2000"
-            className="text-3xl font-semibold text-blue-500 dark:text-indigo-400 mb-4 mt-20"
+          {/* Vision Section */}
+          <div
+            data-aos="fade-left"
+            className="mb-20 p-8 rounded-xl bg-white dark:bg-gray-800 shadow-md"
           >
-            Our Vission
-          </h2>
-          <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">
-            At BookShop, we believe in the power of books to educate, inspire,
-            and transform lives. Our goal is to
-          </p>
-          <ul className="text-left space-y-3 text-lg text-gray-700 dark:text-gray-300 mx-auto max-w-xl">
-            <li className="flex items-center space-x-2">
-              <span className="text-indigo-600 dark:text-indigo-400">✔</span>
-              <span>
-                Provide a vast collection of books at affordable prices.
-              </span>
-            </li>
-            <li className="flex items-center space-x-2">
-              <span className="text-indigo-600 dark:text-indigo-400">✔</span>
-              <span>
-                Offer a seamless and user-friendly shopping experience.
-              </span>
-            </li>
-            <li className="flex items-center space-x-2">
-              <span className="text-indigo-600 dark:text-indigo-400">✔</span>
-              <span>Ensure fast and reliable delivery to your doorstep.</span>
-            </li>
-            <li className="flex items-center space-x-2">
-              <span className="text-indigo-600 dark:text-indigo-400">✔</span>
-              <span>Promote a love for reading and lifelong learning.</span>
-            </li>
-          </ul>
+            <div className="flex items-center justify-center mb-6">
+              <div className="w-16 h-1 bg-green-500 rounded-full mr-4"></div>
+              <h2 className="text-3xl font-semibold text-green-500 dark:text-green-400">
+                Our Vision
+              </h2>
+              <div className="w-16 h-1 bg-green-500 rounded-full ml-4"></div>
+            </div>
+            <p className="text-lg text-gray-700 dark:text-gray-300 mb-8">
+              We envision a world where everyone has access to quality books
+              that enrich their lives and expand their horizons.
+            </p>
+            <ul className="text-left space-y-4 text-lg text-gray-700 dark:text-gray-300 mx-auto max-w-xl">
+              {[
+                'Become the leading online bookstore in the region',
+                'Create a community of passionate readers',
+                'Support local authors and publishers',
+                'Innovate with digital reading experiences',
+              ].map((item, index) => (
+                <li
+                  key={index}
+                  className="flex items-start space-x-3"
+                  data-aos="fade-up"
+                  data-aos-delay={index * 100}
+                >
+                  <span className="text-green-500 dark:text-green-400 mt-1">
+                    <FaArrowRight />
+                  </span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
 
           {/* Why Choose Us Section */}
-          <h2
-            data-aos="flip-left"
-            data-aos-easing="ease-out-cubic"
-            data-aos-duration="2000"
-            className="text-3xl font-semibold text-blue-500 dark:text-indigo-400 mb-4 mt-10"
+          <div
+            data-aos="zoom-in"
+            className="mb-20 p-8 rounded-xl bg-green-50 dark:bg-gray-800 shadow-lg"
           >
-            Why Choose Us?
-          </h2>
-          <ul className="text-left space-y-3 text-lg text-gray-700 dark:text-gray-300 mx-auto max-w-xl">
-            <li className="flex items-center space-x-2">
-              <span className="text-indigo-600 dark:text-indigo-400">✔</span>
-              <span>Wide range of books across all categories.</span>
-            </li>
-            <li className="flex items-center space-x-2">
-              <span className="text-indigo-600 dark:text-indigo-400">✔</span>
-              <span>Secure and easy payment options.</span>
-            </li>
-            <li className="flex items-center space-x-2">
-              <span className="text-indigo-600 dark:text-indigo-400">✔</span>
-              <span>Excellent customer service for all your queries.</span>
-            </li>
-            <li className="flex items-center space-x-2">
-              <span className="text-indigo-600 dark:text-indigo-400">✔</span>
-              <span>Regular discounts and special offers.</span>
-            </li>
-          </ul>
-
-          {/* Closing Statement */}
-          <p className="mt-6 text-xl text-gray-900 dark:text-white">
-            Join us in our journey to spread the joy of reading! Happy shopping
-            at{' '}
-            <strong className="font-bold text-blue-500 dark:text-indigo-400">
-              BookShop
-            </strong>
-            !
-          </p>
-
-          {/* Contact Information */}
-          <h2
-            data-aos="flip-left"
-            className="text-3xl font-semibold text-blue-500 dark:text-indigo-400 mt-20 mb-4"
-          >
-            Contact Us
-          </h2>
-          <p className="text-lg text-gray-700 dark:text-gray-300 mb-2">
-            Email: support@bookshop.com
-          </p>
-          <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">
-            Phone: +123 456 7890
-          </p>
-
-          {/* Social Media Links */}
-          <div className="flex justify-center space-x-6 mb-8">
-            <a
-              href="https://facebook.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 dark:text-white text-2xl"
-            >
-              <FaFacebook />
-            </a>
-            <a
-              href="https://linkedin.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-500 dark:text-white text-2xl"
-            >
-              <FaLinkedin />
-            </a>
-            <a
-              href="https://twitter.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-400 dark:text-white text-2xl"
-            >
-              <FaTwitter />
-            </a>
+            <h2 className="text-3xl font-semibold text-green-500 dark:text-green-400 mb-8">
+              Why Choose BookShop?
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {[
+                {
+                  title: 'Extensive Collection',
+                  content:
+                    'Wide range of books across all categories and genres',
+                },
+                {
+                  title: 'Secure Shopping',
+                  content: 'Multiple secure and easy payment options',
+                },
+                {
+                  title: 'Excellent Support',
+                  content:
+                    'Dedicated customer service team for all your queries',
+                },
+                {
+                  title: 'Great Value',
+                  content:
+                    'Regular discounts and special offers for our customers',
+                },
+              ].map((feature, index) => (
+                <div
+                  key={index}
+                  data-aos="flip-up"
+                  data-aos-delay={index * 150}
+                  className="p-6 bg-white dark:bg-gray-700 rounded-lg shadow-sm hover:shadow-md transition duration-300"
+                >
+                  <h3 className="text-xl font-bold text-green-500 dark:text-green-400 mb-3">
+                    {feature.title}
+                  </h3>
+                  <p className="text-gray-700 dark:text-gray-300">
+                    {feature.content}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
 
-          {/* Theme Toggle Button */}
-          <div className="mt-6">
-            <button
-              onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-            >
-              .
-            </button>
+          {/* Closing CTA */}
+          <div
+            data-aos="fade-up"
+            className="mb-20 p-8 rounded-xl bg-white dark:bg-gray-800 shadow-md"
+          >
+            <p className="text-2xl text-gray-900 dark:text-white mb-6">
+              Join us in our journey to spread the joy of reading!
+            </p>
+            <p className="text-xl text-gray-700 dark:text-gray-300">
+              Happy shopping at{' '}
+              <span className="font-bold text-green-500 dark:text-green-400">
+                BookShop
+              </span>
+              !
+            </p>
           </div>
 
-          <div className="flex justify-center items-center pt-20 pb-10">
+          {/* Contact Section */}
+          <div
+            data-aos="fade-in"
+            className="p-8 rounded-xl bg-green-50 dark:bg-gray-800 shadow-lg"
+          >
+            <h2 className="text-3xl font-semibold text-green-500 dark:text-green-400 mb-8">
+              Get In Touch
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+              <div
+                data-aos="fade-right"
+                className="p-6 bg-white dark:bg-gray-700 rounded-lg shadow-sm"
+              >
+                <h3 className="text-xl font-bold text-green-500 dark:text-green-400 mb-3">
+                  Contact Information
+                </h3>
+                <p className="text-gray-700 dark:text-gray-300 mb-2">
+                  <strong>Email:</strong> support@bookshop.com
+                </p>
+                <p className="text-gray-700 dark:text-gray-300 mb-2">
+                  <strong>Phone:</strong> +123 456 7890
+                </p>
+                <p className="text-gray-700 dark:text-gray-300">
+                  <strong>Address:</strong> 123 Book Street, Knowledge City
+                </p>
+              </div>
+              <div
+                data-aos="fade-left"
+                className="p-6 bg-white dark:bg-gray-700 rounded-lg shadow-sm"
+              >
+                <h3 className="text-xl font-bold text-green-500 dark:text-green-400 mb-3">
+                  Follow Us
+                </h3>
+                <div className="flex justify-center space-x-6">
+                  <a
+                    href="https://facebook.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-green-500 hover:text-green-600 dark:text-green-400 dark:hover:text-green-300 text-3xl transition duration-300"
+                  >
+                    <FaFacebook />
+                  </a>
+                  <a
+                    href="https://linkedin.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-green-500 hover:text-green-600 dark:text-green-400 dark:hover:text-green-300 text-3xl transition duration-300"
+                  >
+                    <FaLinkedin />
+                  </a>
+                  <a
+                    href="https://twitter.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-green-500 hover:text-green-600 dark:text-green-400 dark:hover:text-green-300 text-3xl transition duration-300"
+                  >
+                    <FaTwitter />
+                  </a>
+                </div>
+              </div>
+            </div>
+
             <Link to="/">
               <button
-                className="bg-gray-800 hover:bg-blue-700
-               text-white font-bold py-2 px-4 border border-blue-700 rounded"
+                className="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-8 rounded-lg shadow-md hover:shadow-lg transition duration-300 flex items-center mx-auto"
+                data-aos="zoom-in"
               >
                 Back To Home
+                <FaArrowRight className="ml-2" />
               </button>
             </Link>
           </div>

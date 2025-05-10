@@ -120,7 +120,6 @@ const Banner: React.FC = () => {
       details:
         'This book will be released on June 15, 2024. Pre-order available soon!',
     },
-    // ... (rest of your book data remains the same)
   ];
 
   const handleDetailsClick = (book: Book): void => {
@@ -137,7 +136,7 @@ const Banner: React.FC = () => {
   const renderCarousel = (): React.JSX.Element => (
     <Carousel
       plugins={[plugin.current]}
-      className="w-full max-w-lg md:max-w-xl mb-20 lg:pt-5 lg:max-w-6xl "
+      className="w-full max-w-lg md:max-w-xl mb-20 lg:pt-5 lg:max-w-6xl"
       onMouseEnter={plugin.current.stop}
       onMouseLeave={plugin.current.reset}
       data-aos="fade-up"
@@ -151,30 +150,30 @@ const Banner: React.FC = () => {
             data-aos-delay={book.id * 100}
           >
             <div className="group relative h-full">
-              <Card className="overflow-hidden border-none shadow-none hover:shadow-md transition-shadow duration-300 h-full">
+              <Card className="overflow-hidden border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 h-full hover:border-green-500">
                 <CardContent className="p-0 flex flex-col h-full">
                   <div className="relative flex-grow">
                     <img
-                      className="w-full rounded-t-lg h-[100px] md:h-[120px] lg:h-[124px] object-cover"
+                      className="w-full rounded-t-lg h-[120px] md:h-[150px] lg:h-[180px] object-cover"
                       src={book.image}
                       alt={book.name}
                     />
                     {book.upcoming && (
-                      <div className="absolute top-2 right-2 bg-yellow-500 text-white text-xs px-2 py-1 rounded-md">
+                      <div className="absolute top-2 right-2 bg-green-500 text-white text-xs px-2 py-1 rounded-md shadow-md">
                         Upcoming
                       </div>
                     )}
                   </div>
-                  <div className="p-4">
-                    <h3 className="font-bold text-lg mb-1 line-clamp-1">
+                  <div className="p-4 flex flex-col flex-grow">
+                    <h3 className="font-bold text-lg mb-1 line-clamp-1 text-gray-800 dark:text-white">
                       {book.name}
                     </h3>
-                    <p className="text-sm text-gray-600 dark:text-white mb-3 line-clamp-2">
+                    <p className="text-sm text-gray-600 dark:text-gray-300 mb-3 line-clamp-2 flex-grow">
                       {book.description}
                     </p>
                     <Button
                       onClick={() => handleDetailsClick(book)}
-                      className="w-full bg-gray-700 hover:bg-gray-800 text-white"
+                      className="w-full bg-green-600 hover:bg-green-700 text-white transition-colors duration-300"
                     >
                       View Details
                     </Button>
@@ -186,49 +185,51 @@ const Banner: React.FC = () => {
         ))}
       </CarouselContent>
       <CarouselPrevious
-        className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white"
+        className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white border border-gray-200 text-green-600 hover:text-green-700 shadow-md"
         data-aos="fade-right"
       />
       <CarouselNext
-        className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white"
+        className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white border border-gray-200 text-green-600 hover:text-green-700 shadow-md"
         data-aos="fade-left"
       />
     </Carousel>
   );
 
   return (
-    <div className="relative mt-0 flex justify-center">
+    <div className="relative mt-0 flex justify-center bg-gradient-to-b from-green-50 to-white dark:from-gray-900 dark:to-gray-800 py-10">
       {renderCarousel()}
 
       {/* Details Dialog */}
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <DialogContent className="sm:max-w-[625px]">
+        <DialogContent className="sm:max-w-[625px] rounded-lg border border-green-100 dark:border-gray-700">
           <DialogHeader>
-            <DialogTitle className="text-2xl">{selectedBook?.name}</DialogTitle>
+            <DialogTitle className="text-2xl text-green-600 dark:text-green-400">
+              {selectedBook?.name}
+            </DialogTitle>
           </DialogHeader>
           <div className="grid gap-4 py-4">
             <div className="flex flex-col md:flex-row gap-4 items-start">
               <img
                 src={selectedBook?.image}
                 alt={selectedBook?.name}
-                className="w-full md:w-1/2 h-auto rounded-lg object-cover"
+                className="w-full md:w-1/2 h-auto rounded-lg object-cover shadow-md border border-green-100 dark:border-gray-600"
               />
-              <div className="space-y-2">
+              <div className="space-y-2 w-full">
                 {selectedBook?.upcoming && (
-                  <span className="inline-block bg-yellow-500 text-white text-xs px-2 py-1 rounded-md mb-2">
+                  <span className="inline-block bg-green-500 text-white text-xs px-2 py-1 rounded-md mb-2 shadow-sm">
                     Upcoming Release
                   </span>
                 )}
-                <p className="text-gray-700 dark:text-white">
+                <p className="text-gray-700 dark:text-gray-300">
                   {selectedBook?.description}
                 </p>
-                <p className="text-sm text-gray-600 mt-2 dark:text-white">
+                <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
                   {selectedBook?.details}
                 </p>
                 <div className="pt-4">
                   <Button
                     onClick={closeDialog}
-                    className="bg-gray-700 hover:bg-gray-800 text-white"
+                    className="bg-green-600 hover:bg-green-700 text-white transition-colors duration-300"
                   >
                     Close
                   </Button>

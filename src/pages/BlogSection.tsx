@@ -62,27 +62,17 @@ export default function BlogSection() {
   }, []);
 
   return (
-    <section className="lg:p-30 lg:pt-8  lg:-mt-14 lg:pb-8 bg-gray-200 dark:bg-black ">
-      <div className="container mx-auto px-6 ">
-        <div
-          className="text-center mb-12"
-          data-aos="flip-right"
-          data-aos-easing="ease-out-cubic"
-          data-aos-duration="1000"
-        >
-          <h2
-            className="text-3xl md:text-4xl font-bold mb-4 text-gray-800 dark:text-white"
-            data-aos="fade-up"
-          >
+    <section className="py-8 bg-gray-50 dark:bg-gray-900">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16">
+          <span className="inline-block px-3 py-1 text-sm font-medium text-green-600 bg-green-100 rounded-full mb-4">
+            Blog & Articles
+          </span>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-800 dark:text-white">
             Latest From Our Blog
           </h2>
-          <p
-            className="text-lg text-gray-600 dark:text-white max-w-2xl mx-auto"
-            data-aos="fade-up"
-            data-aos-delay="100"
-          >
-            Discover book reviews, author interviews, and reading
-            recommendations
+          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+            Discover book reviews, author interviews, and reading recommendations
           </p>
         </div>
 
@@ -91,15 +81,15 @@ export default function BlogSection() {
             {[...Array(4)].map((_, index) => (
               <div
                 key={index}
-                className="bg-white rounded-lg shadow-md overflow-hidden animate-pulse"
+                className="bg-white dark:bg-gray-800 rounded-xl shadow-sm overflow-hidden animate-pulse"
                 data-aos="fade-up"
                 data-aos-delay={index * 100}
               >
-                <div className="h-48 bg-gray-200"></div>
+                <div className="h-48 bg-gray-200 dark:bg-gray-700"></div>
                 <div className="p-6">
-                  <div className="h-6 bg-gray-200 rounded mb-4"></div>
-                  <div className="h-4 bg-gray-200 rounded mb-2"></div>
-                  <div className="h-4 bg-gray-200 rounded w-3/4"></div>
+                  <div className="h-6 bg-gray-200 dark:bg-gray-700 rounded mb-4"></div>
+                  <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded mb-2"></div>
+                  <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-3/4"></div>
                 </div>
               </div>
             ))}
@@ -109,7 +99,7 @@ export default function BlogSection() {
             {featuredArticles.map((article, index) => (
               <article
                 key={article.id}
-                className="group bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 ease-in-out hover:-translate-y-2"
+                className="group bg-white dark:bg-gray-800 rounded-xl shadow-sm overflow-hidden hover:shadow-md transition-all duration-300 ease-in-out hover:-translate-y-1 border border-gray-100 dark:border-gray-700"
                 data-aos="fade-up"
                 data-aos-delay={index * 100}
               >
@@ -117,15 +107,16 @@ export default function BlogSection() {
                   <img
                     src={article.cover_image}
                     alt={article.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   <div className="absolute bottom-0 left-0 right-0 p-4">
                     <div className="flex flex-wrap gap-2">
                       {article.tag_list.map((tag) => (
                         <span
                           key={tag}
-                          className="px-2 py-1 bg-gray-800 bg-opacity-60 text-white text-xs rounded-full backdrop-blur-sm transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300"
+                          className="px-2 py-1 bg-green-500 text-white text-xs rounded-full backdrop-blur-sm transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300"
                         >
                           {tag}
                         </span>
@@ -134,24 +125,24 @@ export default function BlogSection() {
                   </div>
                 </div>
                 <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-800 mb-2 line-clamp-2 group-hover:text-gray-900 transition-colors">
+                  <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-2 line-clamp-2 group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors">
                     {article.title}
                   </h3>
-                  <p className="text-gray-600 mb-4 line-clamp-3 group-hover:text-gray-700 transition-colors">
+                  <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-3">
                     {article.description}
                   </p>
                   <div className="flex items-center justify-between">
-                    <span className="text-sm text-gray-500 group-hover:text-gray-600 transition-colors">
+                    <span className="text-sm text-gray-500 dark:text-gray-400">
                       {article.readable_publish_date}
                     </span>
                     <a
                       href={article.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center text-gray-800 hover:text-gray-900 font-medium group-hover:text-indigo-600 transition-colors"
+                      className="inline-flex items-center text-green-600 hover:text-green-700 dark:text-green-400 dark:hover:text-green-300 font-medium transition-colors"
                     >
                       Read more
-                      <FiArrowRight className="ml-1 transition-transform group-hover:translate-x-1" />
+                      <FiArrowRight className="ml-2 transition-transform group-hover:translate-x-1" />
                     </a>
                   </div>
                 </div>
@@ -160,14 +151,14 @@ export default function BlogSection() {
           </div>
         )}
 
-        <div className="text-center pb-5 mt-12" data-aos="fade-up">
+        <div className="text-center mt-16" data-aos="fade-up">
           <a
             href="/blogs"
             rel="noopener noreferrer"
-            className="inline-flex items-center px-6 py-3 border border-gray-800 dark:border-white text-gray-800 dark:text-white rounded-lg hover:bg-gray-800 hover:text-white transition-all duration-300 hover:shadow-lg"
+            className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-green-600 hover:bg-green-700 transition-all duration-300 shadow-sm hover:shadow-md"
           >
             View All Articles
-            <FiArrowRight className="ml-2 transition-transform group-hover:translate-x-1" />
+            <FiArrowRight className="ml-2" />
           </a>
         </div>
       </div>

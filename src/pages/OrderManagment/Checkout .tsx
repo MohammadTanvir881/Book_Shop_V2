@@ -62,11 +62,14 @@ const Checkout = () => {
       const orderData = {
         products: [{ product: product._id, quantity }],
         shippingAddress,
+        email : user?.email,
         phoneNumber,
         paymentMethod,
         totalPrice: parseFloat(totalPrice),
         notes,
       };
+
+      console.log('Order data:', orderData);
 
       const response = await createOrder(orderData).unwrap();
 

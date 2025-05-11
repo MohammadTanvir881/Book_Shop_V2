@@ -10,11 +10,23 @@ import { motion, AnimatePresence } from 'framer-motion';
 const MyOrders = () => {
   const user = useSelector((state: RootState) => state.auth.user);
   const userId = user?._id;
+  const userEmail = user?.email;
+  console.log('User From Order', user, userEmail, userId);
   const [selectedOrder, setSelectedOrder] = useState<any | null>(null);
 
   const { data, isLoading, error } = useGetUserOrdersQuery(userId || '');
   const orders = data?.data;
-
+  console.log('Orders:', orders);
+  const myOrders = orders?.filter((order: any) => order?.email === userEmail);
+  if (myOrders?.length === 0) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <p className="text-gray-500 text-lg">
+          You haven’t placed any orders yet.
+        </p>
+      </div>
+    );
+  }
   return (
     <div className="max-w-4xl mt-10 mx-auto px-4 py-8">
       <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">
@@ -33,7 +45,7 @@ const MyOrders = () => {
         </div>
       ) : orders && orders.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {orders.map((order) => (
+          {(myOrders ?? []).map((order) => (
             <div
               key={order._id}
               onClick={() => setSelectedOrder(order)}

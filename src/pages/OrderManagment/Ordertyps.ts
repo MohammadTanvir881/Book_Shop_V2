@@ -25,6 +25,7 @@ export type OrderStatus =
 
 export interface TOrder {
   address: string;
+  email: string;
   phone: string;
   _id: string;
   user: TOrderUser;

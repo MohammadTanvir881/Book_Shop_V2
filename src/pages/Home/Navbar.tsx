@@ -161,7 +161,7 @@ const Navbar = () => {
           {/* Right Side - Auth & Theme Toggle */}
           <div className="flex items-center space-x-4">
             <div className="hidden md:block">
-              <ModeToggle />
+              {/* <ModeToggle /> */}
             </div>
             {!isAuthenticated ? (
               <NavLink
@@ -271,7 +271,7 @@ const Navbar = () => {
             </NavLink>
             <div className="pt-4 pb-2 border-t border-gray-200 dark:border-gray-700">
               <div className="flex items-center justify-between px-3">
-                <ModeToggle />
+                {/* <ModeToggle /> */}
                 {!isAuthenticated ? (
                   <NavLink
                     to="/login"

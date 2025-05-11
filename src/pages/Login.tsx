@@ -102,7 +102,7 @@ const Login = () => {
                 id="email"
                 type="email"
                 placeholder="your@email.com"
-                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                className="w-full p-3 border text-white border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
               />
             </div>
 
@@ -118,7 +118,7 @@ const Login = () => {
                 id="password"
                 type="password"
                 placeholder="••••••••"
-                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                className="w-full text-white p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
               />
             </div>
 

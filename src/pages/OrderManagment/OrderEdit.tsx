@@ -215,7 +215,7 @@ const OrderEdit = () => {
             </Button>
             <Button
               variant="outlined"
-              onClick={() => navigate('/admin/orders')}
+              onClick={() => navigate('/dashboard/orderList')}
               size="large"
               fullWidth
             >

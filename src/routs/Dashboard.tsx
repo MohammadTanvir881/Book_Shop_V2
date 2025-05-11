@@ -24,59 +24,61 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
 
   return (
     <div
-      className={`bg-gray-900 text-white w-64 h-screen p-5 fixed top-0 left-0 transform ${
+      className={`bg-gray-100 text-black w-64 h-screen p-5 fixed top-0 left-0 transform ${
         isOpen ? 'translate-x-0' : '-translate-x-full'
-      } transition-transform md:translate-x-0 z-50 overflow-y-auto`}
+      } transition-transform duration-300 ease-in-out md:translate-x-0 z-50 overflow-y-auto shadow-xl`}
     >
-      <button
-        className="md:hidden text-white text-2xl absolute top-4 right-4"
-        onClick={toggleSidebar}
-      >
-        <AiOutlineClose />
-      </button>
-      <h2 className="text-xl font-bold mt-1 mb-6 text-center">Dashboard</h2>
-      <ul className="space-y-2">
+      <div className="flex items-center justify-between mb-8">
+        <h2 className="text-2xl font-bold text-black">
+          <span className="text-green-500">Book</span>Shop
+        </h2>
+        <button
+          className="md:hidden text-white text-xl hover:text-blue-400 transition-colors"
+          onClick={toggleSidebar}
+        >
+          <AiOutlineClose />
+        </button>
+      </div>
+      
+      <div className="mb-6 px-3 py-2 bg-gray-700 rounded-lg">
+        <p className="text-sm text-gray-300">Welcome back,</p>
+        <p className="font-medium text-white">{user?.name}</p>
+        <p className="text-xs text-blue-400 uppercase">{user?.role}</p>
+      </div>
+
+      <ul className="space-y-1">
         <li>
           <NavLink
             to="/dashboard"
             onClick={toggleSidebar}
             className={({ isActive }) =>
-              `block rounded-md  py-2 text-sm font-medium ${
-                isActive ? 'text-blue-500' : 'text-gray-300'
-              } hover:bg-gray-700 hover:text-white`
+              `flex items-center gap-3 rounded-lg px-3 py-3 text-sm font-medium transition-colors ${
+                isActive 
+                  ? 'bg-blue-600 text-white shadow-md'
+                  : 'text-gray-900 hover:bg-gray-700 hover:text-white'
+              }`
             }
           >
-            <div className="flex gap-1">
-              {' '}
-              <div className="pt-1">
-                <GrOverview />
-              </div>{' '}
-              <div> Overview</div>
-            </div>
+            <GrOverview className="text-lg" />
+            <span>Overview</span>
           </NavLink>
         </li>
+        
         <li>
-          <div className="flex">
-            <div>
-              <NavLink
-                to="/dashboard/profile"
-                onClick={toggleSidebar}
-                className={({ isActive }) =>
-                  `block rounded-md  py-2  text-sm font-medium ${
-                    isActive ? 'text-blue-500' : 'text-gray-300'
-                  } hover:bg-gray-700 hover:text-white`
-                }
-              >
-                <div className="flex  gap-1">
-                  <div className="text-lg ">
-                    {' '}
-                    <CgProfile />
-                  </div>{' '}
-                  <div> My Profile</div>
-                </div>
-              </NavLink>
-            </div>
-          </div>
+          <NavLink
+            to="/dashboard/profile"
+            onClick={toggleSidebar}
+            className={({ isActive }) =>
+              `flex items-center gap-3 rounded-lg px-3 py-3 text-sm font-medium transition-colors ${
+                isActive 
+                  ? 'bg-blue-600 text-white shadow-md'
+                  : 'text-gray-900 hover:bg-gray-700 hover:text-white'
+              }`
+            }
+          >
+            <CgProfile className="text-lg" />
+            <span>My Profile</span>
+          </NavLink>
         </li>
 
         {/* RBAC Routes */}
@@ -86,17 +88,15 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
               to="/dashboard/user"
               onClick={toggleSidebar}
               className={({ isActive }) =>
-                `block rounded-md  py-2 text-sm font-medium ${
-                  isActive ? 'text-blue-500' : 'text-gray-300'
-                } hover:bg-gray-700 hover:text-white`
+                `flex items-center gap-3 rounded-lg px-3 py-3 text-sm font-medium transition-colors ${
+                  isActive 
+                    ? 'bg-blue-600 text-white shadow-md'
+                    : 'text-gray-900 hover:bg-gray-700 hover:text-white'
+                }`
               }
             >
-              <div className="flex gap-1">
-                <div className="text-lg">
-                  <FaUsersRectangle />{' '}
-                </div>{' '}
-                <div>User Management</div>
-              </div>
+              <FaUsersRectangle className="text-lg" />
+              <span>User Management</span>
             </NavLink>
           </li>
         )}
@@ -107,17 +107,15 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
               to="/dashboard/my-orders"
               onClick={toggleSidebar}
               className={({ isActive }) =>
-                `block rounded-md  py-2 text-sm font-medium ${
-                  isActive ? 'text-blue-500' : 'text-gray-300'
-                } hover:bg-gray-700 hover:text-white`
+                `flex items-center gap-3 rounded-lg px-3 py-3 text-sm font-medium transition-colors ${
+                  isActive 
+                    ? 'bg-blue-600 text-white shadow-md'
+                    : 'text-gray-900 hover:bg-gray-700 hover:text-white'
+                }`
               }
             >
-              <div className="flex gap-1">
-                <div className=" text-lg">
-                  <FaBorderAll />
-                </div>
-                <div className="pl-l">My Order</div>
-              </div>
+              <FaBorderAll className="text-lg" />
+              <span>My Orders</span>
             </NavLink>
           </li>
         )}
@@ -128,17 +126,15 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
               to="/dashboard/productManage"
               onClick={toggleSidebar}
               className={({ isActive }) =>
-                `block rounded-md py-2 text-sm font-medium ${
-                  isActive ? 'text-blue-500' : 'text-gray-300'
-                } hover:bg-gray-700 hover:text-white`
+                `flex items-center gap-3 rounded-lg px-3 py-3 text-sm font-medium transition-colors ${
+                  isActive 
+                    ? 'bg-blue-600 text-white shadow-md'
+                    : 'text-gray-900 hover:bg-gray-700 hover:text-white'
+                }`
               }
             >
-              <div className="flex gap-1">
-                <div className="text-lg">
-                  <AiOutlineProduct />
-                </div>{' '}
-                <div>Products Management</div>
-              </div>
+              <AiOutlineProduct className="text-lg" />
+              <span>Products Management</span>
             </NavLink>
           </li>
         )}
@@ -148,17 +144,15 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
             to="/dashboard/allbooks"
             onClick={toggleSidebar}
             className={({ isActive }) =>
-              `block rounded-md py-2 text-sm font-medium ${
-                isActive ? 'text-blue-500' : 'text-gray-300'
-              } hover:bg-gray-700 hover:text-white`
+              `flex items-center gap-3 rounded-lg px-3 py-3 text-sm font-medium transition-colors ${
+                isActive 
+                  ? 'bg-blue-600 text-white shadow-md'
+                  : 'text-gray-900 hover:bg-gray-700 hover:text-white'
+              }`
             }
           >
-            <div className="flex">
-              <div className="text-lg">
-                <MdOutlineShoppingCart />{' '}
-              </div>
-              <div>All Products</div>
-            </div>
+            <MdOutlineShoppingCart className="text-lg" />
+            <span>All Products</span>
           </NavLink>
         </li>
 
@@ -168,37 +162,33 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
               to="/dashboard/orderList"
               onClick={toggleSidebar}
               className={({ isActive }) =>
-                `block rounded-md  py-2 text-sm font-medium ${
-                  isActive ? 'text-blue-500' : 'text-gray-300'
-                } hover:bg-gray-700 hover:text-white`
+                `flex items-center gap-3 rounded-lg px-3 py-3 text-sm font-medium transition-colors ${
+                  isActive 
+                    ? 'bg-blue-600 text-white shadow-md'
+                    : 'text-gray-900 hover:bg-gray-700 hover:text-white'
+                }`
               }
             >
-              <div className="flex gap-1">
-                <div className="pt-1">
-                  <BsBorderWidth />
-                </div>
-                <div>Order Management</div>
-              </div>
+              <BsBorderWidth className="text-lg" />
+              <span>Order Management</span>
             </NavLink>
           </li>
         )}
 
-        <li>
+        <li className="mt-6 pt-4 border-t border-gray-700">
           <NavLink
             to="/"
             onClick={toggleSidebar}
             className={({ isActive }) =>
-              `block rounded-md  py-2 text-sm font-medium ${
-                isActive ? 'text-blue-500' : 'text-gray-300'
-              } hover:bg-gray-700 hover:text-white`
+              `flex items-center gap-3 rounded-lg px-3 py-3 text-sm font-medium transition-colors ${
+                isActive 
+                  ? 'bg-blue-600 text-white shadow-md'
+                  : 'text-gray-900 hover:bg-gray-700 hover:text-white'
+              }`
             }
           >
-            <div className="flex gap-1">
-              <div className="text-lg">
-                <IoMdHome />
-              </div>{' '}
-              <div>Back To Home</div>
-            </div>
+            <IoMdHome className="text-lg" />
+            <span>Back To Home</span>
           </NavLink>
         </li>
       </ul>
@@ -212,51 +202,51 @@ interface TopNavbarProps {
 
 const TopNavbar: React.FC<TopNavbarProps> = ({ toggleSidebar }) => {
   const { user } = useSelector((state: any) => state.auth);
+  
   return (
-    <div className="flex justify-between items-center bg-gray-800 text-white p-4 fixed top-0 right-0 left-0 md:left-64 z-40">
-      <button className="md:hidden text-2xl" onClick={toggleSidebar}>
-        <AiOutlineMenu />
-      </button>
-      <h1 className="text-lg font-bold">
-        Welcome {user?.role === 'admin' ? 'Admin' : 'User'}
-      </h1>
-      <div className="hidden md:flex items-center space-x-2">
-        <img
-          className="h-8 w-auto"
-          src="https://i.postimg.cc/tCLPxXkG/Bk-logo-removebg-preview.png"
-          alt="Logo"
-        />
-        <h4 className="text-xl font-medium text-blue-500">BookShop</h4>
+    <header className="bg-white shadow-sm fixed top-0 right-0 left-0 md:left-64 z-40">
+      <div className="flex items-center justify-between px-6 py-4">
+        <div className="flex items-center">
+          <button 
+            className="md:hidden text-gray-600 hover:text-blue-600 mr-4 text-xl"
+            onClick={toggleSidebar}
+          >
+            <AiOutlineMenu />
+          </button>
+          <h1 className="text-lg font-semibold text-gray-800">
+            Dashboard <span className="text-green-600">{user?.role === 'admin' ? 'Admin' : 'User'} Panel</span>
+          </h1>
+        </div>
+        
+        <div className="flex items-center space-x-4">
+          <div className="hidden md:flex flex-col text-right">
+            <span className="text-sm font-medium text-gray-600">{user?.name}</span>
+            <span className="text-xs text-blue-600 uppercase">{user?.role}</span>
+          </div>
+          <Logout />
+        </div>
       </div>
-      <div className="flex items-center space-x-4">
-        <span>{user?.name}</span>
-        <Logout />
-      </div>
-    </div>
+    </header>
   );
 };
-
-// const RoleBasedDashboard = () => {
-// const { user } = useSelector((state: any) => state.auth);
-// if (user?.role === 'admin') return <Navigate to="/admin/dashboard" replace />;
-// if (user?.role === 'user') return <Navigate to="/user/dashboard" replace />;
-// return <Navigate to="/login" />;
-// };
-//
 
 const Dashboard = () => {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   const toggleSidebar = () => setSidebarOpen(!isSidebarOpen);
 
   return (
-    <div className="flex flex-col md:flex-row min-h-screen">
+    <div className="flex flex-col md:flex-row min-h-screen bg-gray-50">
       <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
-      <div className="flex-1 bg-gray-100 min-h-screen pt-16 md:pt-0 md:ml-64">
+      
+      <main className="flex-1 min-h-screen pt-16 md:ml-64 md:pt-0">
         <TopNavbar toggleSidebar={toggleSidebar} />
-        <div className="p-4 mt-16 md:mt-0">
-          <Outlet />
+        
+        <div className="p-6">
+          <div className="bg-white rounded-xl shadow-sm p-6">
+            <Outlet />
+          </div>
         </div>
-      </div>
+      </main>
     </div>
   );
 };

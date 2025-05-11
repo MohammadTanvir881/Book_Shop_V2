@@ -133,7 +133,7 @@ const Footer = () => {
               <p className="text-sm text-center md:text-left">
                 Subscribe to our newsletter for updates
               </p>
-              <div className="mt-2 flex flex-col bg-white rounded-xl sm:flex-row gap-2">
+              {/* <div className="mt-2 flex flex-col bg-white rounded-xl sm:flex-row gap-2">
                 <input
                   type="email"
                   placeholder="Your email"
@@ -142,7 +142,7 @@ const Footer = () => {
                 <button className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded text-sm font-medium transition-colors duration-300">
                   Subscribe
                 </button>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

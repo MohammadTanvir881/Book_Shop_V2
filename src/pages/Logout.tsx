@@ -35,12 +35,12 @@ const Logout = () => {
   };
 
   return (
-    <button
-      onClick={handleLogout}
-      className="bg-red-500 border-none font-semibold py-2 hover:bg-red-600 text-white px-2  rounded"
-    >
-      Logout
-    </button>
+<button
+  onClick={handleLogout}
+  className="bg-red-600 text-white font-medium px-5 py-2 rounded-lg shadow-sm hover:bg-red-700 transition-colors duration-200"
+>
+  Logout
+</button>
   );
 };
 

@@ -1,14 +1,15 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import {
   useGetProductsQuery,
   useDeleteProductMutation,
 } from '@/redux/features/auth/authApi';
 import { Link } from 'react-router-dom';
 import { Product } from './productTypes';
-import { FaEdit, FaTrash, FaStar } from 'react-icons/fa';
+import { FaEdit, FaTrash, FaStar, FaPlus } from 'react-icons/fa';
 import React from 'react';
 import Swal from 'sweetalert2';
+import { Button } from '@/components/ui/button';
+import { Skeleton } from '@/components/ui/skeleton';
+import { Badge } from '@mui/material';
 
 const ProductManage = () => {
   const [page, setPage] = React.useState(1);
@@ -36,13 +37,24 @@ const ProductManage = () => {
     setPage((prevPage) => Math.max(prevPage - 1, 1));
   };
 
-  if (isLoading) return <p className="text-center text-lg">Loading...</p>;
-  if (error)
+  if (isLoading) {
     return (
-      <p className="text-center text-lg text-red-500">
-        Error loading products!
-      </p>
+      <div className="space-y-4 p-6">
+        <Skeleton className="h-10 w-full" />
+        {[...Array(5)].map((_, index) => (
+          <Skeleton key={index} className="h-16 w-full" />
+        ))}
+      </div>
     );
+  }
+
+  if (error) {
+    return (
+      <div className="p-6 text-center text-red-500">
+        Error loading products!
+      </div>
+    );
+  }
 
   const totalProducts = (data as any)?.total ?? 0;
 
@@ -52,12 +64,10 @@ const ProductManage = () => {
       text: 'This product will be permanently deleted!',
       icon: 'warning',
       showCancelButton: true,
+      confirmButtonColor: '#10B981', // green-500
+      cancelButtonColor: '#EF4444', // red-500
       confirmButtonText: 'Yes, delete it!',
       cancelButtonText: 'No, keep it',
-      customClass: {
-        confirmButton: 'bg-red-600 text-white',
-        cancelButton: 'bg-gray-400 text-white',
-      },
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
@@ -70,7 +80,7 @@ const ProductManage = () => {
             title: 'Deleted!',
             text: 'The product has been deleted.',
             icon: 'success',
-            confirmButtonText: 'OK',
+            confirmButtonColor: '#10B981',
           });
           await refetch();
         } catch (error) {
@@ -78,7 +88,7 @@ const ProductManage = () => {
             title: 'Error!',
             text: 'Failed to delete the product.',
             icon: 'error',
-            confirmButtonText: 'OK',
+            confirmButtonColor: '#10B981',
           });
         }
       }
@@ -86,137 +96,136 @@ const ProductManage = () => {
   };
 
   return (
-    <div className="max-w-7xl  mx-auto p-6">
-      <h1 className="text-3xl font-bold text-center text-gray-800 mt-9 mb-6">
-        Product List
-      </h1>
-      <div className="text-right pr-5 mb-4">
+    <div className="container mx-auto p-6">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
+        <h1 className="text-2xl font-bold text-gray-800 dark:text-white">
+          Product Management
+        </h1>
         <Link
           to="/dashboard/products/create"
-          className="bg-gray-800 text-white px-4 py-2 rounded-lg shadow-md hover:bg-blue-700 transition"
+          className="flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg shadow transition-colors mt-4 md:mt-0"
         >
+          <FaPlus />
           Add Product
         </Link>
       </div>
 
-      <div className="overflow-x-auto shadow-lg rounded-lg">
-        <table className="min-w-full table-auto text-left">
-          <thead className="bg-gray-100">
-            <tr className="font-bold text-xs md:text-sm">
-              <th className="px-3 py-2 md:px-6 md:py-3 text-gray-700">Image</th>
-              <th className="px-3 py-2 md:px-6 md:py-3 text-gray-700">Name</th>
-              <th className="px-3 py-2 md:px-6 md:py-3 text-gray-700">Price</th>
-              <th className="px-3 py-2 md:px-6 md:py-3 text-gray-700">
-                Rating
-              </th>
-              <th className="px-3 py-2 md:px-6 md:py-3 text-gray-700">
-                Category
-              </th>
-              <th className="px-3 py-2 md:px-6 md:py-3 text-gray-700 hidden md:table-cell">
-                Description
-              </th>
-              <th className="px-3 py-2 md:px-6 md:py-3 text-gray-700">Brand</th>
-              <th className="px-3 py-2 md:px-6 md:py-3 text-gray-700">
-                Author
-              </th>
-              <th className="px-3 py-2 md:px-6 md:py-3 text-gray-700">Stock</th>
-              <th className="px-3 py-2 md:px-6 md:py-3 text-gray-700">
-                Actions
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {products.length > 0 ? (
-              products.map((product: Product) => (
-                <tr
-                  key={product._id}
-                  className="border-b hover:bg-gray-50 text-xs md:text-sm"
-                >
-                  <td className="px-3 py-2 md:px-6 md:py-4">
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                      className="w-12 h-12 object-cover rounded-lg"
-                    />
-                  </td>
-                  <td className="px-3 py-2 md:px-6 md:py-4 text-gray-700">
-                    {product.name}
-                  </td>
-                  <td className="px-3 py-2 md:px-6 md:py-4 text-gray-700">
-                    ${product.price}
-                  </td>
-                  <td className="px-3 py-2 md:px-6 md:py-4 text-gray-700">
-                    <div className="flex items-center">
-                      <FaStar className="text-yellow-400 mr-1" />
-                      {product.rating || 'N/A'}
-                    </div>
-                  </td>
-                  <td className="px-3 py-2 md:px-6 md:py-4 text-gray-700">
-                    {product.category}
-                  </td>
-                  <td className="px-3 py-2 md:px-6 md:py-4 text-gray-700 hidden md:table-cell">
-                    <div className="truncate max-w-xs">
-                      {product.description || 'No description'}
-                    </div>
-                  </td>
-                  <td className="px-3 py-2 md:px-6 md:py-4 text-gray-700">
-                    {product.brand}
-                  </td>
-                  <td className="px-3 py-2 md:px-6 md:py-4 text-gray-700">
-                    {product.author}
-                  </td>
-                  <td className="px-3 py-2 md:px-6 md:py-4 text-gray-700">
-                    {product.stock}
-                  </td>
-                  <td className="px-3 py-2 mt-4 md:px-6 md:py-4 text-gray-700 flex space-x-4">
-                    <Link
-                      to={`/dashboard/products/edit/${product._id}`}
-                      className="text-gray-800 hover:text-blue-800 transition"
-                    >
-                      <FaEdit />
-                    </Link>
-                    <button
-                      onClick={() => handleDelete(product._id!)}
-                      className="text-red-500 hover:text-red-800 transition"
-                    >
-                      <FaTrash />
-                    </button>
+      <div className="bg-white dark:bg-gray-800 rounded-lg shadow overflow-hidden border border-gray-200 dark:border-gray-700">
+        <div className="overflow-x-auto">
+          <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+            <thead className="bg-gray-50 dark:bg-gray-700">
+              <tr>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                  Product
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                  Details
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                  Status
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                  Actions
+                </th>
+              </tr>
+            </thead>
+            <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-800">
+              {products.length > 0 ? (
+                products.map((product: Product) => (
+                  <tr key={product._id} className="hover:bg-gray-50 dark:hover:bg-gray-700">
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="flex items-center">
+                        <div className="flex-shrink-0 h-10 w-10">
+                          <img
+                            src={product.image}
+                            alt={product.name}
+                            className="h-10 w-10 rounded-md object-cover"
+                          />
+                        </div>
+                        <div className="ml-4">
+                          <div className="text-sm font-medium text-gray-900 dark:text-white">
+                            {product.name}
+                          </div>
+                          <div className="text-sm text-gray-500 dark:text-gray-400">
+                            ${product.price}
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="px-6 py-4">
+                      <div className="text-sm text-gray-900 dark:text-white">
+                        <div className="flex items-center">
+                          <FaStar className="text-yellow-400 mr-1" />
+                          <span>{product.rating || 'N/A'}</span>
+                        </div>
+                        <div className="text-sm text-gray-500 dark:text-gray-400">
+                          {product.category}
+                        </div>
+                      </div>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <Badge
+                        variant={product.stock > 0 ? 'standard' : 'dot'}
+                        className="text-xs"
+                      >
+                        {product.stock > 0 ? 'In Stock' : 'Out of Stock'}
+                      </Badge>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                      <div className="flex space-x-2">
+                        <Link
+                          to={`/dashboard/products/edit/${product._id}`}
+                          className="text-green-600 hover:text-green-800 dark:text-green-400 dark:hover:text-green-300"
+                        >
+                          <FaEdit className="h-5 w-5" />
+                        </Link>
+                        <button
+                          onClick={() => handleDelete(product._id!)}
+                          className="text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-300"
+                        >
+                          <FaTrash className="h-5 w-5" />
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan={4} className="px-6 py-4 text-center text-gray-500">
+                    No products found.
                   </td>
                 </tr>
-              ))
-            ) : (
-              <tr>
-                <td
-                  colSpan={9}
-                  className="px-3 py-2 md:px-6 md:py-4 text-center text-gray-500"
-                >
-                  No products found.
-                </td>
-              </tr>
-            )}
-          </tbody>
-        </table>
+              )}
+            </tbody>
+          </table>
+        </div>
       </div>
 
-      {/* Pagination Controls */}
-      <div className="mt-8 flex justify-center">
-        <button
-          onClick={handlePrev}
-          disabled={page === 1}
-          className="bg-gray-800 text-white px-4 py-2 rounded-lg shadow-md hover:bg-gray-700 transition disabled:opacity-50"
-        >
-          Previous
-        </button>
-        <span className="self-center px-4 text-lg">
-          Page {page} of {Math.ceil(totalProducts / limit)}
-        </span>
-        <button
-          onClick={handleNext}
-          disabled={products.length < limit}
-          className="bg-gray-800 text-white px-4 py-2 rounded-lg shadow-md hover:bg-gray-700 transition disabled:opacity-50"
-        >
-          Next
-        </button>
+      {/* Pagination */}
+      <div className="mt-6 flex items-center justify-between">
+        <div className="text-sm text-gray-500">
+          Showing <span className="font-medium">{(page - 1) * limit + 1}</span> to{' '}
+          <span className="font-medium">{Math.min(page * limit, totalProducts)}</span> of{' '}
+          <span className="font-medium">{totalProducts}</span> products
+        </div>
+        <div className="flex space-x-2">
+          <Button
+            onClick={handlePrev}
+            disabled={page === 1}
+            variant="outline"
+            className="border-gray-300 text-gray-700 hover:bg-gray-50"
+          >
+            Previous
+          </Button>
+          <Button
+            onClick={handleNext}
+            disabled={products.length < limit}
+            variant="outline"
+            className="border-gray-300 text-gray-700 hover:bg-gray-50"
+          >
+            Next
+          </Button>
+        </div>
       </div>
     </div>
   );

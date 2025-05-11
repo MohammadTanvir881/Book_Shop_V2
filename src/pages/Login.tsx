@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import AOS from 'aos';
 import { useEffect } from 'react';
+import { FiUser, FiLock, FiMail, FiAlertCircle } from 'react-icons/fi';
 
 export interface ErrorResponse {
   message: string;
@@ -37,6 +38,21 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation() as CustomLocation;
 
+  const testCredentials = [
+    {
+      role: 'Admin',
+      email: 'tanvir@gmail.com',
+      password: '12345678',
+      color: 'bg-red-500 hover:bg-red-600'
+    },
+    {
+      role: 'User',
+      email: 'user@gmail.com',
+      password: '12345678',
+      color: 'bg-blue-500 hover:bg-blue-600'
+    }
+  ];
+
   const onSubmit = async (data: any) => {
     try {
       const response = await loginUser(data).unwrap();
@@ -46,12 +62,12 @@ const Login = () => {
 
       Swal.fire({
         title: 'Login Successful!',
-        text: 'Welcome back!',
+        text: `Welcome back, ${response.data.role === 'admin' ? 'Admin' : 'User'}!`,
         icon: 'success',
         confirmButtonText: 'OK',
       });
 
-      const from = location.state?.from || '/';
+      const from = location.state?.from || (response.data.role === 'admin' ? '/dashboard' : '/');
       navigate(from, { replace: true });
     } catch (err: any) {
       console.error('Login failed:', err);
@@ -62,6 +78,11 @@ const Login = () => {
         confirmButtonText: 'Try Again',
       });
     }
+  };
+
+  const handleTestLogin = (email: string, password: string) => {
+    const formData = { email, password };
+    onSubmit(formData);
   };
 
   return (
@@ -92,34 +113,40 @@ const Login = () => {
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
             <div>
               <label
-                className="block text-gray-100 text-sm font-medium mb-2"
+                className=" text-gray-200 text-sm font-medium mb-2 flex items-center"
                 htmlFor="email"
               >
-                Email
+                <FiMail className="mr-2" /> Email
               </label>
-              <Input
-                {...register('email', { required: true })}
-                id="email"
-                type="email"
-                placeholder="your@email.com"
-                className="w-full p-3 border text-white border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
-              />
+              <div className="relative">
+                <Input
+                  {...register('email', { required: true })}
+                  id="email"
+                  type="email"
+                  placeholder="your@email.com"
+                  className="w-full  pl-10 pr-3 py-3 border text-gray-200 border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                />
+                <FiMail className="absolute left-3 top-3.5 text-gray-400" />
+              </div>
             </div>
 
             <div>
               <label
-                className="block text-gray-100 text-sm font-medium mb-2"
+                className=" text-gray-200 text-sm font-medium mb-2 flex items-center"
                 htmlFor="password"
               >
-                Password
+                <FiLock className="mr-2" /> Password
               </label>
-              <Input
-                {...register('password', { required: true })}
-                id="password"
-                type="password"
-                placeholder="••••••••"
-                className="w-full text-white p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
-              />
+              <div className="relative">
+                <Input
+                  {...register('password', { required: true })}
+                  id="password"
+                  type="password"
+                  placeholder="••••••••"
+                  className="w-full pl-10 pr-3 py-3 text-gray-200 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                />
+                <FiLock className="absolute left-3 top-3.5 text-gray-400" />
+              </div>
             </div>
 
             <div className="flex items-center justify-between">
@@ -132,7 +159,7 @@ const Login = () => {
                 />
                 <label
                   htmlFor="remember-me"
-                  className="ml-2 block text-sm text-gray-100"
+                  className="ml-2 block text-sm text-gray-200"
                 >
                   Remember me
                 </label>
@@ -182,10 +209,28 @@ const Login = () => {
               )}
             </Button>
 
+            {/* Test Credentials Section */}
+            <div className="space-y-2">
+              <p className="text-sm text-gray-500 text-center">Test Accounts:</p>
+              <div className="grid grid-cols-2 gap-2">
+                {testCredentials.map((cred, index) => (
+                  <Button
+                    key={index}
+                    type="button"
+                    onClick={() => handleTestLogin(cred.email, cred.password)}
+                    className={`${cred.color} text-white py-2 text-sm`}
+                  >
+                    Login as {cred.role}
+                  </Button>
+                ))}
+              </div>
+            </div>
+
             {error && (
-              <p className="text-red-500 text-center mt-2">
+              <div className="flex items-center justify-center text-red-500">
+                <FiAlertCircle className="mr-2" />
                 Login failed. Please check your credentials.
-              </p>
+              </div>
             )}
           </form>
 
@@ -194,7 +239,9 @@ const Login = () => {
               <div className="absolute inset-0 flex items-center">
                 <div className="w-full border-t border-gray-300"></div>
               </div>
-              <div className="relative flex justify-center text-sm"></div>
+              <div className="relative flex justify-center text-sm">
+                <span className="px-2 bg-white text-gray-500">Or</span>
+              </div>
             </div>
 
             <p className="mt-6 text-center text-sm text-gray-600">
@@ -204,7 +251,7 @@ const Login = () => {
                 className="font-medium text-green-600 hover:text-green-500"
               >
                 Register here
-              </Link>
+              </Link> or <Link className='text-green-500 underline' to="/">Home</Link>
             </p>
           </div>
         </CardContent>

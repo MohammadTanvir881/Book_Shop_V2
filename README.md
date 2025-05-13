@@ -2,7 +2,7 @@
 
 ## 🚀 Live Demo
 
-🔗 [https://book-shop-app-five.vercel.app](https://book-shop-app-five.vercel.app)
+🔗 [https://book-shop-frontend-site.vercel.app](https://book-shop-frontend-site.vercel.app)
 
 ## Admin Credentials: admin@gmail.com | 111111
 

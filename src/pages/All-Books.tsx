@@ -155,7 +155,7 @@ const AllBooks = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <div className="max-w-7xl mx-auto">
+      <div className="container mx-auto">
         <h1 className="text-4xl font-bold text-center text-gray-800 mb-12 relative pb-2">
           Our Book Collection
           <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-green-500 rounded-full"></span>

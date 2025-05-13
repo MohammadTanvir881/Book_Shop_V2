@@ -6,10 +6,10 @@ import { useEffect } from 'react';
 
 const TestimonialSection = () => {
   useEffect(() => {
-    AOS.init({ 
+    AOS.init({
       duration: 800,
       easing: 'ease-in-out',
-      once: true
+      once: true,
     });
   }, []);
 
@@ -27,8 +27,12 @@ const TestimonialSection = () => {
       productName: product.name || 'Book',
       role: 'Verified Reader',
       rating: product.rating,
-      comment: product.description || `"${product.name} exceeded my expectations in every way!"`,
-      avatar: product.image || `https://ui-avatars.com/api/?name=${product.author || 'Customer'}&background=059669&color=fff`,
+      comment:
+        product.description ||
+        `"${product.name} exceeded my expectations in every way!"`,
+      avatar:
+        product.image ||
+        `https://ui-avatars.com/api/?name=${product.author || 'Customer'}&background=059669&color=fff`,
     }));
   };
 
@@ -67,18 +71,18 @@ const TestimonialSection = () => {
 
   return (
     <section className="py-16 bg-gray-50 dark:bg-gray-900">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className=" mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <span className="inline-block px-4 py-1 text-sm font-medium text-green-600 bg-green-100 rounded-full mb-4">
             Testimonials
           </span>
-          <h2 
+          <h2
             className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-4"
             data-aos="fade-up"
           >
             What Our Readers Say
           </h2>
-          <p 
+          <p
             className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto"
             data-aos="fade-up"
             data-aos-delay="100"
@@ -113,7 +117,10 @@ const TestimonialSection = () => {
 
               <div className="mb-4">
                 <p className="text-sm font-medium text-gray-600 dark:text-gray-300">
-                  Reviewed: <span className="text-green-600 dark:text-green-400 font-semibold">{testimonial.productName}</span>
+                  Reviewed:{' '}
+                  <span className="text-green-600 dark:text-green-400 font-semibold">
+                    {testimonial.productName}
+                  </span>
                 </p>
               </div>
 
@@ -137,7 +144,7 @@ const TestimonialSection = () => {
         </div>
 
         {/* Rating Summary Section */}
-        <div 
+        <div
           className="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-8 max-w-4xl mx-auto border border-gray-100 dark:border-gray-700"
           data-aos="fade-up"
         >
@@ -156,7 +163,9 @@ const TestimonialSection = () => {
                 ))}
               </div>
               <p className="text-gray-600 dark:text-gray-400">
-                Based on <span className="font-semibold">{ratingStats.total}</span> verified reviews
+                Based on{' '}
+                <span className="font-semibold">{ratingStats.total}</span>{' '}
+                verified reviews
               </p>
             </div>
 

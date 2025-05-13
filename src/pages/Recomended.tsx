@@ -61,7 +61,7 @@ const Recommended = () => {
   return (
     <div className="py-16 px-4 md:px-16 bg-white dark:bg-gray-900">
       {/* Header with decorative elements */}
-      <div className="max-w-4xl mx-auto text-center mb-16 relative">
+      <div className="container mx-auto text-center mb-16 relative">
         <div
           className="absolute -top-18 left-1/2 transform -translate-x-1/2 text-green-500 opacity-20"
           data-aos="fade-down"
@@ -84,7 +84,7 @@ const Recommended = () => {
       </div>
 
       {/* Masonry-inspired grid layout */}
-      <div className="max-w-7xl mx-auto columns-1 md:columns-2 lg:columns-3 gap-8 space-y-8 mb-20">
+      <div className="container mx-auto columns-1 md:columns-2 lg:columns-3 gap-8 space-y-8 mb-20">
         {books.map((book, index) => (
           <div
             key={index}

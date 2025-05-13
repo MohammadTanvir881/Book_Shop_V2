@@ -26,7 +26,7 @@ const About = () => {
         {/* Hero Section */}
         <section
           data-aos="fade-down"
-          className="max-w-6xl mx-auto mb-20 p-10 rounded-2xl bg-gradient-to-r from-green-50 to-green-100 dark:from-gray-800 dark:to-gray-700 shadow-xl text-center"
+          className="container mx-auto mb-20 p-10 rounded-2xl bg-gradient-to-r from-green-50 to-green-100 dark:from-gray-800 dark:to-gray-700 shadow-xl text-center"
         >
           <div className="max-w-3xl mx-auto">
             <h1 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
@@ -53,7 +53,7 @@ const About = () => {
         </section>
 
         {/* Mission & Vision Sections */}
-        <section className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 mb-20">
+        <section className="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 mb-20">
           {/* Mission */}
           <div
             data-aos="fade-right"
@@ -127,7 +127,7 @@ const About = () => {
         </section>
 
         {/* Why Choose Us */}
-        <section data-aos="zoom-in" className="max-w-6xl mx-auto mb-20">
+        <section data-aos="zoom-in" className="container mx-auto mb-20">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
               Why <span className="text-green-500">BookShop</span> Stands Out
@@ -181,7 +181,7 @@ const About = () => {
         {/* Testimonials */}
         <section
           data-aos="fade-up"
-          className="max-w-4xl mx-auto mb-20 p-10 bg-green-50 dark:bg-gray-800 rounded-2xl shadow-lg"
+          className="container mx-auto mb-20 p-10 bg-green-50 dark:bg-gray-800 rounded-2xl shadow-lg"
         >
           <h2 className="text-3xl font-bold text-center text-green-500 dark:text-green-400 mb-12">
             What Our Readers Say
@@ -227,7 +227,7 @@ const About = () => {
         </section>
 
         {/* CTA Section */}
-        <section data-aos="fade-up" className="max-w-4xl mx-auto text-center">
+        <section data-aos="fade-up" className="container mx-auto text-center">
           <div className="p-10 bg-white dark:bg-gray-800 rounded-2xl shadow-lg">
             <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">
               Ready to Begin Your Reading Journey?

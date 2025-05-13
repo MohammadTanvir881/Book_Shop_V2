@@ -34,7 +34,7 @@ const PCarousel = () => {
   };
 
   return (
-    <div className="relative w-full max-w-7xl h-[400px] md:h-[600px] mx-auto overflow-hidden rounded-xl shadow-2xl">
+    <div className="relative w-full  h-[400px] md:h-[600px] mx-auto overflow-hidden rounded-sm shadow-xl">
       {/* Slides container */}
       <div
         className="flex h-full transition-transform duration-700 ease-out"

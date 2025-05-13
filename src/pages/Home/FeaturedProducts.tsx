@@ -74,7 +74,7 @@ const FeaturedProducts = () => {
   }
 
   return (
-    <div className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <div className="py-16 px-4 sm:px-6 lg:px-8 mx-auto">
       <div className="text-center mb-16" data-aos="fade-up">
         <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
           <span className="relative inline-block">

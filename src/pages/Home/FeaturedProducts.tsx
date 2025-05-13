@@ -45,7 +45,10 @@ const FeaturedProducts = () => {
     return (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 p-6 max-w-7xl mx-auto">
         {[...Array(4)].map((_, index) => (
-          <Card key={index} className="border-0 shadow-sm rounded-xl overflow-hidden">
+          <Card
+            key={index}
+            className="border-0 shadow-sm rounded-xl overflow-hidden"
+          >
             <Skeleton className="h-48 w-full rounded-t-xl" />
             <CardContent className="p-4 space-y-3">
               <Skeleton className="h-5 w-3/4 rounded-lg" />
@@ -88,7 +91,7 @@ const FeaturedProducts = () => {
         <>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {products.map((product) => (
-              <div 
+              <div
                 key={product._id}
                 className="group relative"
                 data-aos="fade-up"
@@ -106,7 +109,7 @@ const FeaturedProducts = () => {
                       Featured
                     </span>
                   </div>
-                  
+
                   <CardHeader className="px-4 pt-4 pb-2">
                     <CardTitle className="text-lg font-bold text-gray-900 dark:text-white line-clamp-1">
                       {product.name}
@@ -115,7 +118,7 @@ const FeaturedProducts = () => {
                       by {product.author}
                     </p>
                   </CardHeader>
-                  
+
                   <CardContent className="px-4 pb-4 mt-auto">
                     <div className="flex justify-between items-center mb-3">
                       <p className="text-xl font-bold text-gray-900 dark:text-white">
@@ -137,11 +140,13 @@ const FeaturedProducts = () => {
                         </span>
                       </div>
                     </div>
-                    
+
                     <Button
                       variant="default"
-                      className="w-full bg-green-500 hover:bg-green-600 text-white transition-all duration-300 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0"
-                      onClick={() => product._id && handleViewDetails(product._id)}
+                      className="w-full bg-green-500 hover:bg-green-600 text-white transition-all duration-300 md:opacity-0 md:group-hover:opacity-100"
+                      onClick={() =>
+                        product._id && handleViewDetails(product._id)
+                      }
                     >
                       View Details
                     </Button>

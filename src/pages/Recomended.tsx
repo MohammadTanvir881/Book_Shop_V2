@@ -1,7 +1,6 @@
 import AOS from 'aos';
 import { useEffect } from 'react';
 import { FaStar, FaArrowRight, FaBookOpen } from 'react-icons/fa';
-import ReactPlayer from 'react-player';
 import { Link } from 'react-router-dom';
 
 const Recommended = () => {

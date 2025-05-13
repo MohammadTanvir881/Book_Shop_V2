@@ -43,7 +43,9 @@ export default function BlogSection() {
           id: article.id,
           title: article.title,
           description: article.description,
-          cover_image: article.cover_image || '/default-book-cover.jpg',
+          cover_image:
+            article?.cover_image ||
+            'https://img.freepik.com/free-vector/online-article-concept-illustration_114360-5193.jpg',
           url: article.url,
           readable_publish_date: article.readable_publish_date,
           user: { name: article.user.name },
@@ -72,7 +74,8 @@ export default function BlogSection() {
             Latest From Our Blog
           </h2>
           <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            Discover book reviews, author interviews, and reading recommendations
+            Discover book reviews, author interviews, and reading
+            recommendations
           </p>
         </div>
 

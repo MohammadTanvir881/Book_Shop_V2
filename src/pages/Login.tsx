@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import AOS from 'aos';
 import { useEffect } from 'react';
-import { FiUser, FiLock, FiMail, FiAlertCircle } from 'react-icons/fi';
+import { FiLock, FiMail, FiAlertCircle } from 'react-icons/fi';
 
 export interface ErrorResponse {
   message: string;

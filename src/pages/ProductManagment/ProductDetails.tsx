@@ -37,7 +37,7 @@ const ProductDetails = () => {
     }
   };
 
-  if (isLoading) return <LoadingSpinner />;
+  if (isLoading) return <div className='flex justify-center items-center min-h-screen'><LoadingSpinner /></div>;
   if (error) return <ErrorMessage message="Failed to load product details" />;
   if (!product) return <ErrorMessage message="Product not found" />;
 

@@ -5,8 +5,9 @@ import {
   FaInstagram,
   FaEnvelope,
   FaPhone,
+  FaGithub,
 } from 'react-icons/fa';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
@@ -42,7 +43,7 @@ const Footer = () => {
               </li>
               <li>
                 <NavLink
-                  to="about"
+                  to="/about"
                   className="hover:text-green-400 transition-colors duration-300 block"
                 >
                   About Us
@@ -50,7 +51,7 @@ const Footer = () => {
               </li>
               <li>
                 <NavLink
-                  to="blogs"
+                  to="/blogs"
                   className="hover:text-green-400 transition-colors duration-300 block"
                 >
                   Blogs
@@ -58,7 +59,7 @@ const Footer = () => {
               </li>
               <li>
                 <NavLink
-                  to="contact"
+                  to="/contact"
                   className="hover:text-green-400 transition-colors duration-300 block"
                 >
                   Contact
@@ -75,21 +76,21 @@ const Footer = () => {
             <div className="space-y-3">
               <div className="flex items-center justify-center md:justify-start">
                 <FaEnvelope className="text-green-500 mr-2" />
-                <a
-                  href="mailto:tanvirrashid881@gmail.com"
+                <Link
+                  to="mailto:tanvirrashid881@gmail.com"
                   className="hover:text-green-400 transition-colors duration-300 text-sm"
                 >
                   tanvirrashid881@gmail.com
-                </a>
+                </Link>
               </div>
               <div className="flex items-center justify-center md:justify-start">
                 <FaPhone className="text-green-500 mr-2" />
-                <a
-                  href="tel:01766627499"
+                <Link
+                  to="tel:01766627499"
                   className="hover:text-green-400 transition-colors duration-300 text-sm"
                 >
                   01569146826
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -100,49 +101,42 @@ const Footer = () => {
               Follow Us
             </h3>
             <div className="flex space-x-4">
-              <a
-                href="#"
+              <Link
+                to="https://www.facebook.com/mohammad.tanvir.114"
+                target="_blank"
                 className="bg-gray-800 hover:bg-green-600 text-white p-2 rounded-full transition-colors duration-300"
                 aria-label="Facebook"
               >
                 <FaFacebook size={18} />
-              </a>
-              <a
-                href="#"
+              </Link>
+              <Link
+                to="https://github.com/MohammadTanvir881"
+                target="_blank"
                 className="bg-gray-800 hover:bg-green-600 text-white p-2 rounded-full transition-colors duration-300"
-                aria-label="Twitter"
+                aria-label="Github"
               >
-                <FaTwitter size={18} />
-              </a>
-              <a
-                href="#"
+                <FaGithub size={18} />
+              </Link>
+              <Link
+                to="https://www.linkedin.com/in/tanvirrashid881/"
+                target="_blank"
                 className="bg-gray-800 hover:bg-green-600 text-white p-2 rounded-full transition-colors duration-300"
                 aria-label="LinkedIn"
               >
                 <FaLinkedin size={18} />
-              </a>
-              <a
-                href="#"
+              </Link>
+              {/* <Link
+                to="#"
                 className="bg-gray-800 hover:bg-green-600 text-white p-2 rounded-full transition-colors duration-300"
                 aria-label="Instagram"
               >
                 <FaInstagram size={18} />
-              </a>
+              </Link> */}
             </div>
             <div className="mt-4 w-full">
               <p className="text-sm text-center md:text-left">
                 Subscribe to our newsletter for updates
               </p>
-              {/* <div className="mt-2 flex flex-col bg-white rounded-xl sm:flex-row gap-2">
-                <input
-                  type="email"
-                  placeholder="Your email"
-                  className="px-3 py-2 rounded text-gray-900 text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
-                />
-                <button className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded text-sm font-medium transition-colors duration-300">
-                  Subscribe
-                </button>
-              </div> */}
             </div>
           </div>
         </div>

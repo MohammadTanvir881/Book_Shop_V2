@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { RootState } from '@/redux/store';
 import { setUserInfo } from '@/redux/features/auth/authSlice';
@@ -15,7 +16,7 @@ import { Avatar, AvatarImage } from '@/components/ui/avatar';
 
 const AllUser = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const userInfo: User[] = useSelector((state: RootState) => state.auth.userInfo) ?? [];
   const { data, error, isLoading } = useGetallUserInfoQuery();
   const [deactivateUser] = useDeactivateUserMutation();

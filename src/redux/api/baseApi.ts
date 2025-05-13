@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { RootState } from '../store';
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: 'http://localhost:5000/api', //backend url
+  baseUrl: 'https://book-shop-baeckend-site.vercel.app/api', //backend url
   credentials: 'include', // Include cookies with requests
   prepareHeaders: (headers, { getState }) => {
     const token = (getState() as RootState).auth.token;

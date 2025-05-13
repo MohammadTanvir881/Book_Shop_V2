@@ -86,8 +86,8 @@ book-shop/
 ### 1. Clone Both Repositories
 
 ```bash
-git clone https://github.com/Hasan-Mahadi/Book-Shop-Frontend-Site.git
-git clone https://github.com/Hasan-Mahadi/Book-Shop-Baeckend-Site.git
+git clone https://github.com/MohammadTanvir881/Book_Shop_V2.git
+git clone https://github.com/MohammadTanvir881/book-shop-backend.git
 
 cd Book-Shop-Baeckend-Site
 
@@ -99,8 +99,8 @@ echo "NODE_ENV=development
 PORT=5000
 BCRYPT_SALT_ROUNDS=6
 SP_ENDPOINT=https://sandbox.shurjopayment.com
-SP_USERNAME=sp_sandbox
-SP_PASSWORD=pyyk97hu&6u6
+SP_USERNAME=
+SP_PASSWORD=
 SP_PREFIX=SP
 SP_RETURN_URL=http://localhost:5173
 CLIENT_URL=http://localhost:5173
@@ -155,7 +155,7 @@ number total
 }
 
 📧 Contact
-Project Lead: [Hasan Mahadi]
-Email: hasanmahadihm99@gmail.com
-GitHub: Hasan-Mahadi
+Project Lead: [Tanvir_Rashid]
+Email: tanvirrashid881@gmail.com
+GitHub: MohammdaTanvir881
 ```
